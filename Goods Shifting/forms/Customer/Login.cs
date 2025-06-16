@@ -1,4 +1,5 @@
 ﻿using Goods_Shifting.forms.Auth;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,6 +32,65 @@ namespace Goods_Shifting.forms.Customer
             Register registerForm = new Register();
             registerForm.FormClosed += (s, args) => this.Close(); // Close the Home form when Login is closed
             registerForm.Show();
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            MySqlConnection conn = DBConnection.GetConnection();
+
+            try
+            {
+
+                conn.Open();
+                string query = "SELECT id, name, email FROM customers WHERE email = @email AND password = @password";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@email", txtEmail.Text.Trim());
+                    cmd.Parameters.AddWithValue("@password", txtPassword.Text);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            // send user data to dashboard
+                            int userId = reader.GetInt32("id");
+                            string userName = reader.GetString("name");
+                            string userEmail = reader.GetString("email");
+
+
+
+                            MessageBox.Show($"Welcome back, {userName}!", "Login Successful",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            this.Hide();
+                            CustomerDashboard dashboardForm = new CustomerDashboard();
+                            dashboardForm.FormClosed += (s, args) => this.Close();
+                            dashboardForm.Show();
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Invalid email or password.", "Login Failed",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ResatPassword resetPasswordForm = new ResatPassword();
+            resetPasswordForm.FindForm().FormClosed += (s, args) => this.Close(); // Close the Home form when Login is closed
+            resetPasswordForm.Show();
         }
     }
 }

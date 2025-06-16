@@ -1,4 +1,5 @@
-﻿using Goods_Shifting.forms.Customer;
+﻿using Goods_Shifting.forms.Admin;
+using Goods_Shifting.forms.Customer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,6 +29,14 @@ namespace Goods_Shifting.forms.Auth
             this.Hide();
             Login loginForm = new Login();
             loginForm.FormClosed += (s, args) => this.Close(); // Close the Home form when Login is closed
+            loginForm.Show();
+        }
+
+        private void btnAdminLogin_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            AdminLogin loginForm = new AdminLogin();
+            loginForm.FormClosed += (s, args) => this.Close();
             loginForm.Show();
         }
     }

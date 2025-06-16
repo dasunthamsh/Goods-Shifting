@@ -1,6 +1,6 @@
-﻿namespace Goods_Shifting.forms.Customer
+﻿namespace Goods_Shifting.forms.Admin
 {
-    partial class Login
+    partial class AdminLogin
     {
         /// <summary>
         /// Required designer variable.
@@ -28,65 +28,59 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminLogin));
+            btnBack = new Button();
+            label5 = new Label();
             panel1 = new Panel();
-            btnRegister = new Label();
-            label6 = new Label();
             btnLogin = new Button();
             txtPassword = new TextBox();
             label3 = new Label();
             label4 = new Label();
-            txtEmail = new TextBox();
+            txtID = new TextBox();
             label2 = new Label();
             label1 = new Label();
-            label5 = new Label();
-            btnBack = new Button();
-            label7 = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
+            // 
+            // btnBack
+            // 
+            btnBack.BackColor = Color.Transparent;
+            btnBack.ForeColor = Color.Transparent;
+            btnBack.Image = (Image)resources.GetObject("btnBack.Image");
+            btnBack.Location = new Point(195, 36);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(42, 34);
+            btnBack.TabIndex = 10;
+            btnBack.UseVisualStyleBackColor = false;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.BackColor = Color.Transparent;
+            label5.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
+            label5.ForeColor = SystemColors.ButtonHighlight;
+            label5.Location = new Point(25, 24);
+            label5.Name = "label5";
+            label5.Size = new Size(149, 54);
+            label5.TabIndex = 9;
+            label5.Text = "E-Shift";
+            label5.TextAlign = ContentAlignment.TopCenter;
             // 
             // panel1
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel1.BackColor = SystemColors.Window;
-            panel1.Controls.Add(label7);
-            panel1.Controls.Add(btnRegister);
-            panel1.Controls.Add(label6);
             panel1.Controls.Add(btnLogin);
             panel1.Controls.Add(txtPassword);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(label4);
-            panel1.Controls.Add(txtEmail);
+            panel1.Controls.Add(txtID);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label1);
             panel1.Location = new Point(393, 105);
             panel1.Name = "panel1";
             panel1.Size = new Size(599, 755);
-            panel1.TabIndex = 0;
-            // 
-            // btnRegister
-            // 
-            btnRegister.AutoSize = true;
-            btnRegister.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnRegister.ForeColor = SystemColors.Highlight;
-            btnRegister.Location = new Point(330, 679);
-            btnRegister.Name = "btnRegister";
-            btnRegister.Size = new Size(132, 28);
-            btnRegister.TabIndex = 17;
-            btnRegister.Text = "Register here";
-            btnRegister.TextAlign = ContentAlignment.TopCenter;
-            btnRegister.Click += btnRegister_Click;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 10F);
-            label6.Location = new Point(115, 679);
-            label6.Name = "label6";
-            label6.Size = new Size(216, 28);
-            label6.TabIndex = 16;
-            label6.Text = "Don't have an account?";
-            label6.TextAlign = ContentAlignment.TopCenter;
+            panel1.TabIndex = 8;
             // 
             // btnLogin
             // 
@@ -126,21 +120,22 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 10F);
-            label4.Location = new Point(124, 104);
+            label4.Location = new Point(196, 105);
             label4.Name = "label4";
-            label4.Size = new Size(349, 28);
+            label4.Size = new Size(178, 28);
             label4.TabIndex = 12;
-            label4.Text = "Login to manage your moving services";
+            label4.Text = "Admin login portal";
             label4.TextAlign = ContentAlignment.TopCenter;
+            label4.Click += label4_Click;
             // 
-            // txtEmail
+            // txtID
             // 
-            txtEmail.Font = new Font("Segoe UI", 11F);
-            txtEmail.Location = new Point(64, 281);
-            txtEmail.Name = "txtEmail";
-            txtEmail.PlaceholderText = "Enter your email";
-            txtEmail.Size = new Size(471, 37);
-            txtEmail.TabIndex = 10;
+            txtID.Font = new Font("Segoe UI", 11F);
+            txtID.Location = new Point(64, 281);
+            txtID.Name = "txtID";
+            txtID.PlaceholderText = "Enter your ID";
+            txtID.Size = new Size(471, 37);
+            txtID.TabIndex = 10;
             // 
             // label2
             // 
@@ -149,9 +144,9 @@
             label2.ForeColor = SystemColors.GrayText;
             label2.Location = new Point(64, 235);
             label2.Name = "label2";
-            label2.Size = new Size(151, 30);
+            label2.Size = new Size(35, 30);
             label2.TabIndex = 8;
-            label2.Text = "Email Address";
+            label2.Text = "ID";
             // 
             // label1
             // 
@@ -160,52 +155,14 @@
             label1.BackColor = Color.White;
             label1.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             label1.ForeColor = SystemColors.ActiveCaptionText;
-            label1.Location = new Point(233, 33);
+            label1.Location = new Point(163, 32);
             label1.Name = "label1";
-            label1.Size = new Size(127, 54);
+            label1.Size = new Size(263, 54);
             label1.TabIndex = 7;
-            label1.Text = "Login";
+            label1.Text = "Admin Login";
             label1.TextAlign = ContentAlignment.TopCenter;
             // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.BackColor = Color.Transparent;
-            label5.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
-            label5.ForeColor = SystemColors.ButtonHighlight;
-            label5.Location = new Point(25, 24);
-            label5.Name = "label5";
-            label5.Size = new Size(149, 54);
-            label5.TabIndex = 6;
-            label5.Text = "E-Shift";
-            label5.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // btnBack
-            // 
-            btnBack.BackColor = Color.Transparent;
-            btnBack.ForeColor = Color.Transparent;
-            btnBack.Image = (Image)resources.GetObject("btnBack.Image");
-            btnBack.Location = new Point(195, 36);
-            btnBack.Name = "btnBack";
-            btnBack.Size = new Size(42, 34);
-            btnBack.TabIndex = 7;
-            btnBack.UseVisualStyleBackColor = false;
-            btnBack.Click += btnBack_Click;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.ForeColor = SystemColors.Highlight;
-            label7.Location = new Point(372, 470);
-            label7.Name = "label7";
-            label7.Size = new Size(163, 28);
-            label7.TabIndex = 18;
-            label7.Text = "Forgot Password";
-            label7.TextAlign = ContentAlignment.TopCenter;
-            label7.Click += label7_Click;
-            // 
-            // Login
+            // AdminLogin
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -214,8 +171,8 @@
             Controls.Add(btnBack);
             Controls.Add(label5);
             Controls.Add(panel1);
-            Name = "Login";
-            Text = "Login";
+            Name = "AdminLogin";
+            Text = "AdminLogin";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
@@ -224,18 +181,15 @@
 
         #endregion
 
-        private Panel panel1;
-        private Label label5;
-        private Label label1;
-        private Label label2;
-        private TextBox txtEmail;
-        private Label label4;
-        private Label label3;
-        private TextBox txtPassword;
-        private Label btnRegister;
-        private Label label6;
-        private Button btnLogin;
         private Button btnBack;
-        private Label label7;
+        private Label label5;
+        private Panel panel1;
+        private Button btnLogin;
+        private TextBox txtPassword;
+        private Label label3;
+        private Label label4;
+        private TextBox txtID;
+        private Label label2;
+        private Label label1;
     }
 }

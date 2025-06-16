@@ -1,6 +1,6 @@
 ﻿namespace Goods_Shifting.forms.Customer
 {
-    partial class Register
+    partial class ResatPassword
     {
         /// <summary>
         /// Required designer variable.
@@ -28,23 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Register));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ResatPassword));
+            btnBack = new Button();
             label5 = new Label();
             panel1 = new Panel();
-            btnLogin = new Label();
-            label6 = new Label();
-            btnRgister = new Button();
-            txtPassword = new TextBox();
+            btnResat = new Button();
+            txtNewPassword = new TextBox();
             label3 = new Label();
             label4 = new Label();
             txtEmail = new TextBox();
             label2 = new Label();
             label1 = new Label();
-            btnBack = new Button();
-            txtName = new TextBox();
-            lable17 = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
+            // 
+            // btnBack
+            // 
+            btnBack.BackColor = Color.Transparent;
+            btnBack.ForeColor = Color.Transparent;
+            btnBack.Image = (Image)resources.GetObject("btnBack.Image");
+            btnBack.Location = new Point(195, 36);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(42, 34);
+            btnBack.TabIndex = 9;
+            btnBack.UseVisualStyleBackColor = false;
+            btnBack.Click += btnBack_Click;
             // 
             // label5
             // 
@@ -63,74 +71,47 @@
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel1.BackColor = SystemColors.Window;
-            panel1.Controls.Add(txtName);
-            panel1.Controls.Add(lable17);
-            panel1.Controls.Add(btnLogin);
-            panel1.Controls.Add(label6);
-            panel1.Controls.Add(btnRgister);
-            panel1.Controls.Add(txtPassword);
+            panel1.Controls.Add(btnResat);
+            panel1.Controls.Add(txtNewPassword);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(txtEmail);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label1);
-            panel1.Location = new Point(393, 105);
+            panel1.Location = new Point(390, 86);
             panel1.Name = "panel1";
             panel1.Size = new Size(599, 755);
-            panel1.TabIndex = 7;
+            panel1.TabIndex = 10;
             // 
-            // btnLogin
+            // btnResat
             // 
-            btnLogin.AutoSize = true;
-            btnLogin.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLogin.ForeColor = SystemColors.Highlight;
-            btnLogin.Location = new Point(351, 680);
-            btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(116, 28);
-            btnLogin.TabIndex = 17;
-            btnLogin.Text = "Log in here";
-            btnLogin.TextAlign = ContentAlignment.TopCenter;
-            btnLogin.Click += btnLogin_Click;
+            btnResat.BackColor = SystemColors.MenuHighlight;
+            btnResat.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnResat.ForeColor = SystemColors.Control;
+            btnResat.Location = new Point(163, 534);
+            btnResat.Name = "btnResat";
+            btnResat.Size = new Size(260, 68);
+            btnResat.TabIndex = 15;
+            btnResat.Text = "Resat";
+            btnResat.UseVisualStyleBackColor = false;
+            btnResat.Click += btnResat_Click;
             // 
-            // label6
+            // txtNewPassword
             // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 10F);
-            label6.Location = new Point(115, 679);
-            label6.Name = "label6";
-            label6.Size = new Size(239, 28);
-            label6.TabIndex = 16;
-            label6.Text = "Already have an account? ";
-            label6.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // btnRgister
-            // 
-            btnRgister.BackColor = SystemColors.MenuHighlight;
-            btnRgister.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnRgister.ForeColor = SystemColors.Control;
-            btnRgister.Location = new Point(163, 566);
-            btnRgister.Name = "btnRgister";
-            btnRgister.Size = new Size(260, 68);
-            btnRgister.TabIndex = 15;
-            btnRgister.Text = "Create account";
-            btnRgister.UseVisualStyleBackColor = false;
-            btnRgister.Click += btnRgister_Click;
-            // 
-            // txtPassword
-            // 
-            txtPassword.Font = new Font("Segoe UI", 11F);
-            txtPassword.Location = new Point(64, 472);
-            txtPassword.Name = "txtPassword";
-            txtPassword.PlaceholderText = "Enter your password";
-            txtPassword.Size = new Size(471, 37);
-            txtPassword.TabIndex = 14;
+            txtNewPassword.Font = new Font("Segoe UI", 11F);
+            txtNewPassword.Location = new Point(64, 412);
+            txtNewPassword.Name = "txtNewPassword";
+            txtNewPassword.PlaceholderText = "Enter your new password";
+            txtNewPassword.Size = new Size(471, 37);
+            txtNewPassword.TabIndex = 14;
+            txtNewPassword.UseSystemPasswordChar = true;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = SystemColors.GrayText;
-            label3.Location = new Point(64, 430);
+            label3.Location = new Point(64, 370);
             label3.Name = "label3";
             label3.Size = new Size(105, 30);
             label3.TabIndex = 13;
@@ -140,17 +121,17 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 10F);
-            label4.Location = new Point(141, 102);
+            label4.Location = new Point(124, 104);
             label4.Name = "label4";
-            label4.Size = new Size(311, 28);
+            label4.Size = new Size(349, 28);
             label4.TabIndex = 12;
-            label4.Text = "Create your account to get started";
+            label4.Text = "Login to manage your moving services";
             label4.TextAlign = ContentAlignment.TopCenter;
             // 
             // txtEmail
             // 
             txtEmail.Font = new Font("Segoe UI", 11F);
-            txtEmail.Location = new Point(64, 351);
+            txtEmail.Location = new Point(64, 281);
             txtEmail.Name = "txtEmail";
             txtEmail.PlaceholderText = "Enter your email";
             txtEmail.Size = new Size(471, 37);
@@ -161,7 +142,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = SystemColors.GrayText;
-            label2.Location = new Point(64, 305);
+            label2.Location = new Point(64, 235);
             label2.Name = "label2";
             label2.Size = new Size(151, 30);
             label2.TabIndex = 8;
@@ -174,56 +155,24 @@
             label1.BackColor = Color.White;
             label1.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             label1.ForeColor = SystemColors.ActiveCaptionText;
-            label1.Location = new Point(216, 31);
+            label1.Location = new Point(140, 31);
             label1.Name = "label1";
-            label1.Size = new Size(178, 54);
+            label1.Size = new Size(316, 54);
             label1.TabIndex = 7;
-            label1.Text = "Register";
+            label1.Text = "Resat Password";
             label1.TextAlign = ContentAlignment.TopCenter;
             // 
-            // btnBack
-            // 
-            btnBack.BackColor = Color.Transparent;
-            btnBack.ForeColor = Color.Transparent;
-            btnBack.Image = (Image)resources.GetObject("btnBack.Image");
-            btnBack.Location = new Point(195, 36);
-            btnBack.Name = "btnBack";
-            btnBack.Size = new Size(42, 34);
-            btnBack.TabIndex = 9;
-            btnBack.UseVisualStyleBackColor = false;
-            btnBack.Click += btnBack_Click;
-            // 
-            // txtName
-            // 
-            txtName.Font = new Font("Segoe UI", 11F);
-            txtName.Location = new Point(66, 230);
-            txtName.Name = "txtName";
-            txtName.PlaceholderText = "Enter your name";
-            txtName.Size = new Size(471, 37);
-            txtName.TabIndex = 19;
-            // 
-            // lable17
-            // 
-            lable17.AutoSize = true;
-            lable17.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lable17.ForeColor = SystemColors.GrayText;
-            lable17.Location = new Point(66, 184);
-            lable17.Name = "lable17";
-            lable17.Size = new Size(72, 30);
-            lable17.TabIndex = 18;
-            lable17.Text = "Name";
-            // 
-            // Register
+            // ResatPassword
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(1378, 926);
+            Controls.Add(panel1);
             Controls.Add(btnBack);
             Controls.Add(label5);
-            Controls.Add(panel1);
-            Name = "Register";
-            Text = "Register";
+            Name = "ResatPassword";
+            Text = "ResatPassword";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
@@ -232,19 +181,17 @@
 
         #endregion
 
+        private Button btnBack;
         private Label label5;
         private Panel panel1;
-        private Label btnLogin;
+        private Label btnRegister;
         private Label label6;
-        private Button btnRgister;
-        private TextBox txtPassword;
+        private Button btnResat;
+        private TextBox txtNewPassword;
         private Label label3;
         private Label label4;
         private TextBox txtEmail;
         private Label label2;
         private Label label1;
-        private Button btnBack;
-        private TextBox txtName;
-        private Label lable17;
     }
 }
