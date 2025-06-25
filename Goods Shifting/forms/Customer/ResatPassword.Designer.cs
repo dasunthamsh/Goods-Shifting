@@ -85,6 +85,7 @@
             // 
             // btnResat
             // 
+            btnResat.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             btnResat.BackColor = SystemColors.MenuHighlight;
             btnResat.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnResat.ForeColor = SystemColors.Control;

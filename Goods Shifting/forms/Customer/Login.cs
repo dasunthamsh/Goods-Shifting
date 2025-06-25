@@ -64,7 +64,7 @@ namespace Goods_Shifting.forms.Customer
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             this.Hide();
-                            CustomerDashboard dashboardForm = new CustomerDashboard();
+                            CreateJob dashboardForm = new CreateJob();
                             dashboardForm.FormClosed += (s, args) => this.Close();
                             dashboardForm.Show();
 
@@ -87,10 +87,7 @@ namespace Goods_Shifting.forms.Customer
 
         private void label7_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            ResatPassword resetPasswordForm = new ResatPassword();
-            resetPasswordForm.FindForm().FormClosed += (s, args) => this.Close(); // Close the Home form when Login is closed
-            resetPasswordForm.Show();
+            
         }
     }
 }

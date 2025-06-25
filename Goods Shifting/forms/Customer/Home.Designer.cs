@@ -52,6 +52,7 @@
             label1.TabIndex = 0;
             label1.Text = "Welcome to";
             label1.TextAlign = ContentAlignment.TopCenter;
+            label1.Click += label1_Click;
             // 
             // label2
             // 
@@ -68,16 +69,18 @@
             // 
             // panel1
             // 
-            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panel1.Anchor = AnchorStyles.None;
+            panel1.AutoSize = true;
+            panel1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panel1.BackColor = SystemColors.Window;
             panel1.Controls.Add(label4);
             panel1.Controls.Add(btnLogin);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label1);
-            panel1.Location = new Point(425, 169);
+            panel1.Location = new Point(469, 170);
             panel1.Name = "panel1";
-            panel1.Size = new Size(488, 545);
+            panel1.Size = new Size(457, 525);
             panel1.TabIndex = 2;
             // 
             // label4
@@ -89,11 +92,11 @@
             label4.Size = new Size(420, 28);
             label4.TabIndex = 4;
             label4.Text = "Need help? Contact us at support@e-shift.com";
-            label4.TextAlign = ContentAlignment.TopCenter;
+            label4.TextAlign = ContentAlignment.BottomCenter;
             // 
             // btnLogin
             // 
-            btnLogin.BackColor = SystemColors.MenuHighlight;
+            btnLogin.BackColor = SystemColors.Highlight;
             btnLogin.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnLogin.ForeColor = SystemColors.Control;
             btnLogin.Location = new Point(114, 313);
@@ -108,15 +111,16 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 11F);
-            label3.Location = new Point(27, 134);
+            label3.Location = new Point(12, 134);
             label3.Name = "label3";
             label3.Size = new Size(434, 90);
             label3.TabIndex = 2;
             label3.Text = "e-Shift made our family move completely\r\n hassle-free! Their team handled everything\r\n with care and professionalism.";
-            label3.TextAlign = ContentAlignment.TopCenter;
+            label3.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // btnAdminLogin
             // 
+            btnAdminLogin.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnAdminLogin.BackColor = SystemColors.InactiveBorder;
             btnAdminLogin.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnAdminLogin.ForeColor = SystemColors.ActiveCaptionText;

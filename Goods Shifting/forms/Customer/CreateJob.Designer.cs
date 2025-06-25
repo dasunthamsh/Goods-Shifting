@@ -1,6 +1,6 @@
 ﻿namespace Goods_Shifting.forms.Customer
 {
-    partial class CustomerDashboard
+    partial class CreateJob
     {
         /// <summary>
         /// Required designer variable.
@@ -30,13 +30,13 @@
         {
             SuspendLayout();
             // 
-            // CustomerDashboard
+            // CreateJob
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1378, 926);
-            Name = "CustomerDashboard";
-            Text = "CustomerDashboard";
+            Name = "CreateJob";
+            Text = "CreateJob";
             ResumeLayout(false);
         }
 

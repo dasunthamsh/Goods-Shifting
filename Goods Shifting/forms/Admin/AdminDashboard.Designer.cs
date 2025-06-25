@@ -40,7 +40,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = SystemColors.ButtonFace;
+            panel1.BackColor = Color.Gainsboro;
             panel1.Controls.Add(btnVehicles);
             panel1.Controls.Add(btnEmployees);
             panel1.Controls.Add(btnJobs);

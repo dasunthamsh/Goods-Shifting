@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Goods_Shifting.forms.Customer
 {
-    public partial class CustomerDashboard: Form
+    public partial class CreateJob: Form
     {
-        public CustomerDashboard()
+        public CreateJob()
         {
             InitializeComponent();
         }
