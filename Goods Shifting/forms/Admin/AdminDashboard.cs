@@ -33,5 +33,14 @@ namespace Goods_Shifting.forms.Admin
             panel.Show();
 
         }
+
+        private void btnJobs_Click(object sender, EventArgs e)
+        {
+            this.panelFormLoader.Controls.Clear();
+            NewJobsPanel newJobs = new NewJobsPanel() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            newJobs.FormBorderStyle = FormBorderStyle.None;
+            this.panelFormLoader.Controls.Add(newJobs);
+            newJobs.Show();
+        }
     }
 }

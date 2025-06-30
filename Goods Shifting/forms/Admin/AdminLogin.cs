@@ -35,7 +35,7 @@ namespace Goods_Shifting.forms.Admin
 
                 conn.Open();
 
-                string query = "SELECT employeeid, name, email FROM employees WHERE employeeid = @id AND password = @password";
+                string query = "SELECT managerid, name, email FROM managers WHERE managerid = @id AND password = @password";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, conn))
                 {

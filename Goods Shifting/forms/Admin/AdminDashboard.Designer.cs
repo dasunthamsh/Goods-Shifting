@@ -80,6 +80,7 @@
             btnJobs.TabIndex = 11;
             btnJobs.Text = "Jobs";
             btnJobs.UseVisualStyleBackColor = true;
+            btnJobs.Click += btnJobs_Click;
             // 
             // label5
             // 

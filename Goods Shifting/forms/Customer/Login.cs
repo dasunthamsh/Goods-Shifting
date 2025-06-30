@@ -42,7 +42,7 @@ namespace Goods_Shifting.forms.Customer
             {
 
                 conn.Open();
-                string query = "SELECT id, name, email FROM customers WHERE email = @email AND password = @password";
+                string query = "SELECT customerid, name, email FROM customers WHERE email = @email AND password = @password";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, conn))
                 {
@@ -54,7 +54,7 @@ namespace Goods_Shifting.forms.Customer
                         if (reader.Read())
                         {
                             // send user data to dashboard
-                            int userId = reader.GetInt32("id");
+                            string customerId = reader.GetString("customerid");
                             string userName = reader.GetString("name");
                             string userEmail = reader.GetString("email");
 
@@ -64,7 +64,7 @@ namespace Goods_Shifting.forms.Customer
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             this.Hide();
-                            CreateJob dashboardForm = new CreateJob();
+                            CreateJob dashboardForm = new CreateJob(customerId, userName);
                             dashboardForm.FormClosed += (s, args) => this.Close();
                             dashboardForm.Show();
 
@@ -87,7 +87,9 @@ namespace Goods_Shifting.forms.Customer
 
         private void label7_Click(object sender, EventArgs e)
         {
-            
+            ResatPassword resetPasswordForm = new ResatPassword();
+            resetPasswordForm.FormClosed += (s, args) => this.Close();
+            resetPasswordForm.Show();
         }
     }
 }
