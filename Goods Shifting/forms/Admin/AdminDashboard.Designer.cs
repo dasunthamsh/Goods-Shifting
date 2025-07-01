@@ -28,19 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             panel1 = new Panel();
+            lblTime = new Label();
+            lblDate = new Label();
             btnVehicles = new Button();
             btnEmployees = new Button();
             btnJobs = new Button();
             label5 = new Label();
             btnDashboard = new Button();
             panelFormLoader = new Panel();
+            timer1 = new System.Windows.Forms.Timer(components);
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = Color.Gainsboro;
+            panel1.Controls.Add(lblTime);
+            panel1.Controls.Add(lblDate);
             panel1.Controls.Add(btnVehicles);
             panel1.Controls.Add(btnEmployees);
             panel1.Controls.Add(btnJobs);
@@ -50,6 +56,26 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(292, 928);
             panel1.TabIndex = 0;
+            // 
+            // lblTime
+            // 
+            lblTime.AutoSize = true;
+            lblTime.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            lblTime.Location = new Point(11, 42);
+            lblTime.Name = "lblTime";
+            lblTime.Size = new Size(62, 25);
+            lblTime.TabIndex = 15;
+            lblTime.Text = "label2";
+            // 
+            // lblDate
+            // 
+            lblDate.AutoSize = true;
+            lblDate.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            lblDate.Location = new Point(11, 9);
+            lblDate.Name = "lblDate";
+            lblDate.Size = new Size(59, 25);
+            lblDate.TabIndex = 14;
+            lblDate.Text = "label1";
             // 
             // btnVehicles
             // 
@@ -86,11 +112,11 @@
             // 
             label5.AutoSize = true;
             label5.BackColor = Color.Transparent;
-            label5.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
+            label5.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
             label5.ForeColor = SystemColors.MenuHighlight;
-            label5.Location = new Point(60, 40);
+            label5.Location = new Point(70, 72);
             label5.Name = "label5";
-            label5.Size = new Size(149, 54);
+            label5.Size = new Size(135, 48);
             label5.TabIndex = 10;
             label5.Text = "E-Shift";
             label5.TextAlign = ContentAlignment.TopCenter;
@@ -112,6 +138,11 @@
             panelFormLoader.Name = "panelFormLoader";
             panelFormLoader.Size = new Size(1067, 902);
             panelFormLoader.TabIndex = 1;
+            // 
+            // timer1
+            // 
+            timer1.Enabled = true;
+            timer1.Tick += timer1_Tick;
             // 
             // AdminDashboard
             // 
@@ -137,5 +168,8 @@
         private Button btnJobs;
         private Button btnVehicles;
         private Panel panelFormLoader;
+        private Label lblTime;
+        private Label lblDate;
+        private System.Windows.Forms.Timer timer1;
     }
 }

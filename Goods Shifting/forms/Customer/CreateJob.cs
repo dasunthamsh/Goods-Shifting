@@ -112,7 +112,7 @@ namespace Goods_Shifting.forms.Customer
                 {
                     cmd.Parameters.AddWithValue("@customerId", customerId);
                     cmd.Parameters.AddWithValue("@truckSize", cmbSize.SelectedItem.ToString());
-                    cmd.Parameters.AddWithValue("@pickupDate", dateTimePicker1.Value);
+                    cmd.Parameters.AddWithValue("@pickupDate", dateTimePicker1.Value.ToString("yyyy-MM-dd"));
                     cmd.Parameters.AddWithValue("@contactNumber", txtNumber.Text.Trim());
                     cmd.Parameters.AddWithValue("@destinationCity", txtDestinationCity.Text.Trim());
                     cmd.Parameters.AddWithValue("@destinationAddress", txtDestinationAddress.Text.Trim());

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             dataGridView1 = new DataGridView();
-            lblDashboard = new Label();
+            lblJobs = new Label();
             label2 = new Label();
             txtJobId = new TextBox();
             cmbVehicle = new ComboBox();
@@ -53,15 +53,15 @@
             dataGridView1.TabIndex = 0;
             dataGridView1.CellClick += dataGridView1_CellClick;
             // 
-            // lblDashboard
+            // lblJobs
             // 
-            lblDashboard.AutoSize = true;
-            lblDashboard.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblDashboard.Location = new Point(22, 24);
-            lblDashboard.Name = "lblDashboard";
-            lblDashboard.Size = new Size(66, 32);
-            lblDashboard.TabIndex = 1;
-            lblDashboard.Text = "Jobs";
+            lblJobs.AutoSize = true;
+            lblJobs.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblJobs.Location = new Point(22, 24);
+            lblJobs.Name = "lblJobs";
+            lblJobs.Size = new Size(66, 32);
+            lblJobs.TabIndex = 1;
+            lblJobs.Text = "Jobs";
             // 
             // label2
             // 
@@ -154,7 +154,7 @@
             // 
             // btnRemoveJob
             // 
-            btnRemoveJob.BackColor = SystemColors.MenuHighlight;
+            btnRemoveJob.BackColor = Color.Firebrick;
             btnRemoveJob.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnRemoveJob.ForeColor = SystemColors.Control;
             btnRemoveJob.Location = new Point(573, 769);
@@ -163,6 +163,7 @@
             btnRemoveJob.TabIndex = 37;
             btnRemoveJob.Text = "Remove Job";
             btnRemoveJob.UseVisualStyleBackColor = false;
+            btnRemoveJob.Click += btnRemoveJob_Click;
             // 
             // NewJobsPanel
             // 
@@ -179,7 +180,7 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(txtJobId);
-            Controls.Add(lblDashboard);
+            Controls.Add(lblJobs);
             Controls.Add(dataGridView1);
             Name = "NewJobsPanel";
             Text = "NewJobsPanel";
@@ -191,7 +192,7 @@
         #endregion
 
         private DataGridView dataGridView1;
-        private Label lblDashboard;
+        private Label lblJobs;
         private Label label2;
         private TextBox txtJobId;
         private ComboBox cmbVehicle;

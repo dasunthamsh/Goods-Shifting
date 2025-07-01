@@ -49,11 +49,14 @@ namespace Goods_Shifting.forms.Admin
                         {
                             reader.Read();
 
+                            string managerId = reader.GetString("managerid");
+                            string managerName = reader.GetString("name");
+
                             // Successful login
                             this.Hide();
 
                             // Pass admin info to dashboard
-                            AdminDashboard dashboard = new AdminDashboard();
+                            AdminDashboard dashboard = new AdminDashboard(managerId, managerName);
                             dashboard.FormClosed += (s, args) => this.Close();
                             dashboard.Show();
                         }
