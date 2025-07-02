@@ -144,7 +144,7 @@
             btnAssignJob.BackColor = SystemColors.MenuHighlight;
             btnAssignJob.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnAssignJob.ForeColor = SystemColors.Control;
-            btnAssignJob.Location = new Point(806, 769);
+            btnAssignJob.Location = new Point(562, 778);
             btnAssignJob.Name = "btnAssignJob";
             btnAssignJob.Size = new Size(218, 56);
             btnAssignJob.TabIndex = 36;
@@ -157,7 +157,7 @@
             btnRemoveJob.BackColor = Color.Firebrick;
             btnRemoveJob.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnRemoveJob.ForeColor = SystemColors.Control;
-            btnRemoveJob.Location = new Point(573, 769);
+            btnRemoveJob.Location = new Point(806, 778);
             btnRemoveJob.Name = "btnRemoveJob";
             btnRemoveJob.Size = new Size(218, 56);
             btnRemoveJob.TabIndex = 37;

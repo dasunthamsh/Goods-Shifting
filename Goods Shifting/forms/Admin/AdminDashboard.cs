@@ -50,7 +50,7 @@ namespace Goods_Shifting.forms.Admin
 
         private void btnJobs_Click(object sender, EventArgs e)
         {
-            
+
             this.panelFormLoader.Controls.Clear();
             NewJobsPanel newJobs = new NewJobsPanel(managerId) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             newJobs.FormBorderStyle = FormBorderStyle.None;
@@ -62,6 +62,24 @@ namespace Goods_Shifting.forms.Admin
         {
             lblTime.Text = DateTime.Now.ToString("hh:mm:ss tt");
             lblDate.Text = DateTime.Now.ToString("dddd, dd MMMM yyyy");
+        }
+
+        private void btnEmployees_Click(object sender, EventArgs e)
+        {
+            this.panelFormLoader.Controls.Clear();
+            EmployeePanel employeePanel = new EmployeePanel() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            employeePanel.FormBorderStyle = FormBorderStyle.None;
+            this.panelFormLoader.Controls.Add(employeePanel);
+            employeePanel.Show();
+        }
+
+        private void btnVehicles_Click(object sender, EventArgs e)
+        {
+            this.panelFormLoader.Controls.Clear();
+            VehiclePanel vehiclePanel = new VehiclePanel() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            vehiclePanel.FormBorderStyle = FormBorderStyle.None;
+            this.panelFormLoader.Controls.Add(vehiclePanel);
+            vehiclePanel.Show();
         }
     }
 }

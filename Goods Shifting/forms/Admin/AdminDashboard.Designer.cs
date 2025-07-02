@@ -39,12 +39,16 @@
             btnDashboard = new Button();
             panelFormLoader = new Panel();
             timer1 = new System.Windows.Forms.Timer(components);
+            btnLogOut = new Button();
+            button1 = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = Color.Gainsboro;
+            panel1.Controls.Add(button1);
+            panel1.Controls.Add(btnLogOut);
             panel1.Controls.Add(lblTime);
             panel1.Controls.Add(lblDate);
             panel1.Controls.Add(btnVehicles);
@@ -86,6 +90,7 @@
             btnVehicles.TabIndex = 13;
             btnVehicles.Text = "Vehicles";
             btnVehicles.UseVisualStyleBackColor = true;
+            btnVehicles.Click += btnVehicles_Click;
             // 
             // btnEmployees
             // 
@@ -96,6 +101,7 @@
             btnEmployees.TabIndex = 12;
             btnEmployees.Text = "Employees";
             btnEmployees.UseVisualStyleBackColor = true;
+            btnEmployees.Click += btnEmployees_Click;
             // 
             // btnJobs
             // 
@@ -144,6 +150,26 @@
             timer1.Enabled = true;
             timer1.Tick += timer1_Tick;
             // 
+            // btnLogOut
+            // 
+            btnLogOut.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLogOut.Location = new Point(0, 788);
+            btnLogOut.Name = "btnLogOut";
+            btnLogOut.Size = new Size(292, 78);
+            btnLogOut.TabIndex = 16;
+            btnLogOut.Text = "LogOut";
+            btnLogOut.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            button1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button1.Location = new Point(0, 469);
+            button1.Name = "button1";
+            button1.Size = new Size(292, 78);
+            button1.TabIndex = 17;
+            button1.Text = "Job History";
+            button1.UseVisualStyleBackColor = true;
+            // 
             // AdminDashboard
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -171,5 +197,7 @@
         private Label lblTime;
         private Label lblDate;
         private System.Windows.Forms.Timer timer1;
+        private Button button1;
+        private Button btnLogOut;
     }
 }

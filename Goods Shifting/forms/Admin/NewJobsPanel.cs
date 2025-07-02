@@ -288,7 +288,56 @@ namespace Goods_Shifting.forms.Admin
 
         private void btnRemoveJob_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtJobId.Text))
+            {
+                MessageBox.Show("Please select a job to cancel.");
+                return;
+            }
 
+            MySqlConnection conn = DBConnection.GetConnection();
+
+            try
+            {
+                conn.Open();
+
+                string jobId = txtJobId.Text;
+
+                // Update the job status to cancelled
+                string updateJobQuery = @"UPDATE jobs 
+                                SET status = 'cancelled' 
+                                WHERE jobId = @jobId";
+
+                MySqlCommand updateJobCmd = new MySqlCommand(updateJobQuery, conn);
+                updateJobCmd.Parameters.AddWithValue("@jobId", jobId);
+
+                int rowsAffected = updateJobCmd.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Job has been cancelled successfully!");
+
+                    // Refresh the data grid
+                    loadDataToTable();
+
+                    // Clear the form
+                    txtJobId.Clear();
+                    cmbDriver.Items.Clear();
+                    cmbVehicle.Items.Clear();
+                    cmbAssistant.Items.Clear();
+                }
+                else
+                {
+                    MessageBox.Show("No job was cancelled. Please check the job ID.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error cancelling job: " + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
     }
 }
