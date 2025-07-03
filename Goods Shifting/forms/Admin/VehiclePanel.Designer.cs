@@ -43,8 +43,8 @@
             label1 = new Label();
             btnBackToProduction = new Button();
             btnAddToMaintenace = new Button();
-            label3 = new Label();
-            txtID = new TextBox();
+            lblID = new Label();
+            label6 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -64,9 +64,9 @@
             lblDashboard.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblDashboard.Location = new Point(22, 24);
             lblDashboard.Name = "lblDashboard";
-            lblDashboard.Size = new Size(235, 32);
+            lblDashboard.Size = new Size(204, 32);
             lblDashboard.TabIndex = 17;
-            lblDashboard.Text = "Manage Employees";
+            lblDashboard.Text = "Manage Vehicles";
             // 
             // btnAdd
             // 
@@ -79,6 +79,7 @@
             btnAdd.TabIndex = 50;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = false;
+            btnAdd.Click += btnAdd_Click;
             // 
             // btnEdit
             // 
@@ -92,6 +93,7 @@
             btnEdit.TabIndex = 49;
             btnEdit.Text = "Edit";
             btnEdit.UseVisualStyleBackColor = false;
+            btnEdit.Click += btnEdit_Click;
             // 
             // btnDelete
             // 
@@ -109,7 +111,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(64, 587);
+            label5.Location = new Point(717, 583);
             label5.Name = "label5";
             label5.Size = new Size(65, 28);
             label5.TabIndex = 47;
@@ -138,7 +140,7 @@
             // txtBrand
             // 
             txtBrand.Font = new Font("Segoe UI", 11F);
-            txtBrand.Location = new Point(61, 618);
+            txtBrand.Location = new Point(714, 614);
             txtBrand.Name = "txtBrand";
             txtBrand.Size = new Size(260, 37);
             txtBrand.TabIndex = 44;
@@ -203,31 +205,33 @@
             btnAddToMaintenace.UseVisualStyleBackColor = false;
             btnAddToMaintenace.Click += btnAddToMaintenace_Click;
             // 
-            // label3
+            // lblID
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(64, 493);
-            label3.Name = "label3";
-            label3.Size = new Size(32, 28);
-            label3.TabIndex = 54;
-            label3.Text = "ID";
+            lblID.AutoSize = true;
+            lblID.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            lblID.Location = new Point(187, 523);
+            lblID.Name = "lblID";
+            lblID.Size = new Size(53, 32);
+            lblID.TabIndex = 54;
+            lblID.Text = "000";
             // 
-            // txtID
+            // label6
             // 
-            txtID.Font = new Font("Segoe UI", 11F);
-            txtID.Location = new Point(64, 524);
-            txtID.Name = "txtID";
-            txtID.Size = new Size(262, 37);
-            txtID.TabIndex = 53;
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            label6.Location = new Point(60, 523);
+            label6.Name = "label6";
+            label6.Size = new Size(134, 32);
+            label6.TabIndex = 55;
+            label6.Text = "Vehicle ID :";
             // 
             // VehiclePanel
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1045, 846);
-            Controls.Add(label3);
-            Controls.Add(txtID);
+            Controls.Add(label6);
+            Controls.Add(lblID);
             Controls.Add(btnAddToMaintenace);
             Controls.Add(btnBackToProduction);
             Controls.Add(btnAdd);
@@ -267,7 +271,7 @@
         private Label label1;
         private Button btnBackToProduction;
         private Button btnAddToMaintenace;
-        private Label label3;
-        private TextBox txtID;
+        private Label lblID;
+        private Label label6;
     }
 }

@@ -45,8 +45,10 @@ namespace Goods_Shifting.forms.Admin
                     LoadAvailableDrivers();
                     LoadAvailableAssistants();
                     LoadAvailableVehicles();
+                    LoadAvailableContainers();
 
-                  
+
+
                 }
             }
         }
@@ -57,7 +59,8 @@ namespace Goods_Shifting.forms.Admin
             if (string.IsNullOrEmpty(txtJobId.Text) ||
             cmbDriver.SelectedItem == null ||
             cmbVehicle.SelectedItem == null ||
-            cmbAssistant.SelectedItem == null)
+            cmbAssistant.SelectedItem == null ||
+            cbmContainer.SelectedItem == null)
             {
                 MessageBox.Show("Please select a job and ensure all fields (Driver, Vehicle, Assistant) are selected.");
                 return;
@@ -75,7 +78,8 @@ namespace Goods_Shifting.forms.Admin
                 string driverId = cmbDriver.SelectedItem.ToString();
                 string vehicleId = cmbVehicle.SelectedItem.ToString();
                 string assistantId = cmbAssistant.SelectedItem.ToString();
-                
+                string containerId = cbmContainer.SelectedItem.ToString();
+
 
                 // Update the jobs table
                 string updateJobQuery = @"UPDATE jobs 
@@ -83,6 +87,7 @@ namespace Goods_Shifting.forms.Admin
                                     driverid = @driverId, 
                                     vehicleid = @vehicleId, 
                                     assistantid = @assistantId, 
+                                    containerid = @containerId,
                                     status = 'assigned' 
                                 WHERE jobId = @jobId";
 
@@ -92,24 +97,26 @@ namespace Goods_Shifting.forms.Admin
                 updateJobCmd.Parameters.AddWithValue("@vehicleId", vehicleId);
                 updateJobCmd.Parameters.AddWithValue("@assistantId", assistantId);
                 updateJobCmd.Parameters.AddWithValue("@jobId", jobId);
+                updateJobCmd.Parameters.AddWithValue("@containerId", containerId);
                 updateJobCmd.ExecuteNonQuery();
 
 
 
                 MessageBox.Show("Job assigned successfully!");
 
-                // Refresh the data grid
+                
                 loadDataToTable();
 
-                // Clear the form
+                
                 txtJobId.Clear();
                 cmbDriver.Items.Clear();
                 cmbVehicle.Items.Clear();
                 cmbAssistant.Items.Clear();
+                cbmContainer.Items.Clear();
             }
             catch (Exception ex)
             {
-                // Roll back the transaction if any error occurs
+                
 
 
                 MessageBox.Show("Error assigning job: " + ex.Message);
@@ -279,6 +286,57 @@ namespace Goods_Shifting.forms.Admin
             catch (Exception ex)
             {
                 MessageBox.Show("Error loading vehicles: " + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+
+        private void LoadAvailableContainers()
+        {
+            MySqlConnection conn = DBConnection.GetConnection();
+
+            try
+            {
+                conn.Open();
+
+                // Query to get all containers assigned to any job on the selected moving date 
+                string query = @"SELECT c.containerid   
+                    FROM containers c 
+                    LEFT JOIN jobs j ON c.containerid  = j.containerid   
+                        AND DATE(j.Moving_date) = DATE(@movingDate)
+                        AND j.status != 'completed'
+                    WHERE j.containerid IS NULL
+                    AND c.status = 'in'";
+
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@movingDate", selectedJobMovingDate);
+
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                cbmContainer.Items.Clear();
+
+                while (reader.Read())
+                {
+                    cbmContainer.Items.Add(reader["containerid"].ToString());
+
+                }
+
+                if (cbmContainer.Items.Count > 0)
+                {
+                    cbmContainer.SelectedIndex = 0;
+                }
+                else
+                {
+                    MessageBox.Show("No available Container for the selected date.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading Container: " + ex.Message);
             }
             finally
             {

@@ -30,6 +30,11 @@
         {
             components = new System.ComponentModel.Container();
             panel1 = new Panel();
+            btnManagers = new Button();
+            JobHistory = new Button();
+            btnOngoingJobs = new Button();
+            btnContainer = new Button();
+            btnLogOut = new Button();
             lblTime = new Label();
             lblDate = new Label();
             btnVehicles = new Button();
@@ -39,15 +44,16 @@
             btnDashboard = new Button();
             panelFormLoader = new Panel();
             timer1 = new System.Windows.Forms.Timer(components);
-            btnLogOut = new Button();
-            button1 = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = Color.Gainsboro;
-            panel1.Controls.Add(button1);
+            panel1.Controls.Add(btnManagers);
+            panel1.Controls.Add(JobHistory);
+            panel1.Controls.Add(btnOngoingJobs);
+            panel1.Controls.Add(btnContainer);
             panel1.Controls.Add(btnLogOut);
             panel1.Controls.Add(lblTime);
             panel1.Controls.Add(lblDate);
@@ -60,6 +66,60 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(292, 928);
             panel1.TabIndex = 0;
+            // 
+            // btnManagers
+            // 
+            btnManagers.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnManagers.Location = new Point(1, 385);
+            btnManagers.Name = "btnManagers";
+            btnManagers.Size = new Size(292, 78);
+            btnManagers.TabIndex = 20;
+            btnManagers.Text = "Managers";
+            btnManagers.UseVisualStyleBackColor = true;
+            btnManagers.Click += btnManagers_Click;
+            // 
+            // JobHistory
+            // 
+            JobHistory.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            JobHistory.Location = new Point(0, 721);
+            JobHistory.Name = "JobHistory";
+            JobHistory.Size = new Size(292, 78);
+            JobHistory.TabIndex = 19;
+            JobHistory.Text = "Job History";
+            JobHistory.UseVisualStyleBackColor = true;
+            // 
+            // btnOngoingJobs
+            // 
+            btnOngoingJobs.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnOngoingJobs.Location = new Point(0, 637);
+            btnOngoingJobs.Name = "btnOngoingJobs";
+            btnOngoingJobs.Size = new Size(292, 78);
+            btnOngoingJobs.TabIndex = 18;
+            btnOngoingJobs.Text = "Ongoing Jobs";
+            btnOngoingJobs.UseVisualStyleBackColor = true;
+            // 
+            // btnContainer
+            // 
+            btnContainer.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnContainer.Location = new Point(0, 553);
+            btnContainer.Name = "btnContainer";
+            btnContainer.Size = new Size(292, 78);
+            btnContainer.TabIndex = 17;
+            btnContainer.Text = "Containers";
+            btnContainer.UseVisualStyleBackColor = true;
+            btnContainer.Click += btnContainer_Click;
+            // 
+            // btnLogOut
+            // 
+            btnLogOut.BackColor = Color.Brown;
+            btnLogOut.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLogOut.ForeColor = SystemColors.ButtonHighlight;
+            btnLogOut.Location = new Point(0, 860);
+            btnLogOut.Name = "btnLogOut";
+            btnLogOut.Size = new Size(292, 59);
+            btnLogOut.TabIndex = 16;
+            btnLogOut.Text = "LogOut";
+            btnLogOut.UseVisualStyleBackColor = false;
             // 
             // lblTime
             // 
@@ -84,7 +144,7 @@
             // btnVehicles
             // 
             btnVehicles.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnVehicles.Location = new Point(0, 385);
+            btnVehicles.Location = new Point(0, 469);
             btnVehicles.Name = "btnVehicles";
             btnVehicles.Size = new Size(292, 78);
             btnVehicles.TabIndex = 13;
@@ -150,26 +210,6 @@
             timer1.Enabled = true;
             timer1.Tick += timer1_Tick;
             // 
-            // btnLogOut
-            // 
-            btnLogOut.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLogOut.Location = new Point(0, 788);
-            btnLogOut.Name = "btnLogOut";
-            btnLogOut.Size = new Size(292, 78);
-            btnLogOut.TabIndex = 16;
-            btnLogOut.Text = "LogOut";
-            btnLogOut.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            button1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.Location = new Point(0, 469);
-            button1.Name = "button1";
-            button1.Size = new Size(292, 78);
-            button1.TabIndex = 17;
-            button1.Text = "Job History";
-            button1.UseVisualStyleBackColor = true;
-            // 
             // AdminDashboard
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -197,7 +237,10 @@
         private Label lblTime;
         private Label lblDate;
         private System.Windows.Forms.Timer timer1;
-        private Button button1;
+        private Button btnContainer;
         private Button btnLogOut;
+        private Button JobHistory;
+        private Button btnOngoingJobs;
+        private Button btnManagers;
     }
 }

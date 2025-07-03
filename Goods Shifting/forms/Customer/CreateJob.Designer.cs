@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            txtMessage = new RichTextBox();
             label5 = new Label();
             button1 = new Button();
             btnHistory = new Button();
@@ -51,13 +52,14 @@
             label2 = new Label();
             txtName = new TextBox();
             label1 = new Label();
-            txtMessage = new RichTextBox();
+            button2 = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.Anchor = AnchorStyles.None;
+            panel1.Controls.Add(button2);
             panel1.Controls.Add(txtMessage);
             panel1.Controls.Add(label5);
             panel1.Controls.Add(button1);
@@ -87,6 +89,14 @@
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
             // 
+            // txtMessage
+            // 
+            txtMessage.Location = new Point(273, 611);
+            txtMessage.Name = "txtMessage";
+            txtMessage.Size = new Size(805, 144);
+            txtMessage.TabIndex = 38;
+            txtMessage.Text = "";
+            // 
             // label5
             // 
             label5.AutoSize = true;
@@ -102,7 +112,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(1056, 28);
+            button1.Location = new Point(987, 30);
             button1.Name = "button1";
             button1.Size = new Size(112, 34);
             button1.TabIndex = 36;
@@ -111,7 +121,7 @@
             // 
             // btnHistory
             // 
-            btnHistory.Location = new Point(1199, 28);
+            btnHistory.Location = new Point(1105, 30);
             btnHistory.Name = "btnHistory";
             btnHistory.Size = new Size(112, 34);
             btnHistory.TabIndex = 35;
@@ -305,13 +315,16 @@
             label1.TabIndex = 0;
             label1.Text = "Request Quote";
             // 
-            // txtMessage
+            // button2
             // 
-            txtMessage.Location = new Point(273, 611);
-            txtMessage.Name = "txtMessage";
-            txtMessage.Size = new Size(805, 144);
-            txtMessage.TabIndex = 38;
-            txtMessage.Text = "";
+            button2.BackColor = Color.Brown;
+            button2.ForeColor = SystemColors.ButtonFace;
+            button2.Location = new Point(1223, 30);
+            button2.Name = "button2";
+            button2.Size = new Size(112, 34);
+            button2.TabIndex = 39;
+            button2.Text = "Logout";
+            button2.UseVisualStyleBackColor = false;
             // 
             // CreateJob
             // 
@@ -352,5 +365,6 @@
         private Button btnHistory;
         private Label label5;
         private RichTextBox txtMessage;
+        private Button button2;
     }
 }

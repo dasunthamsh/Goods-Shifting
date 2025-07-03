@@ -81,5 +81,23 @@ namespace Goods_Shifting.forms.Admin
             this.panelFormLoader.Controls.Add(vehiclePanel);
             vehiclePanel.Show();
         }
+
+        private void btnContainer_Click(object sender, EventArgs e)
+        {
+            this.panelFormLoader.Controls.Clear();
+            ContainerPanel containerPanel = new ContainerPanel() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            containerPanel.FormBorderStyle = FormBorderStyle.None;
+            this.panelFormLoader.Controls.Add(containerPanel);
+            containerPanel.Show();
+        }
+
+        private void btnManagers_Click(object sender, EventArgs e)
+        {
+            this.panelFormLoader.Controls.Clear();
+            ManagerPanel managerPanel = new ManagerPanel() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            managerPanel.FormBorderStyle = FormBorderStyle.None;
+            this.panelFormLoader.Controls.Add(managerPanel);
+            managerPanel.Show();
+        }
     }
 }

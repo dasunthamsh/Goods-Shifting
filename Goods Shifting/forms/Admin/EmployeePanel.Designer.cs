@@ -208,6 +208,7 @@
             btnDelete.TabIndex = 37;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = false;
+            btnDelete.Click += btnDelete_Click;
             // 
             // btnEdit
             // 
@@ -221,6 +222,7 @@
             btnEdit.TabIndex = 38;
             btnEdit.Text = "Edit";
             btnEdit.UseVisualStyleBackColor = false;
+            btnEdit.Click += btnEdit_Click;
             // 
             // btnAdd
             // 
@@ -233,6 +235,7 @@
             btnAdd.TabIndex = 39;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = false;
+            btnAdd.Click += btnAdd_Click;
             // 
             // EmployeePanel
             // 

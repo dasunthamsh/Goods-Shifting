@@ -40,6 +40,8 @@
             label4 = new Label();
             btnAssignJob = new Button();
             btnRemoveJob = new Button();
+            cbmContainer = new ComboBox();
+            label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -165,11 +167,32 @@
             btnRemoveJob.UseVisualStyleBackColor = false;
             btnRemoveJob.Click += btnRemoveJob_Click;
             // 
+            // cbmContainer
+            // 
+            cbmContainer.FormattingEnabled = true;
+            cbmContainer.Location = new Point(125, 731);
+            cbmContainer.Name = "cbmContainer";
+            cbmContainer.Size = new Size(365, 33);
+            cbmContainer.TabIndex = 39;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.ForeColor = SystemColors.GrayText;
+            label5.Location = new Point(125, 696);
+            label5.Name = "label5";
+            label5.Size = new Size(111, 30);
+            label5.TabIndex = 38;
+            label5.Text = "Container";
+            // 
             // NewJobsPanel
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1045, 846);
+            Controls.Add(cbmContainer);
+            Controls.Add(label5);
             Controls.Add(btnRemoveJob);
             Controls.Add(btnAssignJob);
             Controls.Add(cmbAssistant);
@@ -203,5 +226,7 @@
         private Label label4;
         private Button btnAssignJob;
         private Button btnRemoveJob;
+        private ComboBox cbmContainer;
+        private Label label5;
     }
 }
