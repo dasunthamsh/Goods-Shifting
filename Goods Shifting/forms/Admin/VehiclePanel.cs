@@ -44,21 +44,39 @@ namespace Goods_Shifting.forms.Admin
 
                 // Query to get all vehicles with their status and availability
                 string query = @"SELECT 
-                                v.vehicleid AS 'Vehicle ID',
-                                v.type AS 'Type',
-                                v.brand AS 'Brand',
-                                v.vehicle_number AS 'Vehicle Number',
-                                v.name AS 'Name',
-                                j.containerid AS 'Container ID',
-                                CASE 
-                                    WHEN j.jobId IS NOT NULL AND j.status IN ('assigned', 'in-progress') THEN 'Assigned'
-                                    WHEN v.status = 'in' THEN 'Available'
-                                    WHEN v.status = 'Maintenance' THEN 'In Maintenance'
-                                    ELSE v.status
-                                END AS 'Availability'
-                            FROM vehicles v
-                            LEFT JOIN jobs j ON v.vehicleid = j.vehicleid 
-                                AND j.status IN ('assigned', 'in-progress')";
+    v.vehicleid AS 'Vehicle ID',
+    v.type AS 'Type',
+    v.brand AS 'Brand',
+    v.vehicle_number AS 'Vehicle Number',
+    v.name AS 'Name',
+    CASE 
+        WHEN EXISTS (
+            SELECT 1 FROM job_vehicles jv 
+            JOIN jobs j ON jv.job_id = j.jobId 
+            WHERE jv.vehicle_id = v.vehicleid 
+            AND j.status IN ('assigned', 'in-progress')
+        ) THEN 'Assigned'
+        WHEN v.status = 'in' THEN 'Available'
+        WHEN v.status = 'Maintenance' THEN 'In Maintenance'
+        ELSE v.status
+    END AS 'Availability',
+    CASE 
+        WHEN EXISTS (
+            SELECT 1 FROM job_vehicles jv 
+            JOIN jobs j ON jv.job_id = j.jobId 
+            WHERE jv.vehicle_id = v.vehicleid 
+            AND j.status IN ('assigned', 'in-progress')
+        ) THEN (
+            SELECT GROUP_CONCAT(jc.container_id SEPARATOR ', ')
+            FROM job_containers jc
+            JOIN jobs j ON jc.job_id = j.jobId
+            JOIN job_vehicles jv ON jv.job_id = j.jobId
+            WHERE jv.vehicle_id = v.vehicleid
+            AND j.status IN ('assigned', 'in-progress')
+        )
+        ELSE NULL
+    END AS 'Container IDs'
+FROM vehicles v";
 
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);

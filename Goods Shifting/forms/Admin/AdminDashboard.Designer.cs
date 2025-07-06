@@ -97,6 +97,7 @@
             btnOngoingJobs.TabIndex = 18;
             btnOngoingJobs.Text = "Ongoing Jobs";
             btnOngoingJobs.UseVisualStyleBackColor = true;
+            btnOngoingJobs.Click += btnOngoingJobs_Click;
             // 
             // btnContainer
             // 

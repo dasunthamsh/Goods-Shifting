@@ -28,185 +28,209 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewJobsPanel));
+            lblDashboard = new Label();
             dataGridView1 = new DataGridView();
-            lblJobs = new Label();
-            label2 = new Label();
+            lbl1 = new Label();
             txtJobId = new TextBox();
-            cmbVehicle = new ComboBox();
-            label3 = new Label();
-            cmbDriver = new ComboBox();
             label1 = new Label();
-            cmbAssistant = new ComboBox();
+            label2 = new Label();
+            label3 = new Label();
             label4 = new Label();
-            btnAssignJob = new Button();
+            checkedListBoxDrivers = new CheckedListBox();
+            checkedListBoxAssistants = new CheckedListBox();
+            checkedListBoxContainers = new CheckedListBox();
+            checkedListBoxVehicles = new CheckedListBox();
             btnRemoveJob = new Button();
-            cbmContainer = new ComboBox();
-            label5 = new Label();
+            btnAssignJob = new Button();
+            btnEditJob = new Button();
+            btnSearch = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
+            // 
+            // lblDashboard
+            // 
+            lblDashboard.AutoSize = true;
+            lblDashboard.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblDashboard.Location = new Point(22, 24);
+            lblDashboard.Name = "lblDashboard";
+            lblDashboard.Size = new Size(66, 32);
+            lblDashboard.TabIndex = 22;
+            lblDashboard.Text = "Jobs";
             // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 72);
+            dataGridView1.Location = new Point(12, 68);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(1021, 398);
-            dataGridView1.TabIndex = 0;
+            dataGridView1.Size = new Size(1021, 380);
+            dataGridView1.TabIndex = 23;
             dataGridView1.CellClick += dataGridView1_CellClick;
             // 
-            // lblJobs
+            // lbl1
             // 
-            lblJobs.AutoSize = true;
-            lblJobs.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblJobs.Location = new Point(22, 24);
-            lblJobs.Name = "lblJobs";
-            lblJobs.Size = new Size(66, 32);
-            lblJobs.TabIndex = 1;
-            lblJobs.Text = "Jobs";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.ForeColor = SystemColors.GrayText;
-            label2.Location = new Point(125, 502);
-            label2.Name = "label2";
-            label2.Size = new Size(70, 30);
-            label2.TabIndex = 11;
-            label2.Text = "JobID";
+            lbl1.AutoSize = true;
+            lbl1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbl1.Location = new Point(12, 497);
+            lbl1.Name = "lbl1";
+            lbl1.Size = new Size(67, 28);
+            lbl1.TabIndex = 63;
+            lbl1.Text = "job ID";
             // 
             // txtJobId
             // 
             txtJobId.Font = new Font("Segoe UI", 11F);
-            txtJobId.Location = new Point(125, 535);
+            txtJobId.Location = new Point(12, 528);
             txtJobId.Name = "txtJobId";
-            txtJobId.Size = new Size(365, 37);
-            txtJobId.TabIndex = 10;
-            // 
-            // cmbVehicle
-            // 
-            cmbVehicle.FormattingEnabled = true;
-            cmbVehicle.Location = new Point(562, 535);
-            cmbVehicle.Name = "cmbVehicle";
-            cmbVehicle.Size = new Size(365, 33);
-            cmbVehicle.TabIndex = 31;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = SystemColors.GrayText;
-            label3.Location = new Point(562, 500);
-            label3.Name = "label3";
-            label3.Size = new Size(85, 30);
-            label3.TabIndex = 30;
-            label3.Text = "Vehicle";
-            // 
-            // cmbDriver
-            // 
-            cmbDriver.FormattingEnabled = true;
-            cmbDriver.Location = new Point(125, 639);
-            cmbDriver.Name = "cmbDriver";
-            cmbDriver.Size = new Size(365, 33);
-            cmbDriver.TabIndex = 33;
+            txtJobId.Size = new Size(260, 37);
+            txtJobId.TabIndex = 62;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = SystemColors.GrayText;
-            label1.Location = new Point(125, 604);
+            label1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(350, 497);
             label1.Name = "label1";
-            label1.Size = new Size(74, 30);
-            label1.TabIndex = 32;
-            label1.Text = "Driver";
+            label1.Size = new Size(75, 28);
+            label1.TabIndex = 65;
+            label1.Text = "Drivers";
             // 
-            // cmbAssistant
+            // label2
             // 
-            cmbAssistant.FormattingEnabled = true;
-            cmbAssistant.Location = new Point(562, 639);
-            cmbAssistant.Name = "cmbAssistant";
-            cmbAssistant.Size = new Size(365, 33);
-            cmbAssistant.TabIndex = 35;
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(698, 497);
+            label2.Name = "label2";
+            label2.Size = new Size(102, 28);
+            label2.TabIndex = 67;
+            label2.Text = "Assistants";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(12, 610);
+            label3.Name = "label3";
+            label3.Size = new Size(86, 28);
+            label3.TabIndex = 69;
+            label3.Text = "Vehicles";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.ForeColor = SystemColors.GrayText;
-            label4.Location = new Point(562, 604);
+            label4.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Location = new Point(350, 610);
             label4.Name = "label4";
-            label4.Size = new Size(101, 30);
-            label4.TabIndex = 34;
-            label4.Text = "Assistant";
+            label4.Size = new Size(109, 28);
+            label4.TabIndex = 71;
+            label4.Text = "Containers";
             // 
-            // btnAssignJob
+            // checkedListBoxDrivers
             // 
-            btnAssignJob.BackColor = SystemColors.MenuHighlight;
-            btnAssignJob.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnAssignJob.ForeColor = SystemColors.Control;
-            btnAssignJob.Location = new Point(562, 778);
-            btnAssignJob.Name = "btnAssignJob";
-            btnAssignJob.Size = new Size(218, 56);
-            btnAssignJob.TabIndex = 36;
-            btnAssignJob.Text = "Assign Job";
-            btnAssignJob.UseVisualStyleBackColor = false;
-            btnAssignJob.Click += btnAssignJob_Click;
+            checkedListBoxDrivers.FormattingEnabled = true;
+            checkedListBoxDrivers.Location = new Point(350, 533);
+            checkedListBoxDrivers.Name = "checkedListBoxDrivers";
+            checkedListBoxDrivers.Size = new Size(260, 32);
+            checkedListBoxDrivers.TabIndex = 72;
+            // 
+            // checkedListBoxAssistants
+            // 
+            checkedListBoxAssistants.FormattingEnabled = true;
+            checkedListBoxAssistants.Location = new Point(698, 533);
+            checkedListBoxAssistants.Name = "checkedListBoxAssistants";
+            checkedListBoxAssistants.Size = new Size(260, 32);
+            checkedListBoxAssistants.TabIndex = 73;
+            // 
+            // checkedListBoxContainers
+            // 
+            checkedListBoxContainers.FormattingEnabled = true;
+            checkedListBoxContainers.Location = new Point(350, 641);
+            checkedListBoxContainers.Name = "checkedListBoxContainers";
+            checkedListBoxContainers.Size = new Size(260, 32);
+            checkedListBoxContainers.TabIndex = 74;
+            // 
+            // checkedListBoxVehicles
+            // 
+            checkedListBoxVehicles.FormattingEnabled = true;
+            checkedListBoxVehicles.Location = new Point(12, 641);
+            checkedListBoxVehicles.Name = "checkedListBoxVehicles";
+            checkedListBoxVehicles.Size = new Size(260, 32);
+            checkedListBoxVehicles.TabIndex = 75;
             // 
             // btnRemoveJob
             // 
-            btnRemoveJob.BackColor = Color.Firebrick;
+            btnRemoveJob.BackColor = Color.Brown;
             btnRemoveJob.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnRemoveJob.ForeColor = SystemColors.Control;
-            btnRemoveJob.Location = new Point(806, 778);
+            btnRemoveJob.Location = new Point(815, 778);
             btnRemoveJob.Name = "btnRemoveJob";
             btnRemoveJob.Size = new Size(218, 56);
-            btnRemoveJob.TabIndex = 37;
-            btnRemoveJob.Text = "Remove Job";
+            btnRemoveJob.TabIndex = 76;
+            btnRemoveJob.Text = "Remove";
             btnRemoveJob.UseVisualStyleBackColor = false;
             btnRemoveJob.Click += btnRemoveJob_Click;
             // 
-            // cbmContainer
+            // btnAssignJob
             // 
-            cbmContainer.FormattingEnabled = true;
-            cbmContainer.Location = new Point(125, 731);
-            cbmContainer.Name = "cbmContainer";
-            cbmContainer.Size = new Size(365, 33);
-            cbmContainer.TabIndex = 39;
+            btnAssignJob.BackColor = SystemColors.Highlight;
+            btnAssignJob.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAssignJob.ForeColor = SystemColors.ButtonHighlight;
+            btnAssignJob.Location = new Point(591, 778);
+            btnAssignJob.Name = "btnAssignJob";
+            btnAssignJob.Size = new Size(218, 56);
+            btnAssignJob.TabIndex = 77;
+            btnAssignJob.Text = "Add";
+            btnAssignJob.UseVisualStyleBackColor = false;
+            btnAssignJob.Click += btnAssignJob_Click;
             // 
-            // label5
+            // btnEditJob
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.ForeColor = SystemColors.GrayText;
-            label5.Location = new Point(125, 696);
-            label5.Name = "label5";
-            label5.Size = new Size(111, 30);
-            label5.TabIndex = 38;
-            label5.Text = "Container";
+            btnEditJob.BackColor = SystemColors.Highlight;
+            btnEditJob.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnEditJob.ForeColor = SystemColors.ButtonHighlight;
+            btnEditJob.Location = new Point(367, 778);
+            btnEditJob.Name = "btnEditJob";
+            btnEditJob.Size = new Size(218, 56);
+            btnEditJob.TabIndex = 78;
+            btnEditJob.Text = "Edit";
+            btnEditJob.UseVisualStyleBackColor = false;
+            btnEditJob.Click += btnEditJob_Click;
+            // 
+            // btnSearch
+            // 
+            btnSearch.BackColor = SystemColors.Highlight;
+            btnSearch.BackgroundImage = (Image)resources.GetObject("btnSearch.BackgroundImage");
+            btnSearch.Location = new Point(278, 528);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(40, 39);
+            btnSearch.TabIndex = 79;
+            btnSearch.UseVisualStyleBackColor = false;
+            btnSearch.Click += btnSearch_Click;
             // 
             // NewJobsPanel
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1045, 846);
-            Controls.Add(cbmContainer);
-            Controls.Add(label5);
-            Controls.Add(btnRemoveJob);
+            Controls.Add(btnSearch);
+            Controls.Add(btnEditJob);
             Controls.Add(btnAssignJob);
-            Controls.Add(cmbAssistant);
+            Controls.Add(btnRemoveJob);
+            Controls.Add(checkedListBoxVehicles);
+            Controls.Add(checkedListBoxContainers);
+            Controls.Add(checkedListBoxAssistants);
+            Controls.Add(checkedListBoxDrivers);
             Controls.Add(label4);
-            Controls.Add(cmbDriver);
-            Controls.Add(label1);
-            Controls.Add(cmbVehicle);
             Controls.Add(label3);
             Controls.Add(label2);
+            Controls.Add(label1);
+            Controls.Add(lbl1);
             Controls.Add(txtJobId);
-            Controls.Add(lblJobs);
             Controls.Add(dataGridView1);
+            Controls.Add(lblDashboard);
             Name = "NewJobsPanel";
-            Text = "NewJobsPanel";
+            Text = "NewJobsPane";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -214,19 +238,21 @@
 
         #endregion
 
+        private Label lblDashboard;
         private DataGridView dataGridView1;
-        private Label lblJobs;
-        private Label label2;
+        private Label lbl1;
         private TextBox txtJobId;
-        private ComboBox cmbVehicle;
-        private Label label3;
-        private ComboBox cmbDriver;
         private Label label1;
-        private ComboBox cmbAssistant;
+        private Label label2;
+        private Label label3;
         private Label label4;
-        private Button btnAssignJob;
+        private CheckedListBox checkedListBoxDrivers;
+        private CheckedListBox checkedListBoxAssistants;
+        private CheckedListBox checkedListBoxContainers;
+        private CheckedListBox checkedListBoxVehicles;
         private Button btnRemoveJob;
-        private ComboBox cbmContainer;
-        private Label label5;
+        private Button btnAssignJob;
+        private Button btnEditJob;
+        private Button btnSearch;
     }
 }

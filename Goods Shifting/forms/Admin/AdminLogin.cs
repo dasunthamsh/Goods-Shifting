@@ -69,11 +69,19 @@ namespace Goods_Shifting.forms.Admin
                 }
 
 
-                }
+            }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Home homeForm = new Home();
+            homeForm.FormClosed += (s, args) => this.Close();
+            homeForm.Show();
         }
     }
 }

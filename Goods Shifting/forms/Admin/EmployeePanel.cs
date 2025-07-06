@@ -67,39 +67,45 @@ namespace Goods_Shifting.forms.Admin
 
                 // Query to get all drivers with their availability status
                 string driversQuery = @"SELECT 
-                            d.driverid AS 'Employee ID',
-                            d.name AS 'Name',
-                            d.phone AS 'Contact',
-                            d.email AS 'Email',
-                            d.address AS 'Address',
-                            d.id_number AS 'ID Number',
-                            d.driving_license AS 'Driving License',
-                            'Driver' AS 'Role',
-                            CASE 
-                                WHEN j.jobId IS NOT NULL AND j.status != 'completed' THEN 'Assigned'
-                                ELSE 'Available'
-                            END AS 'Availability'
-                        FROM drivers d
-                        LEFT JOIN jobs j ON d.driverid = j.driverid 
-                            AND (j.status = 'assigned' OR j.status = 'in-progress')";
+                                d.driverid AS 'Employee ID',
+                                d.name AS 'Name',
+                                d.phone AS 'Contact',
+                                d.email AS 'Email',
+                                d.address AS 'Address',
+                                d.id_number AS 'ID Number',
+                                d.driving_license AS 'Driving License',
+                                'Driver' AS 'Role',
+                                CASE 
+                                    WHEN EXISTS (
+                                        SELECT 1 FROM job_drivers jd 
+                                        JOIN jobs j ON jd.job_id = j.jobId 
+                                        WHERE jd.driver_id = d.driverid 
+                                        AND j.status IN ('assigned', 'in-progress')
+                                    ) THEN 'Assigned'
+                                    ELSE 'Available'
+                                END AS 'Availability'
+                            FROM drivers d";
 
                 // Query to get all assistants with their availability status
                 string assistantsQuery = @"SELECT 
-                                a.assistantid AS 'Employee ID',
-                                a.name AS 'Name',
-                                a.phone AS 'Contact',
-                                a.email AS 'Email',
-                                a.address AS 'Address',
-                                a.id_number AS 'ID Number',
-                                a.driving_license AS 'Driving License',
-                                'Assistant' AS 'Role',
-                                CASE 
-                                    WHEN j.jobId IS NOT NULL AND j.status != 'completed' THEN 'Assigned'
-                                    ELSE 'Available'
-                                END AS 'Availability'
-                            FROM assistants a
-                            LEFT JOIN jobs j ON a.assistantid = j.assistantid 
-                                AND (j.status = 'assigned' OR j.status = 'in-progress')";
+                                    a.assistantid AS 'Employee ID',
+                                    a.name AS 'Name',
+                                    a.phone AS 'Contact',
+                                    a.email AS 'Email',
+                                    a.address AS 'Address',
+                                    a.id_number AS 'ID Number',
+                                    a.driving_license AS 'Driving License',
+                                    'Assistant' AS 'Role',
+                                    CASE 
+                                        WHEN EXISTS (
+                                            SELECT 1 FROM job_assistants ja 
+                                            JOIN jobs j ON ja.job_id = j.jobId 
+                                            WHERE ja.assistant_id = a.assistantid 
+                                            AND j.status IN ('assigned', 'in-progress')
+                                        ) THEN 'Assigned'
+                                        ELSE 'Available'
+                                    END AS 'Availability'
+                                FROM assistants a";
 
                 // Combine both queries with UNION
                 string combinedQuery = driversQuery + " UNION " + assistantsQuery + " ORDER BY 'Role', 'Name'";

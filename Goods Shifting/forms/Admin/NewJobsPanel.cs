@@ -20,26 +20,22 @@ namespace Goods_Shifting.forms.Admin
         {
             InitializeComponent();
             loadDataToTable();
-            this.managerId = managerId;
 
-
+            checkedListBoxDrivers.CheckOnClick = true;
+            checkedListBoxAssistants.CheckOnClick = true;
+            checkedListBoxVehicles.CheckOnClick = true;
+            checkedListBoxContainers.CheckOnClick = true;
         }
+
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
-
-
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
-
-
                 txtJobId.Text = row.Cells["jobId"].Value.ToString();
 
-
                 if (DateTime.TryParse(row.Cells["Moving_date"].Value.ToString(), out DateTime movingDate))
-
                 {
                     selectedJobMovingDate = movingDate.ToString("yyyy-MM-dd");
                     LoadAvailableDrivers();
@@ -47,301 +43,326 @@ namespace Goods_Shifting.forms.Admin
                     LoadAvailableVehicles();
                     LoadAvailableContainers();
 
-
-
                 }
+            }
+        }
+
+        private void LoadAvailableDrivers()
+        {
+            using (MySqlConnection conn = DBConnection.GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+
+                    string query = @"SELECT d.driverid, d.name 
+                            FROM drivers d
+                            LEFT JOIN job_drivers jd ON d.driverid = jd.driver_id 
+                                AND jd.job_id IN (
+                                    SELECT jobId FROM jobs 
+                                    WHERE DATE(Moving_date) = DATE(@movingDate))
+                            LEFT JOIN jobs j ON jd.job_id = j.jobId
+                            WHERE jd.driver_id IS NULL
+                            AND d.status = 'in'";
+
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@movingDate", selectedJobMovingDate);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        checkedListBoxDrivers.Items.Clear();
+
+                        while (reader.Read())
+                        {
+                            checkedListBoxDrivers.Items.Add(
+                                new KeyValuePair<string, string>(
+                                    reader["driverid"].ToString(),
+                                    $"{reader["driverid"]} - {reader["name"]}"
+                                )
+                            );
+                        }
+
+                        if (checkedListBoxDrivers.Items.Count == 0)
+                        {
+                            MessageBox.Show("No available drivers for the selected date.");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading drivers: " + ex.Message);
+                }
+            }
+        }
+
+
+        private void LoadAvailableAssistants()
+        {
+            using (MySqlConnection conn = DBConnection.GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+
+                    string query = @"SELECT a.assistantid, a.name 
+                            FROM assistants a
+                            LEFT JOIN job_assistants ja ON a.assistantid = ja.assistant_id 
+                                AND ja.job_id IN (
+                                    SELECT jobId FROM jobs 
+                                    WHERE DATE(Moving_date) = DATE(@movingDate))
+                            LEFT JOIN jobs j ON ja.job_id = j.jobId
+                            WHERE ja.assistant_id IS NULL
+                            AND a.status = 'in'";
+
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@movingDate", selectedJobMovingDate);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        checkedListBoxAssistants.Items.Clear();
+
+                        while (reader.Read())
+                        {
+                            checkedListBoxAssistants.Items.Add(
+                                new KeyValuePair<string, string>(
+                                    reader["assistantid"].ToString(),
+                                    $"{reader["assistantid"]} - {reader["name"]}"
+                                )
+                            );
+                        }
+
+                        if (checkedListBoxAssistants.Items.Count == 0)
+                        {
+                            MessageBox.Show("No available assistants for the selected date.");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading assistants: " + ex.Message);
+                }
+            }
+        }
+
+
+
+        private void LoadAvailableVehicles()
+        {
+            using (MySqlConnection conn = DBConnection.GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+
+                    string query = @"SELECT v.vehicleid, v.name 
+                            FROM vehicles v
+                            LEFT JOIN job_vehicles jv ON v.vehicleid = jv.vehicle_id 
+                                AND jv.job_id IN (
+                                    SELECT jobId FROM jobs 
+                                    WHERE DATE(Moving_date) = DATE(@movingDate))
+                            LEFT JOIN jobs j ON jv.job_id = j.jobId
+                            WHERE jv.vehicle_id IS NULL
+                            AND v.status = 'in'";
+
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@movingDate", selectedJobMovingDate);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        checkedListBoxVehicles.Items.Clear();
+
+                        while (reader.Read())
+                        {
+                            checkedListBoxVehicles.Items.Add(
+                                new KeyValuePair<string, string>(
+                                    reader["vehicleid"].ToString(),
+                                    $"{reader["vehicleid"]} - {reader["name"]}"
+                                )
+                            );
+                        }
+
+                        if (checkedListBoxVehicles.Items.Count == 0)
+                        {
+                            MessageBox.Show("No available vehicles for the selected date.");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading vehicles: " + ex.Message);
+                }
+            }
+        }
+
+
+
+
+        private void LoadAvailableContainers()
+        {
+            using (MySqlConnection conn = DBConnection.GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+
+                    string query = @"SELECT c.containerid, c.type 
+                            FROM containers c
+                            LEFT JOIN job_containers jc ON c.containerid = jc.container_id 
+                                AND jc.job_id IN (
+                                    SELECT jobId FROM jobs 
+                                    WHERE DATE(Moving_date) = DATE(@movingDate))
+                            LEFT JOIN jobs j ON jc.job_id = j.jobId
+                            WHERE jc.container_id IS NULL
+                            AND c.status = 'in'";
+
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@movingDate", selectedJobMovingDate);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        checkedListBoxContainers.Items.Clear();
+
+                        while (reader.Read())
+                        {
+                            checkedListBoxContainers.Items.Add(
+                                new KeyValuePair<string, string>(
+                                    reader["containerid"].ToString(),
+                                    $"{reader["containerid"]} - {reader["type"]}"
+                                )
+                            );
+                        }
+
+                        if (checkedListBoxContainers.Items.Count == 0)
+                        {
+                            MessageBox.Show("No available containers for the selected date.");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading containers: " + ex.Message);
+                }
+            }
+        }
+
+
+
+        private void loadDataToTable()
+        {
+            using (MySqlConnection conn = DBConnection.GetConnection())
+            {
+                string query = "SELECT jobId, customerid, contact, destination_address, destination_city, " +
+                                     "origin_address, origin_city, Moving_date, create_date " +
+                                     "FROM jobs WHERE status = 'pending'";
+
+                MySqlCommand command = new MySqlCommand(query, conn);
+                MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+                DataTable dataTable = new DataTable();
+
+                conn.Open();
+                adapter.Fill(dataTable);
+                dataGridView1.DataSource = dataTable;
             }
         }
 
         private void btnAssignJob_Click(object sender, EventArgs e)
         {
-
             if (string.IsNullOrEmpty(txtJobId.Text) ||
-            cmbDriver.SelectedItem == null ||
-            cmbVehicle.SelectedItem == null ||
-            cmbAssistant.SelectedItem == null ||
-            cbmContainer.SelectedItem == null)
+               checkedListBoxDrivers.CheckedItems.Count == 0 ||
+               checkedListBoxVehicles.CheckedItems.Count == 0 ||
+               checkedListBoxAssistants.CheckedItems.Count == 0 ||
+               checkedListBoxContainers.CheckedItems.Count == 0)
             {
-                MessageBox.Show("Please select a job and ensure all fields (Driver, Vehicle, Assistant) are selected.");
+                MessageBox.Show("Please select a job and ensure all fields have at least one selection.");
                 return;
             }
 
-            MySqlConnection conn = DBConnection.GetConnection();
-            MySqlTransaction transaction = null;
-
-            try
+            using (MySqlConnection conn = DBConnection.GetConnection())
             {
-                conn.Open();
+                MySqlTransaction transaction = null;
+                try
+                {
+                    conn.Open();
+                    transaction = conn.BeginTransaction();
 
+                    string jobId = txtJobId.Text;
 
-                string jobId = txtJobId.Text;
-                string driverId = cmbDriver.SelectedItem.ToString();
-                string vehicleId = cmbVehicle.SelectedItem.ToString();
-                string assistantId = cmbAssistant.SelectedItem.ToString();
-                string containerId = cbmContainer.SelectedItem.ToString();
+                    // Update job status and manager
+                    string updateJobQuery = @"UPDATE jobs 
+                                        SET managerid = @managerId, 
+                                            status = 'assigned' 
+                                        WHERE jobId = @jobId";
 
+                    MySqlCommand updateJobCmd = new MySqlCommand(updateJobQuery, conn, transaction);
+                    updateJobCmd.Parameters.AddWithValue("@managerId", managerId);
+                    updateJobCmd.Parameters.AddWithValue("@jobId", jobId);
+                    updateJobCmd.ExecuteNonQuery();
 
-                // Update the jobs table
-                string updateJobQuery = @"UPDATE jobs 
-                                SET managerid = @managerId, 
-                                    driverid = @driverId, 
-                                    vehicleid = @vehicleId, 
-                                    assistantid = @assistantId, 
-                                    containerid = @containerId,
-                                    status = 'assigned' 
-                                WHERE jobId = @jobId";
+                    // Assign multiple drivers
+                    foreach (var item in checkedListBoxDrivers.CheckedItems)
+                    {
+                        var driver = (KeyValuePair<string, string>)item;
+                        string insertQuery = "INSERT INTO job_drivers (job_id, driver_id) VALUES (@jobId, @driverId)";
+                        MySqlCommand cmd = new MySqlCommand(insertQuery, conn, transaction);
+                        cmd.Parameters.AddWithValue("@jobId", jobId);
+                        cmd.Parameters.AddWithValue("@driverId", driver.Key);
+                        cmd.ExecuteNonQuery();
+                    }
 
-                MySqlCommand updateJobCmd = new MySqlCommand(updateJobQuery, conn, transaction);
-                updateJobCmd.Parameters.AddWithValue("@managerId", managerId);
-                updateJobCmd.Parameters.AddWithValue("@driverId", driverId);
-                updateJobCmd.Parameters.AddWithValue("@vehicleId", vehicleId);
-                updateJobCmd.Parameters.AddWithValue("@assistantId", assistantId);
-                updateJobCmd.Parameters.AddWithValue("@jobId", jobId);
-                updateJobCmd.Parameters.AddWithValue("@containerId", containerId);
-                updateJobCmd.ExecuteNonQuery();
+                    // Assign multiple assistants
+                    foreach (var item in checkedListBoxAssistants.CheckedItems)
+                    {
+                        var assistant = (KeyValuePair<string, string>)item;
+                        string insertQuery = "INSERT INTO job_assistants (job_id, assistant_id) VALUES (@jobId, @assistantId)";
+                        MySqlCommand cmd = new MySqlCommand(insertQuery, conn, transaction);
+                        cmd.Parameters.AddWithValue("@jobId", jobId);
+                        cmd.Parameters.AddWithValue("@assistantId", assistant.Key);
+                        cmd.ExecuteNonQuery();
+                    }
 
+                    // Assign multiple vehicles
+                    foreach (var item in checkedListBoxVehicles.CheckedItems)
+                    {
+                        var vehicle = (KeyValuePair<string, string>)item;
+                        string insertQuery = "INSERT INTO job_vehicles (job_id, vehicle_id) VALUES (@jobId, @vehicleId)";
+                        MySqlCommand cmd = new MySqlCommand(insertQuery, conn, transaction);
+                        cmd.Parameters.AddWithValue("@jobId", jobId);
+                        cmd.Parameters.AddWithValue("@vehicleId", vehicle.Key);
+                        cmd.ExecuteNonQuery();
+                    }
 
+                    // Assign multiple containers
+                    foreach (var item in checkedListBoxContainers.CheckedItems)
+                    {
+                        var container = (KeyValuePair<string, string>)item;
+                        string insertQuery = "INSERT INTO job_containers (job_id, container_id) VALUES (@jobId, @containerId)";
+                        MySqlCommand cmd = new MySqlCommand(insertQuery, conn, transaction);
+                        cmd.Parameters.AddWithValue("@jobId", jobId);
+                        cmd.Parameters.AddWithValue("@containerId", container.Key);
+                        cmd.ExecuteNonQuery();
+                    }
 
-                MessageBox.Show("Job assigned successfully!");
+                    transaction.Commit();
+                    MessageBox.Show("Job assigned successfully with all resources!");
 
-                
-                loadDataToTable();
-
-                
-                txtJobId.Clear();
-                cmbDriver.Items.Clear();
-                cmbVehicle.Items.Clear();
-                cmbAssistant.Items.Clear();
-                cbmContainer.Items.Clear();
-            }
-            catch (Exception ex)
-            {
-                
-
-
-                MessageBox.Show("Error assigning job: " + ex.Message);
-
-                conn.Close();
+                    loadDataToTable();
+                    ClearForm();
+                }
+                catch (Exception ex)
+                {
+                    transaction?.Rollback();
+                    MessageBox.Show("Error assigning job: " + ex.Message);
+                }
             }
         }
 
-        private void loadDataToTable()
+        private void ClearForm()
         {
-            MySqlConnection conn = DBConnection.GetConnection();
-
-            string query = "SELECT jobId, customerid, contact, destination_address, destination_city, " +
-                                 "origin_address, origin_city, Moving_date, create_date " +
-                                 "FROM jobs WHERE status = 'pending'";
-
-            MySqlCommand command = new MySqlCommand(query, conn);
-            MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-            DataTable dataTable = new DataTable();
-
-            conn.Open();
-            adapter.Fill(dataTable);
-
-
-            dataGridView1.DataSource = dataTable;
-        }
-
-
-        private void LoadAvailableDrivers()
-        {
-            MySqlConnection conn = DBConnection.GetConnection();
-
-            try
-            {
-                conn.Open();
-
-                // Query to get all drivers who are not assigned to any job on the selected moving date
-                string query = @"SELECT d.driverid 
-                    FROM drivers d
-                    LEFT JOIN jobs j ON d.driverid = j.driverid 
-                        AND DATE(j.Moving_date) = DATE(@movingDate)
-                        AND j.status != 'completed'
-                    WHERE j.driverid IS NULL";
-
-                MySqlCommand cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@movingDate", selectedJobMovingDate);
-
-
-                MySqlDataReader reader = cmd.ExecuteReader();
-
-                cmbDriver.Items.Clear();
-
-                while (reader.Read())
-                {
-                    cmbDriver.Items.Add(reader["driverid"].ToString());
-
-                }
-
-                if (cmbDriver.Items.Count > 0)
-                {
-                    cmbDriver.SelectedIndex = 0;
-                }
-                else
-                {
-                    MessageBox.Show("No available drivers for the selected date.");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error loading drivers: " + ex.Message);
-            }
-            finally
-            {
-                conn.Close();
-            }
-        }
-
-
-
-
-        private void LoadAvailableAssistants()
-        {
-            MySqlConnection conn = DBConnection.GetConnection();
-
-            try
-            {
-                conn.Open();
-
-                // Query to get all assistants who are not assigned to any job on the selected moving date
-                string query = @"SELECT a.assistantid 
-                    FROM assistants a
-                    LEFT JOIN jobs j ON a.assistantid = j.assistantid 
-                        AND DATE(j.Moving_date) = DATE(@movingDate)
-                        AND j.status != 'completed'
-                    WHERE j.assistantid IS NULL";
-
-                MySqlCommand cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@movingDate", selectedJobMovingDate);
-
-                MySqlDataReader reader = cmd.ExecuteReader();
-
-                cmbAssistant.Items.Clear();
-
-                while (reader.Read())
-                {
-                    cmbAssistant.Items.Add(reader["assistantid"].ToString());
-                }
-
-                if (cmbAssistant.Items.Count > 0)
-                {
-                    cmbAssistant.SelectedIndex = 0;
-                }
-                else
-                {
-                    MessageBox.Show("No available assistants for the selected date.");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error loading assistants: " + ex.Message);
-            }
-            finally
-            {
-                conn.Close();
-            }
-        }
-
-
-        private void LoadAvailableVehicles()
-        {
-            MySqlConnection conn = DBConnection.GetConnection();
-
-            try
-            {
-                conn.Open();
-
-                // Query to get all vehicles that are not assigned to any job on the selected moving date
-                string query = @"SELECT v.vehicleid 
-                    FROM vehicles v
-                    LEFT JOIN jobs j ON v.vehicleid = j.vehicleid 
-                        AND DATE(j.Moving_date) = DATE(@movingDate)
-                        AND j.status != 'completed'
-                    WHERE j.vehicleid IS NULL
-                    AND v.status = 'in'";
-
-                MySqlCommand cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@movingDate", selectedJobMovingDate);
-
-                MySqlDataReader reader = cmd.ExecuteReader();
-
-                cmbVehicle.Items.Clear();
-
-                while (reader.Read())
-                {
-                    cmbVehicle.Items.Add(reader["vehicleId"].ToString());
-                }
-
-                if (cmbVehicle.Items.Count > 0)
-                {
-                    cmbVehicle.SelectedIndex = 0;
-                }
-                else
-                {
-                    MessageBox.Show("No available vehicles for the selected date.");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error loading vehicles: " + ex.Message);
-            }
-            finally
-            {
-                conn.Close();
-            }
-        }
-
-
-        private void LoadAvailableContainers()
-        {
-            MySqlConnection conn = DBConnection.GetConnection();
-
-            try
-            {
-                conn.Open();
-
-                // Query to get all containers assigned to any job on the selected moving date 
-                string query = @"SELECT c.containerid   
-                    FROM containers c 
-                    LEFT JOIN jobs j ON c.containerid  = j.containerid   
-                        AND DATE(j.Moving_date) = DATE(@movingDate)
-                        AND j.status != 'completed'
-                    WHERE j.containerid IS NULL
-                    AND c.status = 'in'";
-
-                MySqlCommand cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@movingDate", selectedJobMovingDate);
-
-
-                MySqlDataReader reader = cmd.ExecuteReader();
-
-                cbmContainer.Items.Clear();
-
-                while (reader.Read())
-                {
-                    cbmContainer.Items.Add(reader["containerid"].ToString());
-
-                }
-
-                if (cbmContainer.Items.Count > 0)
-                {
-                    cbmContainer.SelectedIndex = 0;
-                }
-                else
-                {
-                    MessageBox.Show("No available Container for the selected date.");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error loading Container: " + ex.Message);
-            }
-            finally
-            {
-                conn.Close();
-            }
+            txtJobId.Clear();
+            checkedListBoxDrivers.Items.Clear();
+            checkedListBoxAssistants.Items.Clear();
+            checkedListBoxVehicles.Items.Clear();
+            checkedListBoxContainers.Items.Clear();
         }
 
         private void btnRemoveJob_Click(object sender, EventArgs e)
@@ -377,11 +398,7 @@ namespace Goods_Shifting.forms.Admin
                     // Refresh the data grid
                     loadDataToTable();
 
-                    // Clear the form
-                    txtJobId.Clear();
-                    cmbDriver.Items.Clear();
-                    cmbVehicle.Items.Clear();
-                    cmbAssistant.Items.Clear();
+
                 }
                 else
                 {
@@ -395,6 +412,327 @@ namespace Goods_Shifting.forms.Admin
             finally
             {
                 conn.Close();
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtJobId.Text))
+            {
+                MessageBox.Show("Please enter a Job ID to search.");
+                return;
+            }
+
+            using (MySqlConnection conn = DBConnection.GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+
+                    // First check if the job exists and get its moving date
+                    string jobQuery = "SELECT jobId, Moving_date FROM jobs WHERE jobId = @jobId";
+                    MySqlCommand jobCmd = new MySqlCommand(jobQuery, conn);
+                    jobCmd.Parameters.AddWithValue("@jobId", txtJobId.Text);
+
+                    using (MySqlDataReader jobReader = jobCmd.ExecuteReader())
+                    {
+                        if (jobReader.Read())
+                        {
+                            selectedJobMovingDate = jobReader["Moving_date"].ToString();
+                            jobReader.Close(); // Close the reader before executing new queries
+
+                            // Load available resources
+                            LoadAvailableDrivers();
+                            LoadAvailableAssistants();
+                            LoadAvailableVehicles();
+                            LoadAvailableContainers();
+
+                            // Load currently assigned resources
+                            LoadAssignedDrivers();
+                            LoadAssignedAssistants();
+                            LoadAssignedVehicles();
+                            LoadAssignedContainers();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Job not found.");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error searching for job: " + ex.Message);
+                }
+            }
+        }
+
+
+        private void LoadAssignedDrivers()
+        {
+            using (MySqlConnection conn = DBConnection.GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+
+                    string query = @"SELECT d.driverid, d.name 
+                    FROM drivers d
+                    JOIN job_drivers jd ON d.driverid = jd.driver_id
+                    WHERE jd.job_id = @jobId";
+
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@jobId", txtJobId.Text);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var item = new KeyValuePair<string, string>(
+                                reader["driverid"].ToString(),
+                                $"{reader["driverid"]} - {reader["name"]}"
+                            );
+
+                            // Check if this item exists in the list and check it
+                            for (int i = 0; i < checkedListBoxDrivers.Items.Count; i++)
+                            {
+                                var currentItem = (KeyValuePair<string, string>)checkedListBoxDrivers.Items[i];
+                                if (currentItem.Key == item.Key)
+                                {
+                                    checkedListBoxDrivers.SetItemChecked(i, true);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading assigned drivers: " + ex.Message);
+                }
+            }
+        }
+
+        private void LoadAssignedAssistants()
+        {
+            using (MySqlConnection conn = DBConnection.GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+
+                    string query = @"SELECT a.assistantid, a.name 
+                    FROM assistants a
+                    JOIN job_assistants ja ON a.assistantid = ja.assistant_id
+                    WHERE ja.job_id = @jobId";
+
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@jobId", txtJobId.Text);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var item = new KeyValuePair<string, string>(
+                                reader["assistantid"].ToString(),
+                                $"{reader["assistantid"]} - {reader["name"]}"
+                            );
+
+                            for (int i = 0; i < checkedListBoxAssistants.Items.Count; i++)
+                            {
+                                var currentItem = (KeyValuePair<string, string>)checkedListBoxAssistants.Items[i];
+                                if (currentItem.Key == item.Key)
+                                {
+                                    checkedListBoxAssistants.SetItemChecked(i, true);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading assigned assistants: " + ex.Message);
+                }
+            }
+        }
+
+        private void LoadAssignedVehicles()
+        {
+            using (MySqlConnection conn = DBConnection.GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+
+                    string query = @"SELECT v.vehicleid, v.name 
+                    FROM vehicles v
+                    JOIN job_vehicles jv ON v.vehicleid = jv.vehicle_id
+                    WHERE jv.job_id = @jobId";
+
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@jobId", txtJobId.Text);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var item = new KeyValuePair<string, string>(
+                                reader["vehicleid"].ToString(),
+                                $"{reader["vehicleid"]} - {reader["name"]}"
+                            );
+
+                            for (int i = 0; i < checkedListBoxVehicles.Items.Count; i++)
+                            {
+                                var currentItem = (KeyValuePair<string, string>)checkedListBoxVehicles.Items[i];
+                                if (currentItem.Key == item.Key)
+                                {
+                                    checkedListBoxVehicles.SetItemChecked(i, true);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading assigned vehicles: " + ex.Message);
+                }
+            }
+        }
+
+        private void LoadAssignedContainers()
+        {
+            using (MySqlConnection conn = DBConnection.GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+
+                    string query = @"SELECT c.containerid, c.type 
+                    FROM containers c
+                    JOIN job_containers jc ON c.containerid = jc.container_id
+                    WHERE jc.job_id = @jobId";
+
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@jobId", txtJobId.Text);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var item = new KeyValuePair<string, string>(
+                                reader["containerid"].ToString(),
+                                $"{reader["containerid"]} - {reader["type"]}"
+                            );
+
+                            for (int i = 0; i < checkedListBoxContainers.Items.Count; i++)
+                            {
+                                var currentItem = (KeyValuePair<string, string>)checkedListBoxContainers.Items[i];
+                                if (currentItem.Key == item.Key)
+                                {
+                                    checkedListBoxContainers.SetItemChecked(i, true);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading assigned containers: " + ex.Message);
+                }
+            }
+        }
+
+        private void btnEditJob_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtJobId.Text))
+            {
+                MessageBox.Show("Please select a job to edit.");
+                return;
+            }
+
+            using (MySqlConnection conn = DBConnection.GetConnection())
+            {
+                MySqlTransaction transaction = null;
+                try
+                {
+                    conn.Open();
+                    transaction = conn.BeginTransaction();
+
+                    string jobId = txtJobId.Text;
+
+                    // First, remove all existing assignments
+                    string[] deleteQueries = {
+                "DELETE FROM job_drivers WHERE job_id = @jobId",
+                "DELETE FROM job_assistants WHERE job_id = @jobId",
+                "DELETE FROM job_vehicles WHERE job_id = @jobId",
+                "DELETE FROM job_containers WHERE job_id = @jobId"
+            };
+
+                    foreach (var query in deleteQueries)
+                    {
+                        MySqlCommand cmd = new MySqlCommand(query, conn, transaction);
+                        cmd.Parameters.AddWithValue("@jobId", jobId);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    // Now add the new selections (same as in your btnAssignJob_Click)
+                    // Assign multiple drivers
+                    foreach (var item in checkedListBoxDrivers.CheckedItems)
+                    {
+                        var driver = (KeyValuePair<string, string>)item;
+                        string insertQuery = "INSERT INTO job_drivers (job_id, driver_id) VALUES (@jobId, @driverId)";
+                        MySqlCommand cmd = new MySqlCommand(insertQuery, conn, transaction);
+                        cmd.Parameters.AddWithValue("@jobId", jobId);
+                        cmd.Parameters.AddWithValue("@driverId", driver.Key);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    // Assign multiple assistants
+                    foreach (var item in checkedListBoxAssistants.CheckedItems)
+                    {
+                        var assistant = (KeyValuePair<string, string>)item;
+                        string insertQuery = "INSERT INTO job_assistants (job_id, assistant_id) VALUES (@jobId, @assistantId)";
+                        MySqlCommand cmd = new MySqlCommand(insertQuery, conn, transaction);
+                        cmd.Parameters.AddWithValue("@jobId", jobId);
+                        cmd.Parameters.AddWithValue("@assistantId", assistant.Key);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    // Assign multiple vehicles
+                    foreach (var item in checkedListBoxVehicles.CheckedItems)
+                    {
+                        var vehicle = (KeyValuePair<string, string>)item;
+                        string insertQuery = "INSERT INTO job_vehicles (job_id, vehicle_id) VALUES (@jobId, @vehicleId)";
+                        MySqlCommand cmd = new MySqlCommand(insertQuery, conn, transaction);
+                        cmd.Parameters.AddWithValue("@jobId", jobId);
+                        cmd.Parameters.AddWithValue("@vehicleId", vehicle.Key);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    // Assign multiple containers
+                    foreach (var item in checkedListBoxContainers.CheckedItems)
+                    {
+                        var container = (KeyValuePair<string, string>)item;
+                        string insertQuery = "INSERT INTO job_containers (job_id, container_id) VALUES (@jobId, @containerId)";
+                        MySqlCommand cmd = new MySqlCommand(insertQuery, conn, transaction);
+                        cmd.Parameters.AddWithValue("@jobId", jobId);
+                        cmd.Parameters.AddWithValue("@containerId", container.Key);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    transaction.Commit();
+                    MessageBox.Show("Job assignments updated successfully!");
+
+                    // Refresh the data
+                    loadDataToTable();
+                }
+                catch (Exception ex)
+                {
+                    transaction?.Rollback();
+                    MessageBox.Show("Error updating job assignments: " + ex.Message);
+                }
             }
         }
     }

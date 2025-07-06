@@ -23,6 +23,7 @@ namespace Goods_Shifting.forms.Customer
         {
             this.Hide();
             Home homeForm = new Home();
+            homeForm.FormClosed += (s, args) => this.Close();
             homeForm.Show();
         }
 

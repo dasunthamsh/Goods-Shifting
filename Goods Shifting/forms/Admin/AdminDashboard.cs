@@ -99,5 +99,14 @@ namespace Goods_Shifting.forms.Admin
             this.panelFormLoader.Controls.Add(managerPanel);
             managerPanel.Show();
         }
+
+        private void btnOngoingJobs_Click(object sender, EventArgs e)
+        {
+            this.panelFormLoader.Controls.Clear();
+            OngingJobsPanel ongingJobsPanel = new OngingJobsPanel() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            ongingJobsPanel.FormBorderStyle= FormBorderStyle.None;
+            this.panelFormLoader.Controls.Add(ongingJobsPanel);
+            ongingJobsPanel.Show();
+        }
     }
 }
