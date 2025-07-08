@@ -12,7 +12,9 @@ namespace Goods_Shifting.forms.Admin
 {
     public partial class DashboardPanel: Form
     {
-        public DashboardPanel()
+
+        private string managerName;
+        public DashboardPanel(string managerName)
         {
             InitializeComponent();
         }

@@ -1,4 +1,6 @@
-﻿using MySql.Data.MySqlClient;
+﻿using iTextSharp.text.pdf;
+using iTextSharp.text;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Goods_Shifting.lib;
 
 namespace Goods_Shifting.forms.Admin
 {
@@ -84,7 +87,7 @@ namespace Goods_Shifting.forms.Admin
 
                         if (checkedListBoxDrivers.Items.Count == 0)
                         {
-                            MessageBox.Show("No available drivers for the selected date.");
+                            ToastMessage.Show(this, "No available drivers for the selected date.");
                         }
                     }
                 }
@@ -133,7 +136,7 @@ namespace Goods_Shifting.forms.Admin
 
                         if (checkedListBoxAssistants.Items.Count == 0)
                         {
-                            MessageBox.Show("No available assistants for the selected date.");
+                            ToastMessage.Show(this, "No available assistants for the selected date.",true);
                         }
                     }
                 }
@@ -183,7 +186,7 @@ namespace Goods_Shifting.forms.Admin
 
                         if (checkedListBoxVehicles.Items.Count == 0)
                         {
-                            MessageBox.Show("No available vehicles for the selected date.");
+                            ToastMessage.Show(this, "No available vehicles for the selected date.",true);
                         }
                     }
                 }
@@ -343,7 +346,7 @@ namespace Goods_Shifting.forms.Admin
                     }
 
                     transaction.Commit();
-                    MessageBox.Show("Job assigned successfully with all resources!");
+                    ToastMessage.Show(this, "Job assigned successfully with all resources!");
 
                     loadDataToTable();
                     ClearForm();
@@ -351,19 +354,12 @@ namespace Goods_Shifting.forms.Admin
                 catch (Exception ex)
                 {
                     transaction?.Rollback();
-                    MessageBox.Show("Error assigning job: " + ex.Message);
+                   ToastMessage.Show(this,"Error assigning job: " + ex.Message);
                 }
             }
         }
 
-        private void ClearForm()
-        {
-            txtJobId.Clear();
-            checkedListBoxDrivers.Items.Clear();
-            checkedListBoxAssistants.Items.Clear();
-            checkedListBoxVehicles.Items.Clear();
-            checkedListBoxContainers.Items.Clear();
-        }
+       
 
         private void btnRemoveJob_Click(object sender, EventArgs e)
         {
@@ -393,7 +389,7 @@ namespace Goods_Shifting.forms.Admin
 
                 if (rowsAffected > 0)
                 {
-                    MessageBox.Show("Job has been cancelled successfully!");
+                    ToastMessage.Show(this, "Job has been cancelled successfully!");
 
                     // Refresh the data grid
                     loadDataToTable();
@@ -723,10 +719,11 @@ namespace Goods_Shifting.forms.Admin
                     }
 
                     transaction.Commit();
-                    MessageBox.Show("Job assignments updated successfully!");
+                    ToastMessage.Show(this, "Job assignments updated successfully!");
 
                     // Refresh the data
                     loadDataToTable();
+                    ClearForm();
                 }
                 catch (Exception ex)
                 {
@@ -734,6 +731,68 @@ namespace Goods_Shifting.forms.Admin
                     MessageBox.Show("Error updating job assignments: " + ex.Message);
                 }
             }
+        }
+
+        private void btnJobPDF_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Ask user where to save the file
+                SaveFileDialog saveDialog = new SaveFileDialog();
+                saveDialog.Filter = "PDF Files|*.pdf";
+                saveDialog.Title = "Save New Jobs Report";
+                saveDialog.FileName = "New Jobs.pdf";
+
+                if (saveDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Create the PDF
+                    Document doc = new Document();
+                    PdfWriter.GetInstance(doc, new FileStream(saveDialog.FileName, FileMode.Create));
+                    doc.Open();
+
+                    // Add a title
+                    doc.Add(new Paragraph("New Jobs Report"));
+                    doc.Add(new Paragraph($"Generated on: {DateTime.Now.ToShortDateString()}"));
+                    doc.Add(new Paragraph("\n"));
+
+                    // Create a table with the same columns as the DataGridView
+                    PdfPTable pdfTable = new PdfPTable(dataGridView1.Columns.Count);
+
+                    // Add column headers
+                    foreach (DataGridViewColumn column in dataGridView1.Columns)
+                    {
+                        pdfTable.AddCell(column.HeaderText);
+                    }
+
+                    // Add data rows
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        foreach (DataGridViewCell cell in row.Cells)
+                        {
+                            pdfTable.AddCell(cell.Value?.ToString() ?? "");
+                        }
+                    }
+
+                    // Add the table to the document
+                    doc.Add(pdfTable);
+                    doc.Close();
+
+                    ToastMessage.Show(this, "PDF saved successfully!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error creating PDF: " + ex.Message);
+            }
+        }
+
+        private void ClearForm()
+        {
+            txtJobId.Clear();
+            checkedListBoxDrivers.Items.Clear();
+            checkedListBoxAssistants.Items.Clear();
+            checkedListBoxVehicles.Items.Clear();
+            checkedListBoxContainers.Items.Clear();
         }
     }
 }

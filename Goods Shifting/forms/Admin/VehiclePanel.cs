@@ -1,4 +1,6 @@
-﻿using MySql.Data.MySqlClient;
+﻿using iTextSharp.text.pdf;
+using iTextSharp.text;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Goods_Shifting.lib;
 
 namespace Goods_Shifting.forms.Admin
 {
@@ -164,7 +167,7 @@ FROM vehicles v";
                 int rowsAffected = cmd.ExecuteNonQuery();
                 if (rowsAffected > 0)
                 {
-                    MessageBox.Show("Vehicle status updated successfully!");
+                    ToastMessage.Show(this, "Vehicle status updated successfully!");
                     LoadVehicleData();
                 }
                 else
@@ -214,7 +217,7 @@ FROM vehicles v";
                 int rowsAffected = cmd.ExecuteNonQuery();
                 if (rowsAffected > 0)
                 {
-                    MessageBox.Show("Vehicle added successfully!");
+                    ToastMessage.Show(this, "Vehicle added successfully!");
 
                     // Refresh the vehicle list
                     LoadVehicleData();
@@ -289,7 +292,7 @@ FROM vehicles v";
                 int rowsAffected = cmd.ExecuteNonQuery();
                 if (rowsAffected > 0)
                 {
-                    MessageBox.Show("Vehicle updated successfully!");
+                    ToastMessage.Show(this, "Vehicle updated successfully!");
                     LoadVehicleData();
                     ClearForm();
                 }
@@ -326,6 +329,59 @@ FROM vehicles v";
             cmbVhicleType.SelectedIndex = -1;
             txtBrand.Clear();
             lblID.Text = "";
+        }
+
+        private void btnVehicleJobPDF_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Ask user where to save the file
+                SaveFileDialog saveDialog = new SaveFileDialog();
+                saveDialog.Filter = "PDF Files|*.pdf";
+                saveDialog.Title = "Save Vehicle Report";
+                saveDialog.FileName = "Vehicle.pdf";
+
+                if (saveDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Create the PDF
+                    Document doc = new Document();
+                    PdfWriter.GetInstance(doc, new FileStream(saveDialog.FileName, FileMode.Create));
+                    doc.Open();
+
+                    // Add a title
+                    doc.Add(new Paragraph("VehicleReport"));
+                    doc.Add(new Paragraph($"Generated on: {DateTime.Now.ToShortDateString()}"));
+                    doc.Add(new Paragraph("\n"));
+
+                    // Create a table with the same columns as the DataGridView
+                    PdfPTable pdfTable = new PdfPTable(dataGridView1.Columns.Count);
+
+                    // Add column headers
+                    foreach (DataGridViewColumn column in dataGridView1.Columns)
+                    {
+                        pdfTable.AddCell(column.HeaderText);
+                    }
+
+                    // Add data rows
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        foreach (DataGridViewCell cell in row.Cells)
+                        {
+                            pdfTable.AddCell(cell.Value?.ToString() ?? "");
+                        }
+                    }
+
+                    // Add the table to the document
+                    doc.Add(pdfTable);
+                    doc.Close();
+
+                    ToastMessage.Show(this, "PDF saved successfully!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error creating PDF: " + ex.Message);
+            }
         }
     }
 }

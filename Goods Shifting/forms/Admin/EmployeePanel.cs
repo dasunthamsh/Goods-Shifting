@@ -1,4 +1,6 @@
-﻿using MySql.Data.MySqlClient;
+﻿using iTextSharp.text.pdf;
+using iTextSharp.text;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Goods_Shifting.lib;
 
 namespace Goods_Shifting.forms.Admin
 {
@@ -26,7 +29,7 @@ namespace Goods_Shifting.forms.Admin
             {
                 DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
 
-              
+
                 cmdEmployees.Text = row.Cells["Role"].Value.ToString();
                 txtName.Text = row.Cells["Name"].Value.ToString();
                 txtEmail.Text = row.Cells["Email"].Value.ToString();
@@ -35,7 +38,7 @@ namespace Goods_Shifting.forms.Admin
                 txtIDNumber.Text = row.Cells["ID Number"].Value.ToString();
                 txtAddress.Text = row.Cells["Address"].Value.ToString();
 
-               
+
             }
         }
 
@@ -49,7 +52,7 @@ namespace Goods_Shifting.forms.Admin
             txtContact.Clear();
             txtIDNumber.Clear();
             txtAddress.Clear();
-            
+
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -150,7 +153,7 @@ namespace Goods_Shifting.forms.Admin
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error loading employee data: " + ex.Message);
+                ToastMessage.Show(this, "Error loading employee data: " + ex.Message,true);
             }
             finally
             {
@@ -181,7 +184,7 @@ namespace Goods_Shifting.forms.Admin
 
                 if (role == "Driver")
                 {
-                    
+
                     string query = @"INSERT INTO drivers 
                             (name, phone, email, address, id_number, driving_license) 
                             VALUES 
@@ -200,7 +203,7 @@ namespace Goods_Shifting.forms.Admin
                 }
                 else if (role == "Assistant")
                 {
-                    
+
                     string query = @"INSERT INTO assistants 
                             (name, phone, email, address, id_number, driving_license) 
                             VALUES 
@@ -223,21 +226,21 @@ namespace Goods_Shifting.forms.Admin
                     return;
                 }
 
-                MessageBox.Show($"{role} added successfully ");
+                ToastMessage.Show(this, $"{role} added successfully ");
 
                 // Refresh the employee list
                 LoadEmployeeData();
 
-                
+
                 ClearForm();
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show("Database error: " + ex.Message);
+                ToastMessage.Show(this, "Database error: " + ex.Message, true);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                ToastMessage.Show(this, "Error: " + ex.Message, true);
             }
             finally
             {
@@ -386,17 +389,17 @@ namespace Goods_Shifting.forms.Admin
                     }
                 }
 
-                MessageBox.Show("Employee updated successfully");
+                ToastMessage.Show(this, "Employee updated successfully");
                 LoadEmployeeData();
                 ClearForm();
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show("Database error: " + ex.Message);
+                ToastMessage.Show(this, "Database error: " + ex.Message, true);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                ToastMessage.Show(this, "Error: " + ex.Message, true);
             }
             finally
             {
@@ -460,7 +463,7 @@ namespace Goods_Shifting.forms.Admin
                     cmd.ExecuteNonQuery();
                 }
 
-                MessageBox.Show($"{role} deleted successfully");
+                ToastMessage.Show(this, $"{role} deleted successfully");
 
                 // Refresh the employee list
                 LoadEmployeeData();
@@ -486,6 +489,59 @@ namespace Goods_Shifting.forms.Admin
             finally
             {
                 conn.Close();
+            }
+        }
+
+        private void btnEmplyeesJobPDF_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Ask user where to save the file
+                SaveFileDialog saveDialog = new SaveFileDialog();
+                saveDialog.Filter = "PDF Files|*.pdf";
+                saveDialog.Title = "Save Employees Report";
+                saveDialog.FileName = "OngoingJobs.pdf";
+
+                if (saveDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Create the PDF
+                    Document doc = new Document();
+                    PdfWriter.GetInstance(doc, new FileStream(saveDialog.FileName, FileMode.Create));
+                    doc.Open();
+
+                    // Add a title
+                    doc.Add(new Paragraph("Employees Report"));
+                    doc.Add(new Paragraph($"Generated on: {DateTime.Now.ToShortDateString()}"));
+                    doc.Add(new Paragraph("\n"));
+
+                    // Create a table with the same columns as the DataGridView
+                    PdfPTable pdfTable = new PdfPTable(dataGridView1.Columns.Count);
+
+                    // Add column headers
+                    foreach (DataGridViewColumn column in dataGridView1.Columns)
+                    {
+                        pdfTable.AddCell(column.HeaderText);
+                    }
+
+                    // Add data rows
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        foreach (DataGridViewCell cell in row.Cells)
+                        {
+                            pdfTable.AddCell(cell.Value?.ToString() ?? "");
+                        }
+                    }
+
+                    // Add the table to the document
+                    doc.Add(pdfTable);
+                    doc.Close();
+
+                    ToastMessage.Show(this, "PDF saved successfully!");
+                }
+            }
+            catch (Exception ex)
+            {
+                ToastMessage.Show(this, "Error creating PDF: " + ex.Message, true);
             }
         }
     }

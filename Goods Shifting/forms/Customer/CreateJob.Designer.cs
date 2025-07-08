@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateJob));
             panel1 = new Panel();
             lblNotificationCount = new Label();
+            btnNotifications = new Button();
             btnLogout = new Button();
             txtMessage = new RichTextBox();
             label5 = new Label();
@@ -54,15 +55,18 @@
             label2 = new Label();
             txtName = new TextBox();
             label1 = new Label();
-            button2 = new Button();
+            label6 = new Label();
+            lblName = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.Anchor = AnchorStyles.None;
-            panel1.Controls.Add(button2);
+            panel1.Controls.Add(lblName);
+            panel1.Controls.Add(label6);
             panel1.Controls.Add(lblNotificationCount);
+            panel1.Controls.Add(btnNotifications);
             panel1.Controls.Add(btnLogout);
             panel1.Controls.Add(txtMessage);
             panel1.Controls.Add(label5);
@@ -97,11 +101,23 @@
             lblNotificationCount.AutoSize = true;
             lblNotificationCount.BackColor = Color.Red;
             lblNotificationCount.ForeColor = SystemColors.ButtonHighlight;
-            lblNotificationCount.Location = new Point(1090, 21);
+            lblNotificationCount.Location = new Point(1094, 25);
             lblNotificationCount.Name = "lblNotificationCount";
             lblNotificationCount.Size = new Size(22, 25);
             lblNotificationCount.TabIndex = 42;
             lblNotificationCount.Text = "0";
+            lblNotificationCount.Click += lblNotificationCount_Click;
+            // 
+            // btnNotifications
+            // 
+            btnNotifications.BackgroundImage = (Image)resources.GetObject("btnNotifications.BackgroundImage");
+            btnNotifications.BackgroundImageLayout = ImageLayout.Center;
+            btnNotifications.Location = new Point(1044, 30);
+            btnNotifications.Name = "btnNotifications";
+            btnNotifications.Size = new Size(60, 47);
+            btnNotifications.TabIndex = 43;
+            btnNotifications.UseVisualStyleBackColor = true;
+            btnNotifications.Click += btnNotifications_Click_1;
             // 
             // btnLogout
             // 
@@ -335,14 +351,25 @@
             label1.TabIndex = 0;
             label1.Text = "Request Quote";
             // 
-            // button2
+            // label6
             // 
-            button2.Location = new Point(983, 30);
-            button2.Name = "button2";
-            button2.Size = new Size(63, 47);
-            button2.TabIndex = 43;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold | FontStyle.Italic);
+            label6.Location = new Point(163, 33);
+            label6.Name = "label6";
+            label6.Size = new Size(129, 25);
+            label6.TabIndex = 44;
+            label6.Text = "Welcome Back";
+            // 
+            // lblName
+            // 
+            lblName.AutoSize = true;
+            lblName.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold | FontStyle.Italic);
+            lblName.Location = new Point(298, 33);
+            lblName.Name = "lblName";
+            lblName.Size = new Size(61, 25);
+            lblName.TabIndex = 45;
+            lblName.Text = "Name";
             // 
             // CreateJob
             // 
@@ -386,6 +413,8 @@
         private Button btnLogout;
         private Button button3;
         private Label lblNotificationCount;
-        private Button button2;
+        private Button btnNotifications;
+        private Label lblName;
+        private Label label6;
     }
 }

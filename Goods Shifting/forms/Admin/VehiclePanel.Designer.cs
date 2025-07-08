@@ -45,6 +45,7 @@
             btnAddToMaintenace = new Button();
             lblID = new Label();
             label6 = new Label();
+            btnVehicleJobPDF = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -225,11 +226,24 @@
             label6.TabIndex = 55;
             label6.Text = "Vehicle ID :";
             // 
+            // btnVehicleJobPDF
+            // 
+            btnVehicleJobPDF.BackColor = Color.SeaGreen;
+            btnVehicleJobPDF.ForeColor = SystemColors.ButtonHighlight;
+            btnVehicleJobPDF.Location = new Point(60, 618);
+            btnVehicleJobPDF.Name = "btnVehicleJobPDF";
+            btnVehicleJobPDF.Size = new Size(216, 34);
+            btnVehicleJobPDF.TabIndex = 56;
+            btnVehicleJobPDF.Text = "Vehicle report";
+            btnVehicleJobPDF.UseVisualStyleBackColor = false;
+            btnVehicleJobPDF.Click += btnVehicleJobPDF_Click;
+            // 
             // VehiclePanel
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1045, 846);
+            Controls.Add(btnVehicleJobPDF);
             Controls.Add(label6);
             Controls.Add(lblID);
             Controls.Add(btnAddToMaintenace);
@@ -273,5 +287,6 @@
         private Button btnAddToMaintenace;
         private Label lblID;
         private Label label6;
+        private Button btnVehicleJobPDF;
     }
 }

@@ -45,6 +45,7 @@
             btnAssignJob = new Button();
             btnEditJob = new Button();
             btnSearch = new Button();
+            btnJobPDF = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -209,11 +210,24 @@
             btnSearch.UseVisualStyleBackColor = false;
             btnSearch.Click += btnSearch_Click;
             // 
+            // btnJobPDF
+            // 
+            btnJobPDF.BackColor = Color.SeaGreen;
+            btnJobPDF.ForeColor = SystemColors.ButtonHighlight;
+            btnJobPDF.Location = new Point(12, 800);
+            btnJobPDF.Name = "btnJobPDF";
+            btnJobPDF.Size = new Size(202, 34);
+            btnJobPDF.TabIndex = 80;
+            btnJobPDF.Text = "Job report";
+            btnJobPDF.UseVisualStyleBackColor = false;
+            btnJobPDF.Click += btnJobPDF_Click;
+            // 
             // NewJobsPanel
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1045, 846);
+            Controls.Add(btnJobPDF);
             Controls.Add(btnSearch);
             Controls.Add(btnEditJob);
             Controls.Add(btnAssignJob);
@@ -255,5 +269,6 @@
         private Button btnAssignJob;
         private Button btnEditJob;
         private Button btnSearch;
+        private Button btnJobPDF;
     }
 }

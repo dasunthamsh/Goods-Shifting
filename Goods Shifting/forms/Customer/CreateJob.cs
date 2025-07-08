@@ -1,4 +1,5 @@
 ﻿using Goods_Shifting.forms.Auth;
+using Goods_Shifting.lib;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -20,14 +21,12 @@ namespace Goods_Shifting.forms.Customer
         public CreateJob(string customerId, string customerName)
         {
             InitializeComponent();
-
-
-
             AddTruckTypes();
             this.customerId = customerId;
             this.customerName = customerName;
-
+            UpdateNotificationCount();
             txtName.Text = customerName;
+            lblName.Text = customerName;
         }
 
         private void AddTruckTypes()
@@ -126,8 +125,7 @@ namespace Goods_Shifting.forms.Customer
 
                     if (rowsAffected > 0)
                     {
-                        MessageBox.Show("Job created successfully!", "Success",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ToastMessage.Show(this, "Job created successfully!");
 
                     }
                     else
@@ -156,14 +154,59 @@ namespace Goods_Shifting.forms.Customer
             form.Show();
         }
 
-        private void btnNotifications_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
+            this.Hide();
+            Home form = new Home();
+            form.FormClosed += (s, args) => this.Close();
+            form.Show();
+        }
+
+        private void btnNotifications_Click_1(object sender, EventArgs e)
+        {
+            Notifications notificationsForm = new Notifications(customerId);
+            notificationsForm.Show();
+        }
+
+        private void lblNotificationCount_Click(object sender, EventArgs e)
+        {
 
         }
+
+
+        private void UpdateNotificationCount()
+        {
+            MySqlConnection conn = DBConnection.GetConnection();
+
+            try
+            {
+                conn.Open();
+                string query = @"SELECT COUNT(*) FROM jobs 
+                         WHERE customerid = @customerId 
+                         AND (status = 'assigned' OR status = 'cancelled')";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@customerId", customerId);
+
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+                    lblNotificationCount.Text = count.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading notification count: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+
+
     }
 }

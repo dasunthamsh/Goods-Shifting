@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Goods_Shifting.lib;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +23,25 @@ namespace Goods_Shifting.forms.Customer
         {
             InitializeComponent();
             LoadJobsData();
+            AddTruckTypes();
+        }
+
+        private void AddTruckTypes()
+        {
+            // Clear existing items
+            cmbSize.Items.Clear();
+
+            // Add truck types to the combo box
+            cmbSize.Items.Add("Few Items");
+            cmbSize.Items.Add("1 BHK");
+            cmbSize.Items.Add("2 BHK");
+            cmbSize.Items.Add("3 BHK");
+            cmbSize.Items.Add("4 BHK");
+            cmbSize.Items.Add("5 BHK");
+
+
+            // Optionally set a default selected item
+            cmbSize.SelectedIndex = 0;
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -109,8 +129,7 @@ namespace Goods_Shifting.forms.Customer
 
                     if (rowsAffected > 0)
                     {
-                        MessageBox.Show("Job updated successfully!", "Success",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ToastMessage.Show(this, "Job updated successfully!");
                         LoadJobsData(); // Refresh the grid
                     }
                     else

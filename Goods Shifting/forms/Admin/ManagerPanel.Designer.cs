@@ -45,7 +45,8 @@
             btnAdd = new Button();
             btnEdit = new Button();
             btnDelete = new Button();
-            btnRestPassword = new Button();
+            Password = new Label();
+            txtPassword = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -73,17 +74,17 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            label6.Location = new Point(60, 523);
+            label6.Location = new Point(802, 24);
             label6.Name = "label6";
-            label6.Size = new Size(134, 32);
+            label6.Size = new Size(156, 32);
             label6.TabIndex = 59;
-            label6.Text = "Vehicle ID :";
+            label6.Text = "Manager ID :";
             // 
             // lblID
             // 
             lblID.AutoSize = true;
             lblID.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            lblID.Location = new Point(188, 523);
+            lblID.Location = new Point(960, 24);
             lblID.Name = "lblID";
             lblID.Size = new Size(53, 32);
             lblID.TabIndex = 58;
@@ -93,7 +94,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(394, 491);
+            label4.Location = new Point(67, 490);
             label4.Name = "label4";
             label4.Size = new Size(66, 28);
             label4.TabIndex = 63;
@@ -103,7 +104,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(717, 489);
+            label2.Location = new Point(398, 489);
             label2.Name = "label2";
             label2.Size = new Size(60, 28);
             label2.TabIndex = 62;
@@ -112,7 +113,7 @@
             // txtName
             // 
             txtName.Font = new Font("Segoe UI", 11F);
-            txtName.Location = new Point(388, 525);
+            txtName.Location = new Point(61, 524);
             txtName.Name = "txtName";
             txtName.Size = new Size(262, 37);
             txtName.TabIndex = 61;
@@ -120,7 +121,7 @@
             // txtEmail
             // 
             txtEmail.Font = new Font("Segoe UI", 11F);
-            txtEmail.Location = new Point(712, 524);
+            txtEmail.Location = new Point(393, 524);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(262, 37);
             txtEmail.TabIndex = 60;
@@ -139,7 +140,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(722, 610);
+            label3.Location = new Point(717, 493);
             label3.Name = "label3";
             label3.Size = new Size(113, 28);
             label3.TabIndex = 66;
@@ -156,7 +157,7 @@
             // txtID
             // 
             txtID.Font = new Font("Segoe UI", 11F);
-            txtID.Location = new Point(717, 645);
+            txtID.Location = new Point(717, 524);
             txtID.Name = "txtID";
             txtID.Size = new Size(262, 37);
             txtID.TabIndex = 64;
@@ -204,6 +205,7 @@
             btnEdit.TabIndex = 71;
             btnEdit.Text = "Edit";
             btnEdit.UseVisualStyleBackColor = false;
+            btnEdit.Click += btnEdit_Click;
             // 
             // btnDelete
             // 
@@ -216,25 +218,34 @@
             btnDelete.TabIndex = 70;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = false;
+            btnDelete.Click += btnDelete_Click;
             // 
-            // btnRestPassword
+            // Password
             // 
-            btnRestPassword.BackColor = SystemColors.MenuHighlight;
-            btnRestPassword.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnRestPassword.ForeColor = SystemColors.Control;
-            btnRestPassword.Location = new Point(8, 778);
-            btnRestPassword.Name = "btnRestPassword";
-            btnRestPassword.Size = new Size(218, 56);
-            btnRestPassword.TabIndex = 73;
-            btnRestPassword.Text = "Rest Password";
-            btnRestPassword.UseVisualStyleBackColor = false;
+            Password.AutoSize = true;
+            Password.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Password.Location = new Point(717, 614);
+            Password.Name = "Password";
+            Password.Size = new Size(97, 28);
+            Password.TabIndex = 75;
+            Password.Text = "Password";
+            // 
+            // txtPassword
+            // 
+            txtPassword.Font = new Font("Segoe UI", 11F);
+            txtPassword.Location = new Point(717, 646);
+            txtPassword.Name = "txtPassword";
+            txtPassword.Size = new Size(262, 37);
+            txtPassword.TabIndex = 74;
             // 
             // ManagerPanel
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.Control;
             ClientSize = new Size(1045, 846);
-            Controls.Add(btnRestPassword);
+            Controls.Add(Password);
+            Controls.Add(txtPassword);
             Controls.Add(btnAdd);
             Controls.Add(btnEdit);
             Controls.Add(btnDelete);
@@ -278,6 +289,7 @@
         private Button btnAdd;
         private Button btnEdit;
         private Button btnDelete;
-        private Button btnRestPassword;
+        private Label Password;
+        private TextBox txtPassword;
     }
 }

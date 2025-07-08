@@ -14,6 +14,7 @@ namespace Goods_Shifting.forms.Admin
     {
 
         private string managerId;
+        private string managerName;
 
         private System.Windows.Forms.Timer timerDateTime;
 
@@ -22,6 +23,7 @@ namespace Goods_Shifting.forms.Admin
             InitializeComponent();
 
             this.managerId = managerId;
+            this.managerName = managerName; 
 
 
             timerDateTime = new System.Windows.Forms.Timer();
@@ -31,7 +33,7 @@ namespace Goods_Shifting.forms.Admin
 
 
             this.panelFormLoader.Controls.Clear();
-            DashboardPanel panel = new DashboardPanel() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            DashboardPanel panel = new DashboardPanel(managerName) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             panel.FormBorderStyle = FormBorderStyle.None;
             this.panelFormLoader.Controls.Add(panel);
             panel.Show();
@@ -41,7 +43,7 @@ namespace Goods_Shifting.forms.Admin
         private void btnDashboard_Click(object sender, EventArgs e)
         {
             this.panelFormLoader.Controls.Clear();
-            DashboardPanel panel = new DashboardPanel() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            DashboardPanel panel = new DashboardPanel(managerName) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             panel.FormBorderStyle = FormBorderStyle.None;
             this.panelFormLoader.Controls.Add(panel);
             panel.Show();

@@ -43,6 +43,7 @@
             btnAdd = new Button();
             btnEdit = new Button();
             btnDelete = new Button();
+            btnContainerPDF = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -206,11 +207,24 @@
             btnDelete.UseVisualStyleBackColor = false;
             btnDelete.Click += btnDelete_Click;
             // 
+            // btnContainerPDF
+            // 
+            btnContainerPDF.BackColor = Color.SeaGreen;
+            btnContainerPDF.ForeColor = SystemColors.ButtonHighlight;
+            btnContainerPDF.Location = new Point(60, 618);
+            btnContainerPDF.Name = "btnContainerPDF";
+            btnContainerPDF.Size = new Size(216, 34);
+            btnContainerPDF.TabIndex = 67;
+            btnContainerPDF.Text = "Container report";
+            btnContainerPDF.UseVisualStyleBackColor = false;
+            btnContainerPDF.Click += btnContainerPDF_Click;
+            // 
             // ContainerPanel
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1045, 846);
+            Controls.Add(btnContainerPDF);
             Controls.Add(btnAdd);
             Controls.Add(btnEdit);
             Controls.Add(btnDelete);
@@ -250,5 +264,6 @@
         private Button btnAdd;
         private Button btnEdit;
         private Button btnDelete;
+        private Button btnContainerPDF;
     }
 }

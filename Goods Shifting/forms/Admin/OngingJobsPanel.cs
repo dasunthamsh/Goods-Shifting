@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Goods_Shifting.lib;
 
 namespace Goods_Shifting.forms.Admin
 {
@@ -143,7 +144,7 @@ namespace Goods_Shifting.forms.Admin
                     paymentCmd.ExecuteNonQuery();
 
                     transaction.Commit();
-                    MessageBox.Show($"Job {jobId} completed and payment recorded successfully");
+                    ToastMessage.Show(this, $"Job {jobId} completed and payment recorded successfully");
                     LoadJobData();
                     ClearForm();
                 }
@@ -233,7 +234,7 @@ namespace Goods_Shifting.forms.Admin
                     // Add a title
                     doc.Add(new Paragraph("Ongoing Jobs Report"));
                     doc.Add(new Paragraph($"Generated on: {DateTime.Now.ToShortDateString()}"));
-                    doc.Add(new Paragraph("\n")); // Add some space
+                    doc.Add(new Paragraph("\n"));
 
                     // Create a table with the same columns as the DataGridView
                     PdfPTable pdfTable = new PdfPTable(dataGridView1.Columns.Count);
@@ -257,7 +258,7 @@ namespace Goods_Shifting.forms.Admin
                     doc.Add(pdfTable);
                     doc.Close();
 
-                    MessageBox.Show("PDF saved successfully!");
+                    ToastMessage.Show(this, "PDF saved successfully!");
                 }
             }
             catch (Exception ex)

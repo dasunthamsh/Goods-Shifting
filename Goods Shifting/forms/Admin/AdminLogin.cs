@@ -1,4 +1,5 @@
 ﻿using Goods_Shifting.forms.Auth;
+using Goods_Shifting.lib;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -62,8 +63,7 @@ namespace Goods_Shifting.forms.Admin
                         }
                         else
                         {
-                            MessageBox.Show("Invalid username or password", "Login Failed",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            ToastMessage.Show(this, "Invalid username or password",true);
                         }
                     }
                 }
@@ -72,7 +72,7 @@ namespace Goods_Shifting.forms.Admin
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                ToastMessage.Show(this, "Error: " + ex.Message, true);
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Goods_Shifting.lib;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -61,8 +62,7 @@ namespace Goods_Shifting.forms.Customer
 
                         if (rowsAffected > 0)
                         {
-                            MessageBox.Show("Password reset successfully!", "Success",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            ToastMessage.Show(this, "Password reset successfully!");
 
                             // Return to login page
                             this.Hide();

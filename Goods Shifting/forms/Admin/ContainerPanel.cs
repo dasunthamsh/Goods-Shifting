@@ -1,4 +1,6 @@
-﻿using MySql.Data.MySqlClient;
+﻿using iTextSharp.text.pdf;
+using iTextSharp.text;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
+using Goods_Shifting.lib;
 
 namespace Goods_Shifting.forms.Admin
 {
@@ -87,14 +90,14 @@ FROM containers c";
                 DataTable dataTable = new DataTable();
                 adapter.Fill(dataTable);
 
-                // Bind the data to the DataGridView
+                // bind the data to the DataGridView
                 dataGridView1.DataSource = dataTable;
 
-                // Format the DataGridView
+                // format the DataGridView
                 dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dataGridView1.Columns["Availability"].DefaultCellStyle.ForeColor = Color.White;
 
-                // Apply color coding after data is loaded
+                // apply color coding after data is loaded
                 dataGridView1.DataBindingComplete += (s, e) =>
                 {
                     foreach (DataGridViewRow row in dataGridView1.Rows)
@@ -120,7 +123,7 @@ FROM containers c";
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error loading vehicle data: " + ex.Message);
+                ToastMessage.Show(this, "Error loading vehicle data: " + ex.Message, true);
             }
             finally
             {
@@ -168,7 +171,7 @@ FROM containers c";
                 int rowsAffected = cmd.ExecuteNonQuery();
                 if (rowsAffected > 0)
                 {
-                    MessageBox.Show("Container status updated successfully!");
+                    ToastMessage.Show(this, "Container status updated successfully!");
                     LoadContainerData();
                 }
                 else
@@ -178,7 +181,7 @@ FROM containers c";
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error updating Container status: " + ex.Message);
+                ToastMessage.Show(this, "Error updating Container status: " + ex.Message,true);
             }
             finally
             {
@@ -215,29 +218,29 @@ FROM containers c";
                 int rowsAffected = cmd.ExecuteNonQuery();
                 if (rowsAffected > 0)
                 {
-                    MessageBox.Show("Container added successfully!");
+                    ToastMessage.Show(this, "Container added successfully!");
                     LoadContainerData();
                     ClearForm();
                 }
                 else
                 {
-                    MessageBox.Show("Failed to add container");
+                    ToastMessage.Show(this, "Failed to add container",true);
                 }
             }
             catch (MySqlException ex)
             {
                 if (ex.Number == 1062) // Duplicate entry error
                 {
-                    MessageBox.Show("A container with this number already exists");
+                    ToastMessage.Show(this, "A container with this number already exists", true);
                 }
                 else
                 {
-                    MessageBox.Show("Database error: " + ex.Message);
+                    ToastMessage.Show(this, "Database error: " + ex.Message, true);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                ToastMessage.Show(this, "Error: " + ex.Message, true);
             }
             finally
             {
@@ -249,7 +252,7 @@ FROM containers c";
         {
             if (string.IsNullOrWhiteSpace(lblID.Text))
             {
-                MessageBox.Show("Please select a container to edit");
+                ToastMessage.Show(this, "Please select a container to edit",true);
                 return;
             }
 
@@ -258,7 +261,7 @@ FROM containers c";
                 string.IsNullOrWhiteSpace(cmbSize.Text) ||
                 string.IsNullOrWhiteSpace(txtContainerNumber.Text))
             {
-                MessageBox.Show("Please fill all required fields (Type, Size, Container Number)");
+                ToastMessage.Show(this, "Please fill all required fields (Type, Size, Container Number)",true);
                 return;
             }
 
@@ -283,29 +286,29 @@ FROM containers c";
                 int rowsAffected = cmd.ExecuteNonQuery();
                 if (rowsAffected > 0)
                 {
-                    MessageBox.Show("Container updated successfully!");
+                    ToastMessage.Show(this, "Container updated successfully!");
                     LoadContainerData();
                     ClearForm();
                 }
                 else
                 {
-                    MessageBox.Show("No changes were made or container not found");
+                    ToastMessage.Show(this, "No changes were made or container not found",true);
                 }
             }
             catch (MySqlException ex)
             {
                 if (ex.Number == 1062) // Duplicate entry error
                 {
-                    MessageBox.Show("A container with this number already exists");
+                    ToastMessage.Show(this, "A container with this number already exists",true);
                 }
                 else
                 {
-                    MessageBox.Show("Database error: " + ex.Message);
+                    ToastMessage.Show(this, "Database error: " + ex.Message, true);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                ToastMessage.Show(this, "Error: " + ex.Message,true);
             }
             finally
             {
@@ -362,29 +365,29 @@ FROM containers c";
                 int rowsAffected = cmd.ExecuteNonQuery();
                 if (rowsAffected > 0)
                 {
-                    MessageBox.Show("Container deleted successfully!");
+                    ToastMessage.Show(this, "Container deleted successfully!");
                     LoadContainerData();
                     ClearForm();
                 }
                 else
                 {
-                    MessageBox.Show("Container not found or could not be deleted");
+                    ToastMessage.Show(this, "Container not found or could not be deleted",true);
                 }
             }
             catch (MySqlException ex)
             {
                 if (ex.Number == 1451) // Foreign key constraint violation
                 {
-                    MessageBox.Show("Cannot delete container because it is referenced in job records.");
+                    ToastMessage.Show(this, "Cannot delete container because it is referenced in job records.",true);
                 }
                 else
                 {
-                    MessageBox.Show("Database error: " + ex.Message);
+                    ToastMessage.Show(this, "Database error: " + ex.Message,true);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                ToastMessage.Show(this, "Error: " + ex.Message,true);
             }
             finally
             {
@@ -398,6 +401,59 @@ FROM containers c";
             cmbSize.SelectedIndex = -1;
             txtContainerNumber.Clear();
             lblID.Text = "";
+        }
+
+        private void btnContainerPDF_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Ask user where to save the file
+                SaveFileDialog saveDialog = new SaveFileDialog();
+                saveDialog.Filter = "PDF Files|*.pdf";
+                saveDialog.Title = "SaveContainer Report";
+                saveDialog.FileName = "Container.pdf";
+
+                if (saveDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Create the PDF
+                    Document doc = new Document();
+                    PdfWriter.GetInstance(doc, new FileStream(saveDialog.FileName, FileMode.Create));
+                    doc.Open();
+
+                    // Add a title
+                    doc.Add(new Paragraph("Container Report"));
+                    doc.Add(new Paragraph($"Generated on: {DateTime.Now.ToShortDateString()}"));
+                    doc.Add(new Paragraph("\n"));
+
+                    // Create a table with the same columns as the DataGridView
+                    PdfPTable pdfTable = new PdfPTable(dataGridView1.Columns.Count);
+
+                    // Add column headers
+                    foreach (DataGridViewColumn column in dataGridView1.Columns)
+                    {
+                        pdfTable.AddCell(column.HeaderText);
+                    }
+
+                    // Add data rows
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        foreach (DataGridViewCell cell in row.Cells)
+                        {
+                            pdfTable.AddCell(cell.Value?.ToString() ?? "");
+                        }
+                    }
+
+                    // Add the table to the document
+                    doc.Add(pdfTable);
+                    doc.Close();
+
+                    ToastMessage.Show(this, "PDF saved successfully!");
+                }
+            }
+            catch (Exception ex)
+            {
+                ToastMessage.Show(this, "Error creating PDF: " + ex.Message,true);
+            }
         }
     }
 }

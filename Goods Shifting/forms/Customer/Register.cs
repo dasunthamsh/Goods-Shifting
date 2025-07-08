@@ -13,6 +13,7 @@ using MySql.Data.MySqlClient;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using System.Xml.Linq;
 using Goods_Shifting.Utilities;
+using Goods_Shifting.lib;
 
 
 namespace Goods_Shifting.forms.Customer
@@ -83,7 +84,7 @@ namespace Goods_Shifting.forms.Customer
                 int result = cmd.ExecuteNonQuery();
                 if (result > 0)
                 {
-                    MessageBox.Show("Registration successful!");
+                    ToastMessage.Show(this, "Registration successful!");
 
                     this.Hide();
                     Login loginForm = new Login();
