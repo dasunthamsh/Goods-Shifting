@@ -1,5 +1,7 @@
 ﻿using Goods_Shifting.forms.Auth;
+using Goods_Shifting.lib;
 using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Tls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,9 +16,11 @@ namespace Goods_Shifting.forms.Customer
 {
     public partial class Login : Form
     {
+
         public Login()
         {
             InitializeComponent();
+
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -61,8 +65,7 @@ namespace Goods_Shifting.forms.Customer
 
 
 
-                            MessageBox.Show($"Welcome back, {userName}!", "Login Successful",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            ToastMessage.Show(this, $"Welcome back, {userName}!");
 
                             this.Hide();
                             CreateJob dashboardForm = new CreateJob(customerId, userName);
@@ -72,8 +75,7 @@ namespace Goods_Shifting.forms.Customer
                         }
                         else
                         {
-                            MessageBox.Show("Invalid email or password.", "Login Failed",
-                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            ToastMessage.Show(this, "Invalid email or password", true);
                         }
                     }
                 }
@@ -82,7 +84,7 @@ namespace Goods_Shifting.forms.Customer
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                ToastMessage.Show(this, "Error: " + ex.Message, true);
             }
         }
 
@@ -93,4 +95,5 @@ namespace Goods_Shifting.forms.Customer
             resetPasswordForm.Show();
         }
     }
+        
 }

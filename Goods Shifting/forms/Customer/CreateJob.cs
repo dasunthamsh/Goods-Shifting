@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Goods_Shifting.forms.Auth;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,7 +21,7 @@ namespace Goods_Shifting.forms.Customer
         {
             InitializeComponent();
 
-           
+
 
             AddTruckTypes();
             this.customerId = customerId;
@@ -127,7 +128,7 @@ namespace Goods_Shifting.forms.Customer
                     {
                         MessageBox.Show("Job created successfully!", "Success",
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
-                       
+
                     }
                     else
                     {
@@ -145,6 +146,24 @@ namespace Goods_Shifting.forms.Customer
             {
                 conn.Close();
             }
+        }
+
+        private void btnHistory_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            previousJobs form = new previousJobs();
+            form.FormClosed += (s, args) => this.Close();
+            form.Show();
+        }
+
+        private void btnNotifications_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

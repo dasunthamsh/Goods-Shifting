@@ -1,4 +1,6 @@
-﻿using MySql.Data.MySqlClient;
+﻿using iTextSharp.text.pdf;
+using iTextSharp.text;
+using MySql.Data.MySqlClient;
 using Org.BouncyCastle.Asn1.Ocsp;
 using System;
 using System.Collections.Generic;
@@ -210,5 +212,61 @@ namespace Goods_Shifting.forms.Admin
             txtJobId.Clear();
             txtAmount.Clear();
         }
+
+        private void btnOngoingJobPDF_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Ask user where to save the file
+                SaveFileDialog saveDialog = new SaveFileDialog();
+                saveDialog.Filter = "PDF Files|*.pdf";
+                saveDialog.Title = "Save Ongoing Jobs Report";
+                saveDialog.FileName = "OngoingJobs.pdf";
+
+                if (saveDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Create the PDF
+                    Document doc = new Document();
+                    PdfWriter.GetInstance(doc, new FileStream(saveDialog.FileName, FileMode.Create));
+                    doc.Open();
+
+                    // Add a title
+                    doc.Add(new Paragraph("Ongoing Jobs Report"));
+                    doc.Add(new Paragraph($"Generated on: {DateTime.Now.ToShortDateString()}"));
+                    doc.Add(new Paragraph("\n")); // Add some space
+
+                    // Create a table with the same columns as the DataGridView
+                    PdfPTable pdfTable = new PdfPTable(dataGridView1.Columns.Count);
+
+                    // Add column headers
+                    foreach (DataGridViewColumn column in dataGridView1.Columns)
+                    {
+                        pdfTable.AddCell(column.HeaderText);
+                    }
+
+                    // Add data rows
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        foreach (DataGridViewCell cell in row.Cells)
+                        {
+                            pdfTable.AddCell(cell.Value?.ToString() ?? "");
+                        }
+                    }
+
+                    // Add the table to the document
+                    doc.Add(pdfTable);
+                    doc.Close();
+
+                    MessageBox.Show("PDF saved successfully!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error creating PDF: " + ex.Message);
+            }
+        }
+
+
+
     }
 }

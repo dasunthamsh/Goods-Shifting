@@ -36,6 +36,7 @@
             txtAmount = new TextBox();
             btnCompleteJob = new Button();
             btnCancleJob = new Button();
+            btnOngoingJobPDF = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -123,11 +124,24 @@
             btnCancleJob.UseVisualStyleBackColor = false;
             btnCancleJob.Click += btnCancleJob_Click;
             // 
+            // btnOngoingJobPDF
+            // 
+            btnOngoingJobPDF.BackColor = Color.SeaGreen;
+            btnOngoingJobPDF.ForeColor = SystemColors.ButtonHighlight;
+            btnOngoingJobPDF.Location = new Point(12, 800);
+            btnOngoingJobPDF.Name = "btnOngoingJobPDF";
+            btnOngoingJobPDF.Size = new Size(202, 34);
+            btnOngoingJobPDF.TabIndex = 53;
+            btnOngoingJobPDF.Text = "Ongoing job report";
+            btnOngoingJobPDF.UseVisualStyleBackColor = false;
+            btnOngoingJobPDF.Click += btnOngoingJobPDF_Click;
+            // 
             // OngingJobsPanel
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1045, 846);
+            Controls.Add(btnOngoingJobPDF);
             Controls.Add(btnCompleteJob);
             Controls.Add(btnCancleJob);
             Controls.Add(label1);
@@ -152,5 +166,6 @@
         private TextBox txtAmount;
         private Button btnCompleteJob;
         private Button btnCancleJob;
+        private Button btnOngoingJobPDF;
     }
 }

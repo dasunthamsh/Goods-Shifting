@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateJob));
             panel1 = new Panel();
+            lblNotificationCount = new Label();
+            btnLogout = new Button();
             txtMessage = new RichTextBox();
             label5 = new Label();
-            button1 = new Button();
             btnHistory = new Button();
             btnSubmit = new Button();
             label4 = new Label();
@@ -60,9 +62,10 @@
             // 
             panel1.Anchor = AnchorStyles.None;
             panel1.Controls.Add(button2);
+            panel1.Controls.Add(lblNotificationCount);
+            panel1.Controls.Add(btnLogout);
             panel1.Controls.Add(txtMessage);
             panel1.Controls.Add(label5);
-            panel1.Controls.Add(button1);
             panel1.Controls.Add(btnHistory);
             panel1.Controls.Add(btnSubmit);
             panel1.Controls.Add(label4);
@@ -89,6 +92,30 @@
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
             // 
+            // lblNotificationCount
+            // 
+            lblNotificationCount.AutoSize = true;
+            lblNotificationCount.BackColor = Color.Red;
+            lblNotificationCount.ForeColor = SystemColors.ButtonHighlight;
+            lblNotificationCount.Location = new Point(1090, 21);
+            lblNotificationCount.Name = "lblNotificationCount";
+            lblNotificationCount.Size = new Size(22, 25);
+            lblNotificationCount.TabIndex = 42;
+            lblNotificationCount.Text = "0";
+            // 
+            // btnLogout
+            // 
+            btnLogout.BackColor = SystemColors.Control;
+            btnLogout.BackgroundImageLayout = ImageLayout.Center;
+            btnLogout.ForeColor = SystemColors.ButtonHighlight;
+            btnLogout.Image = (Image)resources.GetObject("btnLogout.Image");
+            btnLogout.Location = new Point(1241, 28);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(60, 49);
+            btnLogout.TabIndex = 39;
+            btnLogout.UseVisualStyleBackColor = false;
+            btnLogout.Click += btnLogout_Click;
+            // 
             // txtMessage
             // 
             txtMessage.Location = new Point(273, 611);
@@ -110,30 +137,23 @@
             label5.Text = "E-Shift";
             label5.TextAlign = ContentAlignment.TopCenter;
             // 
-            // button1
-            // 
-            button1.Location = new Point(987, 30);
-            button1.Name = "button1";
-            button1.Size = new Size(112, 34);
-            button1.TabIndex = 36;
-            button1.Text = "Rate us";
-            button1.UseVisualStyleBackColor = true;
-            // 
             // btnHistory
             // 
-            btnHistory.Location = new Point(1105, 30);
+            btnHistory.BackgroundImage = (Image)resources.GetObject("btnHistory.BackgroundImage");
+            btnHistory.BackgroundImageLayout = ImageLayout.Center;
+            btnHistory.Location = new Point(1140, 30);
             btnHistory.Name = "btnHistory";
-            btnHistory.Size = new Size(112, 34);
+            btnHistory.Size = new Size(60, 47);
             btnHistory.TabIndex = 35;
-            btnHistory.Text = "Job History";
             btnHistory.UseVisualStyleBackColor = true;
+            btnHistory.Click += btnHistory_Click;
             // 
             // btnSubmit
             // 
             btnSubmit.BackColor = SystemColors.MenuHighlight;
             btnSubmit.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnSubmit.ForeColor = SystemColors.Control;
-            btnSubmit.Location = new Point(1069, 805);
+            btnSubmit.Location = new Point(1106, 824);
             btnSubmit.Name = "btnSubmit";
             btnSubmit.Size = new Size(218, 56);
             btnSubmit.TabIndex = 34;
@@ -317,14 +337,12 @@
             // 
             // button2
             // 
-            button2.BackColor = Color.Brown;
-            button2.ForeColor = SystemColors.ButtonFace;
-            button2.Location = new Point(1223, 30);
+            button2.Location = new Point(983, 30);
             button2.Name = "button2";
-            button2.Size = new Size(112, 34);
-            button2.TabIndex = 39;
-            button2.Text = "Logout";
-            button2.UseVisualStyleBackColor = false;
+            button2.Size = new Size(63, 47);
+            button2.TabIndex = 43;
+            button2.Text = "button2";
+            button2.UseVisualStyleBackColor = true;
             // 
             // CreateJob
             // 
@@ -365,6 +383,9 @@
         private Button btnHistory;
         private Label label5;
         private RichTextBox txtMessage;
+        private Button btnLogout;
+        private Button button3;
+        private Label lblNotificationCount;
         private Button button2;
     }
 }

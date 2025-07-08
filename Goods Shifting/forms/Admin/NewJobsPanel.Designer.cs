@@ -201,6 +201,7 @@
             // 
             btnSearch.BackColor = SystemColors.Highlight;
             btnSearch.BackgroundImage = (Image)resources.GetObject("btnSearch.BackgroundImage");
+            btnSearch.BackgroundImageLayout = ImageLayout.Center;
             btnSearch.Location = new Point(278, 528);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(40, 39);
