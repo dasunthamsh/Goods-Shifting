@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ResatPassword));
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             btnBack = new Button();
             label5 = new Label();
             panel1 = new Panel();
@@ -39,6 +41,7 @@
             txtEmail = new TextBox();
             label2 = new Label();
             label1 = new Label();
+            guna2GradientPanel1 = new Guna.UI2.WinForms.Guna2GradientPanel();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -163,6 +166,19 @@
             label1.Text = "Resat Password";
             label1.TextAlign = ContentAlignment.TopCenter;
             // 
+            // guna2GradientPanel1
+            // 
+            guna2GradientPanel1.BackColor = Color.Transparent;
+            guna2GradientPanel1.BorderRadius = 30;
+            guna2GradientPanel1.CustomizableEdges = customizableEdges1;
+            guna2GradientPanel1.FillColor = Color.White;
+            guna2GradientPanel1.FillColor2 = Color.White;
+            guna2GradientPanel1.Location = new Point(352, 86);
+            guna2GradientPanel1.Name = "guna2GradientPanel1";
+            guna2GradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            guna2GradientPanel1.Size = new Size(675, 755);
+            guna2GradientPanel1.TabIndex = 11;
+            // 
             // ResatPassword
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -172,6 +188,7 @@
             Controls.Add(panel1);
             Controls.Add(btnBack);
             Controls.Add(label5);
+            Controls.Add(guna2GradientPanel1);
             Name = "ResatPassword";
             Text = "ResatPassword";
             panel1.ResumeLayout(false);
@@ -194,5 +211,6 @@
         private TextBox txtEmail;
         private Label label2;
         private Label label1;
+        private Guna.UI2.WinForms.Guna2GradientPanel guna2GradientPanel1;
     }
 }

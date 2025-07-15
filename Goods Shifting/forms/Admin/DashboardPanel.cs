@@ -38,7 +38,7 @@ namespace Goods_Shifting.forms.Admin
                     // Load daily revenue (today's payments)
                     string dailyRevenueQuery = "SELECT SUM(amount) FROM payments WHERE DATE(date) = CURDATE()";
                     object dailyRevenue = ExecuteScalarQuery(conn, dailyRevenueQuery);
-                    lblDailyRevenue.Text = dailyRevenue != DBNull.Value ? Convert.ToDecimal(dailyRevenue).ToString("C") : "$0.00";
+                    lblDailyRevenue.Text = dailyRevenue != DBNull.Value ? Convert.ToDecimal(dailyRevenue).ToString("C") : "0.00";
 
                     // Load customer count
                     string customerCountQuery = "SELECT COUNT(*) FROM customers";

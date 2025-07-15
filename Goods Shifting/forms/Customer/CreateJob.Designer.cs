@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateJob));
             panel1 = new Panel();
+            lblName = new Label();
+            label6 = new Label();
             lblNotificationCount = new Label();
             btnNotifications = new Button();
             btnLogout = new Button();
@@ -55,8 +57,6 @@
             label2 = new Label();
             txtName = new TextBox();
             label1 = new Label();
-            label6 = new Label();
-            lblName = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -95,6 +95,26 @@
             panel1.Size = new Size(1354, 902);
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
+            // 
+            // lblName
+            // 
+            lblName.AutoSize = true;
+            lblName.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold | FontStyle.Italic);
+            lblName.Location = new Point(155, 52);
+            lblName.Name = "lblName";
+            lblName.Size = new Size(61, 25);
+            lblName.TabIndex = 45;
+            lblName.Text = "Name";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold | FontStyle.Italic);
+            label6.Location = new Point(20, 52);
+            label6.Name = "label6";
+            label6.Size = new Size(129, 25);
+            label6.TabIndex = 44;
+            label6.Text = "Welcome Back";
             // 
             // lblNotificationCount
             // 
@@ -146,7 +166,7 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             label5.ForeColor = SystemColors.Highlight;
-            label5.Location = new Point(12, 10);
+            label5.Location = new Point(0, -4);
             label5.Name = "label5";
             label5.Size = new Size(149, 54);
             label5.TabIndex = 37;
@@ -345,31 +365,11 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
-            label1.Location = new Point(273, 87);
+            label1.Location = new Point(273, 97);
             label1.Name = "label1";
             label1.Size = new Size(210, 38);
             label1.TabIndex = 0;
             label1.Text = "Request Quote";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold | FontStyle.Italic);
-            label6.Location = new Point(163, 33);
-            label6.Name = "label6";
-            label6.Size = new Size(129, 25);
-            label6.TabIndex = 44;
-            label6.Text = "Welcome Back";
-            // 
-            // lblName
-            // 
-            lblName.AutoSize = true;
-            lblName.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold | FontStyle.Italic);
-            lblName.Location = new Point(298, 33);
-            lblName.Name = "lblName";
-            lblName.Size = new Size(61, 25);
-            lblName.TabIndex = 45;
-            lblName.Text = "Name";
             // 
             // CreateJob
             // 

@@ -29,7 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             panel1 = new Panel();
+            label7 = new Label();
             btnRegister = new Label();
             label6 = new Label();
             btnLogin = new Button();
@@ -41,7 +44,7 @@
             label1 = new Label();
             label5 = new Label();
             btnBack = new Button();
-            label7 = new Label();
+            guna2GradientPanel1 = new Guna.UI2.WinForms.Guna2GradientPanel();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -63,6 +66,19 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(599, 755);
             panel1.TabIndex = 0;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label7.ForeColor = SystemColors.Highlight;
+            label7.Location = new Point(372, 470);
+            label7.Name = "label7";
+            label7.Size = new Size(163, 28);
+            label7.TabIndex = 18;
+            label7.Text = "Forgot Password";
+            label7.TextAlign = ContentAlignment.TopCenter;
+            label7.Click += label7_Click;
             // 
             // btnRegister
             // 
@@ -192,18 +208,18 @@
             btnBack.UseVisualStyleBackColor = false;
             btnBack.Click += btnBack_Click;
             // 
-            // label7
+            // guna2GradientPanel1
             // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.ForeColor = SystemColors.Highlight;
-            label7.Location = new Point(372, 470);
-            label7.Name = "label7";
-            label7.Size = new Size(163, 28);
-            label7.TabIndex = 18;
-            label7.Text = "Forgot Password";
-            label7.TextAlign = ContentAlignment.TopCenter;
-            label7.Click += label7_Click;
+            guna2GradientPanel1.BackColor = Color.Transparent;
+            guna2GradientPanel1.BorderRadius = 30;
+            guna2GradientPanel1.CustomizableEdges = customizableEdges1;
+            guna2GradientPanel1.FillColor = Color.White;
+            guna2GradientPanel1.FillColor2 = Color.White;
+            guna2GradientPanel1.Location = new Point(354, 105);
+            guna2GradientPanel1.Name = "guna2GradientPanel1";
+            guna2GradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            guna2GradientPanel1.Size = new Size(675, 755);
+            guna2GradientPanel1.TabIndex = 8;
             // 
             // Login
             // 
@@ -214,6 +230,7 @@
             Controls.Add(btnBack);
             Controls.Add(label5);
             Controls.Add(panel1);
+            Controls.Add(guna2GradientPanel1);
             Name = "Login";
             Text = "Login";
             panel1.ResumeLayout(false);
@@ -237,5 +254,6 @@
         private Button btnLogin;
         private Button btnBack;
         private Label label7;
+        private Guna.UI2.WinForms.Guna2GradientPanel guna2GradientPanel1;
     }
 }

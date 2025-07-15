@@ -29,8 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Register));
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             label5 = new Label();
             panel1 = new Panel();
+            txtName = new TextBox();
+            lable17 = new Label();
             btnLogin = new Label();
             label6 = new Label();
             btnRgister = new Button();
@@ -41,8 +45,7 @@
             label2 = new Label();
             label1 = new Label();
             btnBack = new Button();
-            txtName = new TextBox();
-            lable17 = new Label();
+            guna2GradientPanel1 = new Guna.UI2.WinForms.Guna2GradientPanel();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -78,6 +81,26 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(599, 755);
             panel1.TabIndex = 7;
+            // 
+            // txtName
+            // 
+            txtName.Font = new Font("Segoe UI", 11F);
+            txtName.Location = new Point(66, 230);
+            txtName.Name = "txtName";
+            txtName.PlaceholderText = "Enter your name";
+            txtName.Size = new Size(471, 37);
+            txtName.TabIndex = 19;
+            // 
+            // lable17
+            // 
+            lable17.AutoSize = true;
+            lable17.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lable17.ForeColor = SystemColors.GrayText;
+            lable17.Location = new Point(66, 184);
+            lable17.Name = "lable17";
+            lable17.Size = new Size(72, 30);
+            lable17.TabIndex = 18;
+            lable17.Text = "Name";
             // 
             // btnLogin
             // 
@@ -193,25 +216,18 @@
             btnBack.UseVisualStyleBackColor = false;
             btnBack.Click += btnBack_Click;
             // 
-            // txtName
+            // guna2GradientPanel1
             // 
-            txtName.Font = new Font("Segoe UI", 11F);
-            txtName.Location = new Point(66, 230);
-            txtName.Name = "txtName";
-            txtName.PlaceholderText = "Enter your name";
-            txtName.Size = new Size(471, 37);
-            txtName.TabIndex = 19;
-            // 
-            // lable17
-            // 
-            lable17.AutoSize = true;
-            lable17.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lable17.ForeColor = SystemColors.GrayText;
-            lable17.Location = new Point(66, 184);
-            lable17.Name = "lable17";
-            lable17.Size = new Size(72, 30);
-            lable17.TabIndex = 18;
-            lable17.Text = "Name";
+            guna2GradientPanel1.BackColor = Color.Transparent;
+            guna2GradientPanel1.BorderRadius = 30;
+            guna2GradientPanel1.CustomizableEdges = customizableEdges1;
+            guna2GradientPanel1.FillColor = Color.White;
+            guna2GradientPanel1.FillColor2 = Color.White;
+            guna2GradientPanel1.Location = new Point(352, 105);
+            guna2GradientPanel1.Name = "guna2GradientPanel1";
+            guna2GradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            guna2GradientPanel1.Size = new Size(675, 755);
+            guna2GradientPanel1.TabIndex = 10;
             // 
             // Register
             // 
@@ -222,6 +238,7 @@
             Controls.Add(btnBack);
             Controls.Add(label5);
             Controls.Add(panel1);
+            Controls.Add(guna2GradientPanel1);
             Name = "Register";
             Text = "Register";
             panel1.ResumeLayout(false);
@@ -246,5 +263,6 @@
         private Button btnBack;
         private TextBox txtName;
         private Label lable17;
+        private Guna.UI2.WinForms.Guna2GradientPanel guna2GradientPanel1;
     }
 }

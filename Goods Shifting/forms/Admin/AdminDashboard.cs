@@ -23,7 +23,7 @@ namespace Goods_Shifting.forms.Admin
             InitializeComponent();
 
             this.managerId = managerId;
-            this.managerName = managerName; 
+            this.managerName = managerName;
 
 
             timerDateTime = new System.Windows.Forms.Timer();
@@ -106,9 +106,18 @@ namespace Goods_Shifting.forms.Admin
         {
             this.panelFormLoader.Controls.Clear();
             OngingJobsPanel ongingJobsPanel = new OngingJobsPanel() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
-            ongingJobsPanel.FormBorderStyle= FormBorderStyle.None;
+            ongingJobsPanel.FormBorderStyle = FormBorderStyle.None;
             this.panelFormLoader.Controls.Add(ongingJobsPanel);
             ongingJobsPanel.Show();
+        }
+
+        private void JobHistory_Click(object sender, EventArgs e)
+        {
+            this.panelFormLoader.Controls.Clear();
+            JobHistory jobHistoryPanel = new JobHistory() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            jobHistoryPanel.FormBorderStyle = FormBorderStyle.None;
+            this.panelFormLoader.Controls.Add(jobHistoryPanel);
+            jobHistoryPanel.Show();
         }
     }
 }

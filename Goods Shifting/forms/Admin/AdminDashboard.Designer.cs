@@ -87,6 +87,7 @@
             JobHistory.TabIndex = 19;
             JobHistory.Text = "Job History";
             JobHistory.UseVisualStyleBackColor = true;
+            JobHistory.Click += JobHistory_Click;
             // 
             // btnOngoingJobs
             // 

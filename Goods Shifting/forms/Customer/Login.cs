@@ -90,9 +90,11 @@ namespace Goods_Shifting.forms.Customer
 
         private void label7_Click(object sender, EventArgs e)
         {
-            ResatPassword resetPasswordForm = new ResatPassword();
-            resetPasswordForm.FormClosed += (s, args) => this.Close();
-            resetPasswordForm.Show();
+
+            this.Hide();
+            ResatPassword homeForm = new ResatPassword();
+            homeForm.FormClosed += (s, args) => this.Close();
+            homeForm.Show();
         }
     }
         

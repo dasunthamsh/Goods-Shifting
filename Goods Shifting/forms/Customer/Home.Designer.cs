@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             label1 = new Label();
             label2 = new Label();
@@ -37,6 +39,7 @@
             label3 = new Label();
             btnAdminLogin = new Button();
             label5 = new Label();
+            guna2GradientPanel1 = new Guna.UI2.WinForms.Guna2GradientPanel();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -128,7 +131,7 @@
             btnAdminLogin.Name = "btnAdminLogin";
             btnAdminLogin.Size = new Size(208, 53);
             btnAdminLogin.TabIndex = 5;
-            btnAdminLogin.Text = "Admin Login";
+            btnAdminLogin.Text = "Manager Login";
             btnAdminLogin.UseVisualStyleBackColor = false;
             btnAdminLogin.Click += btnAdminLogin_Click;
             // 
@@ -145,6 +148,19 @@
             label5.Text = "E-Shift";
             label5.TextAlign = ContentAlignment.TopCenter;
             // 
+            // guna2GradientPanel1
+            // 
+            guna2GradientPanel1.BackColor = Color.Transparent;
+            guna2GradientPanel1.BorderRadius = 30;
+            guna2GradientPanel1.CustomizableEdges = customizableEdges1;
+            guna2GradientPanel1.FillColor = Color.White;
+            guna2GradientPanel1.FillColor2 = Color.White;
+            guna2GradientPanel1.Location = new Point(425, 117);
+            guna2GradientPanel1.Name = "guna2GradientPanel1";
+            guna2GradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            guna2GradientPanel1.Size = new Size(550, 634);
+            guna2GradientPanel1.TabIndex = 6;
+            // 
             // Home
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -154,6 +170,7 @@
             Controls.Add(label5);
             Controls.Add(btnAdminLogin);
             Controls.Add(panel1);
+            Controls.Add(guna2GradientPanel1);
             Name = "Home";
             Text = "Home";
             panel1.ResumeLayout(false);
@@ -172,5 +189,6 @@
         private Label label4;
         private Button btnAdminLogin;
         private Label label5;
+        private Guna.UI2.WinForms.Guna2GradientPanel guna2GradientPanel1;
     }
 }
