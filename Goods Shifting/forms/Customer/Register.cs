@@ -14,12 +14,14 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using System.Xml.Linq;
 using Goods_Shifting.Utilities;
 using Goods_Shifting.lib;
+using Goods_Shifting.lib.Validations;
 
 
 namespace Goods_Shifting.forms.Customer
 {
     public partial class Register : Form
     {
+        private ErrorProvider errorProvider = new ErrorProvider();
         public Register()
         {
             InitializeComponent();
@@ -45,13 +47,13 @@ namespace Goods_Shifting.forms.Customer
         private void btnRgister_Click(object sender, EventArgs e)
         {
 
-            if (!ValidationUtils.ValidateRegistrationFields(
-              txtName.Text,
-              txtEmail.Text,
-              txtPassword.Text,
-              out string errorMessage))
+            if (!UserRegisterValidation.ValidateRegistrationForm(
+                 txtName,
+                 txtEmail,
+                 txtPassword,
+                 this,
+                 errorProvider))
             {
-                MessageBox.Show(errorMessage);
                 return;
             }
 
@@ -74,12 +76,13 @@ namespace Goods_Shifting.forms.Customer
                     return;
                 }
 
-                
+                string hashedPassword = Hasher.HashPassword(txtPassword.Text);
+
                 string query = "INSERT INTO customers (name, email, password) VALUES (@name, @email, @password)";
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@name", txtName.Text);
                 cmd.Parameters.AddWithValue("@email", txtEmail.Text);
-                cmd.Parameters.AddWithValue("@password", txtPassword.Text);
+                cmd.Parameters.AddWithValue("@password", hashedPassword);
 
                 int result = cmd.ExecuteNonQuery();
                 if (result > 0)
@@ -93,7 +96,7 @@ namespace Goods_Shifting.forms.Customer
                 }
                 else
                 {
-                    MessageBox.Show("Registration failed.");
+                    ToastMessage.Show(this, "Registration failed.");
                 }
             }
             catch (Exception ex)

@@ -65,15 +65,16 @@
             dataGridView1.Location = new Point(12, 68);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(1021, 380);
+            dataGridView1.Size = new Size(1047, 462);
             dataGridView1.TabIndex = 23;
             dataGridView1.CellClick += dataGridView1_CellClick;
+            dataGridView1.CellValueChanged += dataGridView1_CellValueChanged;
             // 
             // lbl1
             // 
             lbl1.AutoSize = true;
             lbl1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl1.Location = new Point(12, 497);
+            lbl1.Location = new Point(12, 561);
             lbl1.Name = "lbl1";
             lbl1.Size = new Size(67, 28);
             lbl1.TabIndex = 63;
@@ -82,7 +83,7 @@
             // txtJobId
             // 
             txtJobId.Font = new Font("Segoe UI", 11F);
-            txtJobId.Location = new Point(12, 528);
+            txtJobId.Location = new Point(12, 592);
             txtJobId.Name = "txtJobId";
             txtJobId.Size = new Size(260, 37);
             txtJobId.TabIndex = 62;
@@ -91,7 +92,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(350, 497);
+            label1.Location = new Point(350, 561);
             label1.Name = "label1";
             label1.Size = new Size(75, 28);
             label1.TabIndex = 65;
@@ -101,7 +102,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(698, 497);
+            label2.Location = new Point(698, 561);
             label2.Name = "label2";
             label2.Size = new Size(102, 28);
             label2.TabIndex = 67;
@@ -111,7 +112,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(12, 610);
+            label3.Location = new Point(12, 674);
             label3.Name = "label3";
             label3.Size = new Size(86, 28);
             label3.TabIndex = 69;
@@ -121,7 +122,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(350, 610);
+            label4.Location = new Point(350, 674);
             label4.Name = "label4";
             label4.Size = new Size(109, 28);
             label4.TabIndex = 71;
@@ -130,7 +131,7 @@
             // checkedListBoxDrivers
             // 
             checkedListBoxDrivers.FormattingEnabled = true;
-            checkedListBoxDrivers.Location = new Point(350, 533);
+            checkedListBoxDrivers.Location = new Point(350, 597);
             checkedListBoxDrivers.Name = "checkedListBoxDrivers";
             checkedListBoxDrivers.Size = new Size(260, 32);
             checkedListBoxDrivers.TabIndex = 72;
@@ -138,7 +139,7 @@
             // checkedListBoxAssistants
             // 
             checkedListBoxAssistants.FormattingEnabled = true;
-            checkedListBoxAssistants.Location = new Point(698, 533);
+            checkedListBoxAssistants.Location = new Point(698, 597);
             checkedListBoxAssistants.Name = "checkedListBoxAssistants";
             checkedListBoxAssistants.Size = new Size(260, 32);
             checkedListBoxAssistants.TabIndex = 73;
@@ -146,7 +147,7 @@
             // checkedListBoxContainers
             // 
             checkedListBoxContainers.FormattingEnabled = true;
-            checkedListBoxContainers.Location = new Point(350, 641);
+            checkedListBoxContainers.Location = new Point(350, 705);
             checkedListBoxContainers.Name = "checkedListBoxContainers";
             checkedListBoxContainers.Size = new Size(260, 32);
             checkedListBoxContainers.TabIndex = 74;
@@ -154,7 +155,7 @@
             // checkedListBoxVehicles
             // 
             checkedListBoxVehicles.FormattingEnabled = true;
-            checkedListBoxVehicles.Location = new Point(12, 641);
+            checkedListBoxVehicles.Location = new Point(12, 705);
             checkedListBoxVehicles.Name = "checkedListBoxVehicles";
             checkedListBoxVehicles.Size = new Size(260, 32);
             checkedListBoxVehicles.TabIndex = 75;
@@ -164,7 +165,7 @@
             btnRemoveJob.BackColor = Color.Brown;
             btnRemoveJob.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnRemoveJob.ForeColor = SystemColors.Control;
-            btnRemoveJob.Location = new Point(815, 778);
+            btnRemoveJob.Location = new Point(830, 836);
             btnRemoveJob.Name = "btnRemoveJob";
             btnRemoveJob.Size = new Size(218, 56);
             btnRemoveJob.TabIndex = 76;
@@ -177,7 +178,7 @@
             btnAssignJob.BackColor = SystemColors.Highlight;
             btnAssignJob.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAssignJob.ForeColor = SystemColors.ButtonHighlight;
-            btnAssignJob.Location = new Point(591, 778);
+            btnAssignJob.Location = new Point(382, 836);
             btnAssignJob.Name = "btnAssignJob";
             btnAssignJob.Size = new Size(218, 56);
             btnAssignJob.TabIndex = 77;
@@ -187,10 +188,10 @@
             // 
             // btnEditJob
             // 
-            btnEditJob.BackColor = SystemColors.Highlight;
+            btnEditJob.BackColor = Color.FromArgb(0, 192, 0);
             btnEditJob.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnEditJob.ForeColor = SystemColors.ButtonHighlight;
-            btnEditJob.Location = new Point(367, 778);
+            btnEditJob.Location = new Point(606, 836);
             btnEditJob.Name = "btnEditJob";
             btnEditJob.Size = new Size(218, 56);
             btnEditJob.TabIndex = 78;
@@ -203,7 +204,7 @@
             btnSearch.BackColor = SystemColors.Highlight;
             btnSearch.BackgroundImage = (Image)resources.GetObject("btnSearch.BackgroundImage");
             btnSearch.BackgroundImageLayout = ImageLayout.Center;
-            btnSearch.Location = new Point(278, 528);
+            btnSearch.Location = new Point(278, 592);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(40, 39);
             btnSearch.TabIndex = 79;
@@ -214,9 +215,9 @@
             // 
             btnJobPDF.BackColor = Color.SeaGreen;
             btnJobPDF.ForeColor = SystemColors.ButtonHighlight;
-            btnJobPDF.Location = new Point(12, 800);
+            btnJobPDF.Location = new Point(19, 851);
             btnJobPDF.Name = "btnJobPDF";
-            btnJobPDF.Size = new Size(202, 34);
+            btnJobPDF.Size = new Size(202, 41);
             btnJobPDF.TabIndex = 80;
             btnJobPDF.Text = "Job report";
             btnJobPDF.UseVisualStyleBackColor = false;
@@ -226,7 +227,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1045, 846);
+            ClientSize = new Size(1071, 897);
             Controls.Add(btnJobPDF);
             Controls.Add(btnSearch);
             Controls.Add(btnEditJob);

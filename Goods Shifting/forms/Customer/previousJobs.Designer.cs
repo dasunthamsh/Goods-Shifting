@@ -51,6 +51,7 @@
             label2 = new Label();
             txtJobId = new TextBox();
             btnBack = new Button();
+            btnDeleteJob = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -133,7 +134,7 @@
             btnEdit.BackColor = SystemColors.MenuHighlight;
             btnEdit.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnEdit.ForeColor = SystemColors.Control;
-            btnEdit.Location = new Point(1139, 858);
+            btnEdit.Location = new Point(910, 858);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(218, 56);
             btnEdit.TabIndex = 40;
@@ -270,11 +271,25 @@
             btnBack.UseVisualStyleBackColor = false;
             btnBack.Click += btnBack_Click;
             // 
+            // btnDeleteJob
+            // 
+            btnDeleteJob.BackColor = Color.Brown;
+            btnDeleteJob.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnDeleteJob.ForeColor = SystemColors.Control;
+            btnDeleteJob.Location = new Point(1148, 858);
+            btnDeleteJob.Name = "btnDeleteJob";
+            btnDeleteJob.Size = new Size(218, 56);
+            btnDeleteJob.TabIndex = 54;
+            btnDeleteJob.Text = "Delete";
+            btnDeleteJob.UseVisualStyleBackColor = false;
+            btnDeleteJob.Click += btnDeleteJob_Click;
+            // 
             // previousJobs
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1378, 926);
+            Controls.Add(btnDeleteJob);
             Controls.Add(btnBack);
             Controls.Add(label2);
             Controls.Add(txtJobId);
@@ -328,5 +343,6 @@
         private Label label2;
         private TextBox txtJobId;
         private Button btnBack;
+        private Button btnDeleteJob;
     }
 }

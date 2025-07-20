@@ -50,10 +50,10 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(61, 73);
+            dataGridView1.Location = new Point(22, 73);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(910, 380);
+            dataGridView1.Size = new Size(1043, 412);
             dataGridView1.TabIndex = 20;
             dataGridView1.CellClick += dataGridView1_CellClick;
             // 
@@ -70,7 +70,7 @@
             // cmbContainerType
             // 
             cmbContainerType.FormattingEnabled = true;
-            cmbContainerType.Location = new Point(388, 525);
+            cmbContainerType.Location = new Point(388, 561);
             cmbContainerType.Name = "cmbContainerType";
             cmbContainerType.Size = new Size(265, 33);
             cmbContainerType.TabIndex = 44;
@@ -79,7 +79,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(388, 494);
+            label1.Location = new Point(388, 530);
             label1.Name = "label1";
             label1.Size = new Size(149, 28);
             label1.TabIndex = 43;
@@ -89,7 +89,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            label6.Location = new Point(60, 523);
+            label6.Location = new Point(60, 559);
             label6.Name = "label6";
             label6.Size = new Size(134, 32);
             label6.TabIndex = 57;
@@ -99,7 +99,7 @@
             // 
             lblID.AutoSize = true;
             lblID.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            lblID.Location = new Point(187, 523);
+            lblID.Location = new Point(187, 559);
             lblID.Name = "lblID";
             lblID.Size = new Size(53, 32);
             lblID.TabIndex = 56;
@@ -108,7 +108,7 @@
             // cmbSize
             // 
             cmbSize.FormattingEnabled = true;
-            cmbSize.Location = new Point(712, 523);
+            cmbSize.Location = new Point(712, 559);
             cmbSize.Name = "cmbSize";
             cmbSize.Size = new Size(265, 33);
             cmbSize.TabIndex = 59;
@@ -117,7 +117,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(712, 493);
+            label2.Location = new Point(712, 529);
             label2.Name = "label2";
             label2.Size = new Size(48, 28);
             label2.TabIndex = 58;
@@ -127,7 +127,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(388, 587);
+            label5.Location = new Point(388, 623);
             label5.Name = "label5";
             label5.Size = new Size(181, 28);
             label5.TabIndex = 61;
@@ -136,7 +136,7 @@
             // txtContainerNumber
             // 
             txtContainerNumber.Font = new Font("Segoe UI", 11F);
-            txtContainerNumber.Location = new Point(388, 618);
+            txtContainerNumber.Location = new Point(388, 654);
             txtContainerNumber.Name = "txtContainerNumber";
             txtContainerNumber.Size = new Size(260, 37);
             txtContainerNumber.TabIndex = 60;
@@ -146,7 +146,7 @@
             btnAddToMaintenace.BackColor = SystemColors.InactiveCaption;
             btnAddToMaintenace.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnAddToMaintenace.ForeColor = SystemColors.ActiveCaptionText;
-            btnAddToMaintenace.Location = new Point(12, 732);
+            btnAddToMaintenace.Location = new Point(12, 789);
             btnAddToMaintenace.Name = "btnAddToMaintenace";
             btnAddToMaintenace.Size = new Size(218, 48);
             btnAddToMaintenace.TabIndex = 63;
@@ -159,7 +159,7 @@
             btnBackToProduction.BackColor = SystemColors.InactiveCaption;
             btnBackToProduction.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnBackToProduction.ForeColor = SystemColors.ActiveCaptionText;
-            btnBackToProduction.Location = new Point(12, 786);
+            btnBackToProduction.Location = new Point(12, 843);
             btnBackToProduction.Name = "btnBackToProduction";
             btnBackToProduction.Size = new Size(218, 48);
             btnBackToProduction.TabIndex = 62;
@@ -172,7 +172,7 @@
             btnAdd.BackColor = SystemColors.MenuHighlight;
             btnAdd.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnAdd.ForeColor = SystemColors.Control;
-            btnAdd.Location = new Point(369, 778);
+            btnAdd.Location = new Point(393, 835);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(218, 56);
             btnAdd.TabIndex = 66;
@@ -182,10 +182,10 @@
             // 
             // btnEdit
             // 
-            btnEdit.BackColor = SystemColors.MenuHighlight;
+            btnEdit.BackColor = Color.FromArgb(0, 192, 0);
             btnEdit.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnEdit.ForeColor = SystemColors.Control;
-            btnEdit.Location = new Point(593, 778);
+            btnEdit.Location = new Point(617, 835);
             btnEdit.Name = "btnEdit";
             btnEdit.RightToLeft = RightToLeft.No;
             btnEdit.Size = new Size(218, 56);
@@ -199,7 +199,7 @@
             btnDelete.BackColor = Color.Brown;
             btnDelete.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnDelete.ForeColor = SystemColors.Control;
-            btnDelete.Location = new Point(817, 778);
+            btnDelete.Location = new Point(841, 835);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(218, 56);
             btnDelete.TabIndex = 64;
@@ -211,9 +211,9 @@
             // 
             btnContainerPDF.BackColor = Color.SeaGreen;
             btnContainerPDF.ForeColor = SystemColors.ButtonHighlight;
-            btnContainerPDF.Location = new Point(60, 618);
+            btnContainerPDF.Location = new Point(12, 742);
             btnContainerPDF.Name = "btnContainerPDF";
-            btnContainerPDF.Size = new Size(216, 34);
+            btnContainerPDF.Size = new Size(216, 41);
             btnContainerPDF.TabIndex = 67;
             btnContainerPDF.Text = "Container report";
             btnContainerPDF.UseVisualStyleBackColor = false;
@@ -223,7 +223,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1045, 846);
+            ClientSize = new Size(1071, 897);
             Controls.Add(btnContainerPDF);
             Controls.Add(btnAdd);
             Controls.Add(btnEdit);

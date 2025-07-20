@@ -226,6 +226,7 @@
             txtNumber.Name = "txtNumber";
             txtNumber.Size = new Size(365, 37);
             txtNumber.TabIndex = 31;
+            txtNumber.TextChanged += txtNumber_TextChanged;
             // 
             // dateTimePicker1
             // 

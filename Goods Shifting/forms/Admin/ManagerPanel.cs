@@ -14,6 +14,7 @@ namespace Goods_Shifting.forms.Admin
 {
     public partial class ManagerPanel : Form
     {
+
         public ManagerPanel()
         {
             InitializeComponent();
@@ -71,6 +72,7 @@ namespace Goods_Shifting.forms.Admin
                 {
                     conn.Open();
 
+                    string hashedPassword = Hasher.HashPassword(txtPassword.Text);
 
                     string insertQuery = @"INSERT INTO managers 
                                 (name, email, phone, address, id_number, password) 
@@ -83,7 +85,7 @@ namespace Goods_Shifting.forms.Admin
                     insertCmd.Parameters.AddWithValue("@phone", txtContact.Text);
                     insertCmd.Parameters.AddWithValue("@address", txtAddress.Text);
                     insertCmd.Parameters.AddWithValue("@id_number", txtID.Text);
-                    insertCmd.Parameters.AddWithValue("@password", txtPassword.Text);
+                    insertCmd.Parameters.AddWithValue("@password", hashedPassword);
 
                     int rowsAffected = insertCmd.ExecuteNonQuery();
 

@@ -65,7 +65,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(58, 494);
+            label1.Location = new Point(58, 513);
             label1.Name = "label1";
             label1.Size = new Size(153, 28);
             label1.TabIndex = 2;
@@ -74,7 +74,7 @@
             // txtEmail
             // 
             txtEmail.Font = new Font("Segoe UI", 11F);
-            txtEmail.Location = new Point(709, 524);
+            txtEmail.Location = new Point(709, 543);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(262, 37);
             txtEmail.TabIndex = 3;
@@ -82,7 +82,7 @@
             // cmdEmployees
             // 
             cmdEmployees.FormattingEnabled = true;
-            cmdEmployees.Location = new Point(58, 525);
+            cmdEmployees.Location = new Point(58, 544);
             cmdEmployees.Name = "cmdEmployees";
             cmdEmployees.Size = new Size(265, 33);
             cmdEmployees.TabIndex = 4;
@@ -90,7 +90,7 @@
             // txtName
             // 
             txtName.Font = new Font("Segoe UI", 11F);
-            txtName.Location = new Point(385, 525);
+            txtName.Location = new Point(385, 544);
             txtName.Name = "txtName";
             txtName.Size = new Size(262, 37);
             txtName.TabIndex = 5;
@@ -98,7 +98,7 @@
             // txtDrivingLicense
             // 
             txtDrivingLicense.Font = new Font("Segoe UI", 11F);
-            txtDrivingLicense.Location = new Point(58, 618);
+            txtDrivingLicense.Location = new Point(58, 637);
             txtDrivingLicense.Name = "txtDrivingLicense";
             txtDrivingLicense.Size = new Size(260, 37);
             txtDrivingLicense.TabIndex = 6;
@@ -107,7 +107,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(709, 493);
+            label2.Location = new Point(709, 512);
             label2.Name = "label2";
             label2.Size = new Size(60, 28);
             label2.TabIndex = 7;
@@ -117,7 +117,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(55, 685);
+            label3.Location = new Point(55, 704);
             label3.Name = "label3";
             label3.Size = new Size(85, 28);
             label3.TabIndex = 8;
@@ -127,7 +127,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(385, 494);
+            label4.Location = new Point(385, 513);
             label4.Name = "label4";
             label4.Size = new Size(66, 28);
             label4.TabIndex = 9;
@@ -137,7 +137,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(61, 587);
+            label5.Location = new Point(61, 606);
             label5.Name = "label5";
             label5.Size = new Size(150, 28);
             label5.TabIndex = 10;
@@ -147,7 +147,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(709, 587);
+            label6.Location = new Point(709, 606);
             label6.Name = "label6";
             label6.Size = new Size(113, 28);
             label6.TabIndex = 11;
@@ -157,7 +157,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.Location = new Point(391, 587);
+            label7.Location = new Point(391, 606);
             label7.Name = "label7";
             label7.Size = new Size(81, 28);
             label7.TabIndex = 12;
@@ -166,7 +166,7 @@
             // txtIDNumber
             // 
             txtIDNumber.Font = new Font("Segoe UI", 11F);
-            txtIDNumber.Location = new Point(709, 618);
+            txtIDNumber.Location = new Point(709, 637);
             txtIDNumber.Name = "txtIDNumber";
             txtIDNumber.Size = new Size(260, 37);
             txtIDNumber.TabIndex = 13;
@@ -174,7 +174,7 @@
             // txtContact
             // 
             txtContact.Font = new Font("Segoe UI", 11F);
-            txtContact.Location = new Point(385, 618);
+            txtContact.Location = new Point(385, 637);
             txtContact.Name = "txtContact";
             txtContact.Size = new Size(260, 37);
             txtContact.TabIndex = 14;
@@ -182,18 +182,18 @@
             // txtAddress
             // 
             txtAddress.Font = new Font("Segoe UI", 11F);
-            txtAddress.Location = new Point(58, 716);
+            txtAddress.Location = new Point(58, 735);
             txtAddress.Name = "txtAddress";
-            txtAddress.Size = new Size(589, 37);
+            txtAddress.Size = new Size(913, 37);
             txtAddress.TabIndex = 15;
             // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(61, 73);
+            dataGridView1.Location = new Point(22, 73);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(910, 380);
+            dataGridView1.Size = new Size(1024, 407);
             dataGridView1.TabIndex = 16;
             dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
@@ -203,7 +203,7 @@
             btnDelete.BackColor = Color.Brown;
             btnDelete.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnDelete.ForeColor = SystemColors.Control;
-            btnDelete.Location = new Point(815, 778);
+            btnDelete.Location = new Point(828, 832);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(218, 56);
             btnDelete.TabIndex = 37;
@@ -213,10 +213,10 @@
             // 
             // btnEdit
             // 
-            btnEdit.BackColor = SystemColors.MenuHighlight;
+            btnEdit.BackColor = Color.FromArgb(0, 192, 0);
             btnEdit.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnEdit.ForeColor = SystemColors.Control;
-            btnEdit.Location = new Point(591, 778);
+            btnEdit.Location = new Point(604, 832);
             btnEdit.Name = "btnEdit";
             btnEdit.RightToLeft = RightToLeft.No;
             btnEdit.Size = new Size(218, 56);
@@ -230,7 +230,7 @@
             btnAdd.BackColor = SystemColors.MenuHighlight;
             btnAdd.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnAdd.ForeColor = SystemColors.Control;
-            btnAdd.Location = new Point(367, 778);
+            btnAdd.Location = new Point(380, 832);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(218, 56);
             btnAdd.TabIndex = 39;
@@ -242,7 +242,7 @@
             // 
             btnEmplyeesJobPDF.BackColor = Color.SeaGreen;
             btnEmplyeesJobPDF.ForeColor = SystemColors.ButtonHighlight;
-            btnEmplyeesJobPDF.Location = new Point(9, 800);
+            btnEmplyeesJobPDF.Location = new Point(22, 854);
             btnEmplyeesJobPDF.Name = "btnEmplyeesJobPDF";
             btnEmplyeesJobPDF.Size = new Size(202, 34);
             btnEmplyeesJobPDF.TabIndex = 54;
@@ -254,7 +254,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1045, 846);
+            ClientSize = new Size(1071, 897);
             Controls.Add(btnEmplyeesJobPDF);
             Controls.Add(btnAdd);
             Controls.Add(btnEdit);

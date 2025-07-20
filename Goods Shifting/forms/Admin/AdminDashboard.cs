@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Goods_Shifting.forms.Auth;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -118,6 +119,24 @@ namespace Goods_Shifting.forms.Admin
             jobHistoryPanel.FormBorderStyle = FormBorderStyle.None;
             this.panelFormLoader.Controls.Add(jobHistoryPanel);
             jobHistoryPanel.Show();
+        }
+
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+
+            this.Hide();
+            Home form = new Home();
+            form.FormClosed += (s, args) => this.Close();
+            form.Show();
+        }
+
+        private void btnCustomers_Click(object sender, EventArgs e)
+        {
+            this.panelFormLoader.Controls.Clear();
+            CustomerPanel customerPanel = new CustomerPanel() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            customerPanel.FormBorderStyle = FormBorderStyle.None;
+            this.panelFormLoader.Controls.Add(customerPanel);
+            customerPanel.Show();
         }
     }
 }

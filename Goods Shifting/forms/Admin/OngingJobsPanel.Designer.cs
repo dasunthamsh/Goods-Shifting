@@ -57,7 +57,7 @@
             dataGridView1.Location = new Point(12, 69);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(1021, 560);
+            dataGridView1.Size = new Size(1047, 596);
             dataGridView1.TabIndex = 22;
             dataGridView1.CellClick += dataGridView1_CellClick;
             // 
@@ -65,7 +65,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(54, 661);
+            label4.Location = new Point(54, 695);
             label4.Name = "label4";
             label4.Size = new Size(70, 28);
             label4.TabIndex = 48;
@@ -74,7 +74,7 @@
             // txtJobId
             // 
             txtJobId.Font = new Font("Segoe UI", 11F);
-            txtJobId.Location = new Point(54, 692);
+            txtJobId.Location = new Point(54, 726);
             txtJobId.Name = "txtJobId";
             txtJobId.Size = new Size(262, 37);
             txtJobId.TabIndex = 47;
@@ -83,7 +83,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(379, 661);
+            label1.Location = new Point(379, 695);
             label1.Name = "label1";
             label1.Size = new Size(91, 28);
             label1.TabIndex = 50;
@@ -92,7 +92,7 @@
             // txtAmount
             // 
             txtAmount.Font = new Font("Segoe UI", 11F);
-            txtAmount.Location = new Point(379, 692);
+            txtAmount.Location = new Point(379, 726);
             txtAmount.Name = "txtAmount";
             txtAmount.Size = new Size(262, 37);
             txtAmount.TabIndex = 49;
@@ -102,7 +102,7 @@
             btnCompleteJob.BackColor = SystemColors.MenuHighlight;
             btnCompleteJob.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnCompleteJob.ForeColor = SystemColors.Control;
-            btnCompleteJob.Location = new Point(591, 778);
+            btnCompleteJob.Location = new Point(601, 826);
             btnCompleteJob.Name = "btnCompleteJob";
             btnCompleteJob.RightToLeft = RightToLeft.No;
             btnCompleteJob.Size = new Size(218, 56);
@@ -116,7 +116,7 @@
             btnCancleJob.BackColor = Color.Brown;
             btnCancleJob.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnCancleJob.ForeColor = SystemColors.Control;
-            btnCancleJob.Location = new Point(815, 778);
+            btnCancleJob.Location = new Point(825, 826);
             btnCancleJob.Name = "btnCancleJob";
             btnCancleJob.Size = new Size(218, 56);
             btnCancleJob.TabIndex = 51;
@@ -128,7 +128,7 @@
             // 
             btnOngoingJobPDF.BackColor = Color.SeaGreen;
             btnOngoingJobPDF.ForeColor = SystemColors.ButtonHighlight;
-            btnOngoingJobPDF.Location = new Point(12, 800);
+            btnOngoingJobPDF.Location = new Point(12, 848);
             btnOngoingJobPDF.Name = "btnOngoingJobPDF";
             btnOngoingJobPDF.Size = new Size(202, 34);
             btnOngoingJobPDF.TabIndex = 53;
@@ -140,7 +140,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1045, 846);
+            ClientSize = new Size(1071, 897);
             Controls.Add(btnOngoingJobPDF);
             Controls.Add(btnCompleteJob);
             Controls.Add(btnCancleJob);

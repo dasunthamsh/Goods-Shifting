@@ -1,4 +1,7 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Goods_Shifting.lib;
+using iTextSharp.text.pdf;
+using iTextSharp.text;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,7 +21,7 @@ namespace Goods_Shifting.forms.Admin
             InitializeComponent();
             cmbStatus.Items.AddRange(new string[] { "assigned", "cancelled", "completed" });
 
-            cmbStatus.SelectedIndex = 0; // Select "All" by default
+            cmbStatus.SelectedIndex = 0;
             dateTimePicker1.Value = DateTime.Today.AddMonths(-1); // Default to last month
             dateTimePicker2.Value = DateTime.Today; // Default to today
 
@@ -131,6 +134,59 @@ namespace Goods_Shifting.forms.Admin
         private void cmbStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadJobHistory();
+        }
+
+        private void btnOngoingJobPDF_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Ask user where to save the file
+                SaveFileDialog saveDialog = new SaveFileDialog();
+                saveDialog.Filter = "PDF Files|*.pdf";
+                saveDialog.Title = "Save Jobs Report";
+                saveDialog.FileName = "Jobs.pdf";
+
+                if (saveDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Create the PDF
+                    Document doc = new Document();
+                    PdfWriter.GetInstance(doc, new FileStream(saveDialog.FileName, FileMode.Create));
+                    doc.Open();
+
+                    // Add a title
+                    doc.Add(new Paragraph("Jobs Report"));
+                    doc.Add(new Paragraph($"Generated on: {DateTime.Now.ToShortDateString()}"));
+                    doc.Add(new Paragraph("\n"));
+
+                    // Create a table with the same columns as the DataGridView
+                    PdfPTable pdfTable = new PdfPTable(dataGridView1.Columns.Count);
+
+                    // Add column headers
+                    foreach (DataGridViewColumn column in dataGridView1.Columns)
+                    {
+                        pdfTable.AddCell(column.HeaderText);
+                    }
+
+                    // Add data rows
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        foreach (DataGridViewCell cell in row.Cells)
+                        {
+                            pdfTable.AddCell(cell.Value?.ToString() ?? "");
+                        }
+                    }
+
+                    // Add the table to the document
+                    doc.Add(pdfTable);
+                    doc.Close();
+
+                    ToastMessage.Show(this, "PDF saved successfully!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error creating PDF: " + ex.Message);
+            }
         }
     }
 }

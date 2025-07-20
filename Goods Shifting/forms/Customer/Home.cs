@@ -38,6 +38,8 @@ namespace Goods_Shifting.forms.Auth
             AdminLogin loginForm = new AdminLogin();
             loginForm.FormClosed += (s, args) => this.Close();
             loginForm.Show();
+
+
         }
 
         private void label1_Click(object sender, EventArgs e)

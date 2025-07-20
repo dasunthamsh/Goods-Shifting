@@ -30,6 +30,7 @@
         {
             components = new System.ComponentModel.Container();
             panel1 = new Panel();
+            btnCustomers = new Button();
             btnManagers = new Button();
             JobHistory = new Button();
             btnOngoingJobs = new Button();
@@ -50,6 +51,7 @@
             // panel1
             // 
             panel1.BackColor = Color.Gainsboro;
+            panel1.Controls.Add(btnCustomers);
             panel1.Controls.Add(btnManagers);
             panel1.Controls.Add(JobHistory);
             panel1.Controls.Add(btnOngoingJobs);
@@ -67,10 +69,21 @@
             panel1.Size = new Size(292, 928);
             panel1.TabIndex = 0;
             // 
+            // btnCustomers
+            // 
+            btnCustomers.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCustomers.Location = new Point(0, 795);
+            btnCustomers.Name = "btnCustomers";
+            btnCustomers.Size = new Size(292, 78);
+            btnCustomers.TabIndex = 21;
+            btnCustomers.Text = "Customers";
+            btnCustomers.UseVisualStyleBackColor = true;
+            btnCustomers.Click += btnCustomers_Click;
+            // 
             // btnManagers
             // 
             btnManagers.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnManagers.Location = new Point(1, 385);
+            btnManagers.Location = new Point(1, 375);
             btnManagers.Name = "btnManagers";
             btnManagers.Size = new Size(292, 78);
             btnManagers.TabIndex = 20;
@@ -81,7 +94,7 @@
             // JobHistory
             // 
             JobHistory.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            JobHistory.Location = new Point(0, 721);
+            JobHistory.Location = new Point(0, 711);
             JobHistory.Name = "JobHistory";
             JobHistory.Size = new Size(292, 78);
             JobHistory.TabIndex = 19;
@@ -92,7 +105,7 @@
             // btnOngoingJobs
             // 
             btnOngoingJobs.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnOngoingJobs.Location = new Point(0, 637);
+            btnOngoingJobs.Location = new Point(0, 627);
             btnOngoingJobs.Name = "btnOngoingJobs";
             btnOngoingJobs.Size = new Size(292, 78);
             btnOngoingJobs.TabIndex = 18;
@@ -103,7 +116,7 @@
             // btnContainer
             // 
             btnContainer.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnContainer.Location = new Point(0, 553);
+            btnContainer.Location = new Point(0, 543);
             btnContainer.Name = "btnContainer";
             btnContainer.Size = new Size(292, 78);
             btnContainer.TabIndex = 17;
@@ -114,20 +127,21 @@
             // btnLogOut
             // 
             btnLogOut.BackColor = Color.Brown;
-            btnLogOut.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLogOut.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnLogOut.ForeColor = SystemColors.ButtonHighlight;
-            btnLogOut.Location = new Point(0, 860);
+            btnLogOut.Location = new Point(0, 881);
             btnLogOut.Name = "btnLogOut";
-            btnLogOut.Size = new Size(292, 59);
+            btnLogOut.Size = new Size(292, 43);
             btnLogOut.TabIndex = 16;
             btnLogOut.Text = "LogOut";
             btnLogOut.UseVisualStyleBackColor = false;
+            btnLogOut.Click += btnLogOut_Click;
             // 
             // lblTime
             // 
             lblTime.AutoSize = true;
             lblTime.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            lblTime.Location = new Point(11, 42);
+            lblTime.Location = new Point(9, 39);
             lblTime.Name = "lblTime";
             lblTime.Size = new Size(62, 25);
             lblTime.TabIndex = 15;
@@ -137,7 +151,7 @@
             // 
             lblDate.AutoSize = true;
             lblDate.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            lblDate.Location = new Point(11, 9);
+            lblDate.Location = new Point(9, 6);
             lblDate.Name = "lblDate";
             lblDate.Size = new Size(59, 25);
             lblDate.TabIndex = 14;
@@ -146,7 +160,7 @@
             // btnVehicles
             // 
             btnVehicles.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnVehicles.Location = new Point(0, 469);
+            btnVehicles.Location = new Point(0, 459);
             btnVehicles.Name = "btnVehicles";
             btnVehicles.Size = new Size(292, 78);
             btnVehicles.TabIndex = 13;
@@ -157,7 +171,7 @@
             // btnEmployees
             // 
             btnEmployees.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnEmployees.Location = new Point(0, 301);
+            btnEmployees.Location = new Point(0, 291);
             btnEmployees.Name = "btnEmployees";
             btnEmployees.Size = new Size(292, 78);
             btnEmployees.TabIndex = 12;
@@ -168,7 +182,7 @@
             // btnJobs
             // 
             btnJobs.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnJobs.Location = new Point(0, 217);
+            btnJobs.Location = new Point(0, 207);
             btnJobs.Name = "btnJobs";
             btnJobs.Size = new Size(292, 78);
             btnJobs.TabIndex = 11;
@@ -180,19 +194,21 @@
             // 
             label5.AutoSize = true;
             label5.BackColor = Color.Transparent;
-            label5.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+            label5.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = SystemColors.MenuHighlight;
-            label5.Location = new Point(70, 72);
+            label5.Location = new Point(70, 67);
             label5.Name = "label5";
-            label5.Size = new Size(135, 48);
+            label5.Size = new Size(121, 45);
             label5.TabIndex = 10;
             label5.Text = "E-Shift";
             label5.TextAlign = ContentAlignment.TopCenter;
             // 
             // btnDashboard
             // 
+            btnDashboard.FlatAppearance.MouseDownBackColor = Color.RoyalBlue;
+            btnDashboard.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 255, 128);
             btnDashboard.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnDashboard.Location = new Point(0, 133);
+            btnDashboard.Location = new Point(0, 123);
             btnDashboard.Name = "btnDashboard";
             btnDashboard.Size = new Size(292, 78);
             btnDashboard.TabIndex = 1;
@@ -244,5 +260,6 @@
         private Button JobHistory;
         private Button btnOngoingJobs;
         private Button btnManagers;
+        private Button btnCustomers;
     }
 }

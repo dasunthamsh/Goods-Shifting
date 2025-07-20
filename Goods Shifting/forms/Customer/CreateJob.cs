@@ -1,5 +1,6 @@
 ﻿using Goods_Shifting.forms.Auth;
 using Goods_Shifting.lib;
+using Goods_Shifting.lib.Validations;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,8 @@ namespace Goods_Shifting.forms.Customer
 {
     public partial class CreateJob : Form
     {
+        private ToolTip toolTip = new ToolTip();
+        private ErrorProvider errorProvider = new ErrorProvider();
 
         private string customerId;
         private string customerName;
@@ -27,6 +30,9 @@ namespace Goods_Shifting.forms.Customer
             UpdateNotificationCount();
             txtName.Text = customerName;
             lblName.Text = customerName;
+            toolTip.SetToolTip(btnHistory, "View Previous jobs");
+            toolTip.SetToolTip(btnNotifications, "Notifications");
+            toolTip.SetToolTip(btnLogout, "Logout");
         }
 
         private void AddTruckTypes()
@@ -76,24 +82,12 @@ namespace Goods_Shifting.forms.Customer
         }
 
 
-        private bool ValidateForm()
-        {
-            if (string.IsNullOrWhiteSpace(txtNumber.Text) ||
-                string.IsNullOrWhiteSpace(txtDestinationCity.Text) ||
-                string.IsNullOrWhiteSpace(txtDestinationAddress.Text) ||
-                string.IsNullOrWhiteSpace(txtOriginCity.Text) ||
-                string.IsNullOrWhiteSpace(txtOriginAddress.Text))
-            {
-                MessageBox.Show("Please fill all required fields.", "Validation Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
 
-            return true;
-        }
 
         private void SaveJobToDatabase()
         {
+
+
             MySqlConnection conn = DBConnection.GetConnection();
 
             try
@@ -126,7 +120,7 @@ namespace Goods_Shifting.forms.Customer
                     if (rowsAffected > 0)
                     {
                         ToastMessage.Show(this, "Job created successfully!");
-
+                        ClearForm();
                     }
                     else
                     {
@@ -206,7 +200,35 @@ namespace Goods_Shifting.forms.Customer
             }
         }
 
+        private bool ValidateForm()
+        {
+            return CreateJobValidation.ValidateCreateJobForm(
+                txtNumber,
+                txtDestinationCity,
+                txtDestinationAddress,
+                txtOriginCity,
+                txtOriginAddress,
+                cmbSize,
+                this,
+                errorProvider);
+        }
 
+        private void txtNumber_TextChanged(object sender, EventArgs e)
+        {
+            errorProvider.SetError(txtNumber, "add number");
+        }
 
+        private void ClearForm()
+        {
+          
+            cmbSize.SelectedIndex = 0;
+            txtNumber.Text = "";
+            txtOriginCity.Text = "";
+            txtDestinationCity.Text = "";
+            txtDestinationAddress.Text = "";
+            txtOriginAddress.Text = "";
+            txtMessage.Text = "";
+            dateTimePicker1.Value = DateTime.Now;
+        }
     }
 }

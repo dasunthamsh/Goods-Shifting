@@ -1,4 +1,5 @@
 ﻿using Goods_Shifting.lib;
+using Goods_Shifting.lib.Validations;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -13,8 +14,11 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Goods_Shifting.forms.Customer
 {
+
     public partial class previousJobs : Form
     {
+        private ErrorProvider errorProvider = new ErrorProvider();
+
         string customerId = "123";
         string userName = "dasun";
 
@@ -28,10 +32,9 @@ namespace Goods_Shifting.forms.Customer
 
         private void AddTruckTypes()
         {
-            // Clear existing items
             cmbSize.Items.Clear();
 
-            // Add truck types to the combo box
+
             cmbSize.Items.Add("Few Items");
             cmbSize.Items.Add("1 BHK");
             cmbSize.Items.Add("2 BHK");
@@ -40,7 +43,7 @@ namespace Goods_Shifting.forms.Customer
             cmbSize.Items.Add("5 BHK");
 
 
-            // Optionally set a default selected item
+            // set a default selected item
             cmbSize.SelectedIndex = 0;
         }
 
@@ -67,36 +70,23 @@ namespace Goods_Shifting.forms.Customer
         {
             if (string.IsNullOrEmpty(txtJobId.Text))
             {
-                MessageBox.Show("Please select a job to edit.", "Information",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ToastMessage.Show(this, "Please select a job to edit.");
                 return;
             }
 
-            if (ValidateEditForm())
+            if (ValidateForm())
             {
                 UpdateJobInDatabase();
             }
         }
 
 
-        private bool ValidateEditForm()
-        {
-            if (string.IsNullOrWhiteSpace(txtNumber.Text) ||
-                string.IsNullOrWhiteSpace(txtDestinationCity.Text) ||
-                string.IsNullOrWhiteSpace(txtDestinationAddress.Text) ||
-                string.IsNullOrWhiteSpace(txtOriginCity.Text) ||
-                string.IsNullOrWhiteSpace(txtOriginAddress.Text))
-            {
-                MessageBox.Show("Please fill all required fields.", "Validation Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
 
-            return true;
-        }
 
         private void UpdateJobInDatabase()
         {
+
+
             MySqlConnection conn = DBConnection.GetConnection();
 
             try
@@ -130,7 +120,7 @@ namespace Goods_Shifting.forms.Customer
                     if (rowsAffected > 0)
                     {
                         ToastMessage.Show(this, "Job updated successfully!");
-                        LoadJobsData(); // Refresh the grid
+                        LoadJobsData();
                     }
                     else
                     {
@@ -174,7 +164,7 @@ namespace Goods_Shifting.forms.Customer
                                     origin_address AS 'Origin Address',
                                     description AS 'Description'
                                     FROM jobs
-                                    WHERE status = 'assigned'
+                                    WHERE status = 'pending'
                                     ORDER BY Moving_date DESC";
 
                 MySqlDataAdapter adapter = new MySqlDataAdapter(query, conn);
@@ -183,10 +173,9 @@ namespace Goods_Shifting.forms.Customer
 
                 dataGridView1.DataSource = dataTable;
 
-                // Optional: Adjust column widths
+
                 dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-                // Optional: Format the date column
                 if (dataGridView1.Columns["Moving Date"] != null)
                 {
                     dataGridView1.Columns["Moving Date"].DefaultCellStyle.Format = "yyyy-MM-dd";
@@ -209,6 +198,90 @@ namespace Goods_Shifting.forms.Customer
             CreateJob form = new CreateJob(customerId, userName);
             form.FormClosed += (s, args) => this.Close();
             form.Show();
+        }
+
+        private bool ValidateForm()
+        {
+            return CreateJobValidation.ValidateCreateJobForm(
+                txtNumber,
+                txtDestinationCity,
+                txtDestinationAddress,
+                txtOriginCity,
+                txtOriginAddress,
+                cmbSize,
+                this,
+                errorProvider);
+        }
+
+        private void btnDeleteJob_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtJobId.Text))
+            {
+                ToastMessage.Show(this, "Please select a job to delete.");
+                return;
+            }
+
+            // Confirm deletion with user
+            var confirmResult = MessageBox.Show("Are you sure you want to delete this job?",
+                                              "Confirm Delete",
+                                              MessageBoxButtons.YesNo,
+                                              MessageBoxIcon.Warning);
+
+            if (confirmResult == DialogResult.Yes)
+            {
+                DeleteJobFromDatabase();
+            }
+        }
+
+        private void DeleteJobFromDatabase()
+        {
+            MySqlConnection conn = DBConnection.GetConnection();
+
+            try
+            {
+                conn.Open();
+                string query = "DELETE FROM jobs WHERE jobid = @jobId";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@jobId", txtJobId.Text);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        ToastMessage.Show(this, "Job deleted successfully!");
+                        ClearForm();
+                        LoadJobsData(); // Refresh the data grid
+                    }
+                    else
+                    {
+                        MessageBox.Show("Job not found or already deleted.", "Information",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error deleting job: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        private void ClearForm()
+        {
+            txtJobId.Text = "";
+            cmbSize.SelectedIndex = 0;
+            txtNumber.Text = "";
+            txtOriginCity.Text = "";
+            txtDestinationCity.Text = "";
+            txtDestinationAddress.Text = "";
+            txtOriginAddress.Text = "";
+            txtMessage.Text = "";
+            dateTimePicker1.Value = DateTime.Now;
         }
     }
 }

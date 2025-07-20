@@ -136,7 +136,7 @@ namespace Goods_Shifting.forms.Admin
 
                         if (checkedListBoxAssistants.Items.Count == 0)
                         {
-                            ToastMessage.Show(this, "No available assistants for the selected date.",true);
+                            ToastMessage.Show(this, "No available assistants for the selected date.", true);
                         }
                     }
                 }
@@ -186,7 +186,7 @@ namespace Goods_Shifting.forms.Admin
 
                         if (checkedListBoxVehicles.Items.Count == 0)
                         {
-                            ToastMessage.Show(this, "No available vehicles for the selected date.",true);
+                            ToastMessage.Show(this, "No available vehicles for the selected date.", true);
                         }
                     }
                 }
@@ -354,12 +354,12 @@ namespace Goods_Shifting.forms.Admin
                 catch (Exception ex)
                 {
                     transaction?.Rollback();
-                   ToastMessage.Show(this,"Error assigning job: " + ex.Message);
+                    ToastMessage.Show(this, "Error assigning job: " + ex.Message);
                 }
             }
         }
 
-       
+
 
         private void btnRemoveJob_Click(object sender, EventArgs e)
         {
@@ -793,6 +793,71 @@ namespace Goods_Shifting.forms.Admin
             checkedListBoxAssistants.Items.Clear();
             checkedListBoxVehicles.Items.Clear();
             checkedListBoxContainers.Items.Clear();
+        }
+
+        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                UpdateDatabaseFromGridChange(e.RowIndex, e.ColumnIndex);
+            }
+        }
+
+
+        private void UpdateDatabaseFromGridChange(int rowIndex, int columnIndex)
+        {
+            DataGridViewRow row = dataGridView1.Rows[rowIndex];
+            string jobId = row.Cells["jobId"].Value.ToString();
+            string columnName = dataGridView1.Columns[columnIndex].Name;
+            string newValue = row.Cells[columnIndex].Value?.ToString();
+
+            // Map DataGridView column names to database column names if they're different
+            Dictionary<string, string> columnMapping = new Dictionary<string, string>
+    {
+        {"customerid", "customerid"},
+        {"contact", "contact"},
+        {"destination_address", "destination_address"},
+        {"destination_city", "destination_city"},
+        {"origin_address", "origin_address"},
+        {"origin_city", "origin_city"},
+        {"Moving_date", "Moving_date"},
+        {"create_date", "create_date"}
+    };
+
+            if (columnMapping.TryGetValue(columnName, out string dbColumnName))
+            {
+                using (MySqlConnection conn = DBConnection.GetConnection())
+                {
+                    try
+                    {
+                        conn.Open();
+                        string query = $"UPDATE jobs SET {dbColumnName} = @value WHERE jobId = @jobId";
+
+                        MySqlCommand cmd = new MySqlCommand(query, conn);
+                        cmd.Parameters.AddWithValue("@value", newValue);
+                        cmd.Parameters.AddWithValue("@jobId", jobId);
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            ToastMessage.Show(this, "Update successful!", false);
+                        }
+                        else
+                        {
+                            ToastMessage.Show(this, "No changes were made to the database.", true);
+                            // Revert the change in the grid
+                            loadDataToTable();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        ToastMessage.Show(this, $"Error updating database: {ex.Message}", true);
+                        // Revert the change in the grid
+                        loadDataToTable();
+                    }
+                }
+            }
         }
     }
 }
